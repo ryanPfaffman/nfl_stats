@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+  <body>
+    {% block content %}
+    <table id='qb_stats' border='1'>
+      <tr id='table_title'>
+        <td colspan='16' align='center'>
+          <img src="{% static 'images/page_title.png'%}" alt='NFL Stats'>
+        </td>
+      </tr>
+      <tr>
+        <td class="title_row" colspan='3' align='center'>
+          <img src="{% static 'images/nfl_logo.jpg'%}" alt="NFL Logo">
+        </td>
+        <td class='title_row' colspan='10' align='center'>
+          <img src="{% static 'images/table_title.png'%}" alt="Passing Title" width='300' height='78'>
+        </td>
+        <td class='title_row' colspan='3' align='center'>
+          <img src="{% static 'images/nfl_logo.jpg'%}" alt="NFL Logo" align='center'>
+        </td>
+      </tr>
+      <tr>
+        <td class='table_header'>Player</td>
+        <td class='table_header'>Yards</td>
+        <td class='table_header'>Yards Per Att</td>
+        <td class='table_header'>Attempts</td>
+        <td class='table_header'>Completions</td>
+        <td class='table_header'>Completion %</td>
+        <td class='table_header'>TD</td>
+        <td class='table_header'>INT</td>
+        <td class='table_header'>QB Rating</td>
+        <td class='table_header'>First Downs</td>
+        <td class='table_header'>First Down %</td>
+        <td class='table_header'>20+</td>
+        <td class='table_header'>40+</td>
+        <td class='table_header'>Long</td>
+        <td class='table_header'>Sacks</td>
+        <td class='table_header'>Sack Yards</td>
+      </tr>
+      <tr>
+        <td id='qb_1' class="player">{{ qb_1}}</td>
+<td id='s_qb_1' class='yards'>{{ s_qb_1}}</td>
+<td id='yd_att_1' class='yards_att'>{{ yd_att_1}}</td>
+<td id = 'num_att_1' class='num_att'>{{ num_att_1}}</td>
+<td id = 'comp_1' class='comp'>{{ comp_1}}</td>
+<td id = 'comp_perc_1' class='comp_perc'>{{ comp_perc_1}}</td>
+<td id = 'td_1' class='td'>{{ td_1}}</td>
+<td id = 'int_1' class='int'>{{ int_1}}</td>
+<td id = 'rating_1' class='rating'>{{ rating_1}}</td>
+<td id = 'first_downs_1' class='first_downs'>{{ first_downs_1}}</td>
+<td id = 'first_downs_perc_1}' class='first_downs_perc'>{{ first_downs_perc_1}}</td>
+<td id = 'more_20_1' class='more_20'>{{ more_20_1}}</td>
+<td id='more_40_1' class='more_40'>{{ more_40_1}}</td>
+<td id='long_1' class='long'>{{ long_1}}</td>
+<td id='sacks_1' class='sacks'>{{ sacks_1}}</td>
+<td id='sacks_yds_1' class='sacks_yds'>{{ sacks_yds_1}}</td>
+</tr>
+<tr>
+  <td id='qb_2' class="player">{{ qb_2}}</td>
+<td id='s_qb_2' class='yards'>{{ s_qb_2}}</td>
+<td id='yd_att_2' class='yards_att'>{{ yd_att_2}}</td>
+<td id='num_att_2' class='num_att'>{{ num_att_2}}</td>
+<td id='comp_2' class='comp'>{{ comp_2}}</td>
+<td id='comp_perc_2' class='comp_perc'>{{ comp_perc_2}}</td>
+<td id='td_2' class='td'>{{ td_2}}</td>
+<td id='int_2' class='int'>{{ int_2}}</td>
+<td id='rating_2' class='rating'>{{ rating_2}}</td>
+<td id='first_downs_2' class='first_downs'>{{ first_downs_2}}</td>
+<td id='first_downs_perc_2' class='first_downs_perc'>{{ first_downs_perc_2}}</td>
+<td id='more_20_2' class='more_20'>{{ more_20_2}}</td>
+<td id='more_40_2' class="more_40">{{ more_40_2}}</td>
+<td id='long_2' class='long'>{{ long_2}}</td>
+<td id='sacks_2' class="sacks">{{ sacks_2}}</td>
+<td id='sacks_yds_2' class='sacks_yds'>{{ sacks_yds_2}}</td>
+</tr>
+<tr>
+  <td id='qb_3' class="player">{{ qb_3}}</td>
+<td id='s_qb_3' class='yards'>{{ s_qb_3}}</td>
+<td id='yd_att_3' class='yards_att'>{{ yd_att_3}}</td>
+<td id='num_att_3' class='num_att'>{{ num_att_3}}</td>
+<td id='comp_3' class='comp'>{{ comp_3}}</td>
+<td id='comp_perc_3' class='comp_perc'>{{ comp_perc_3}}</td>
+<td id='td_3' class='td'>{{ td_3}}</td>
+<td id='int_3' class='int'>{{ int_3}}</td>
+<td id='rating_3' class='rating'>{{ rating_3}}</td>
+<td id='first_downs_3' class='first_downs'>{{ first_downs_3}}</td>
+<td id='first_downs_perc_3' class='first_downs_perc'>{{ first_downs_perc_3}}</td>
+<td id='more_20_3' class='more_20'>{{ more_20_3}}</td>
+<td id='more_40_3' class="more_40">{{ more_40_3}}</td>
+<td id='long_3' class='long'>{{ long_3}}</td>
+<td id='sacks_3' class='sacks'>{{ sacks_3}}</td>
+<td id='sacks_yds_3' class='sacks_yds'>{{ sacks_yds_3}}</td>
+</tr>
+<tr>
+  <td id='qb_4' class="player">{{ qb_4}}</td>
+<td id='s_qb_4' class='yards'>{{ s_qb_4}}</td>
+<td id='yd_att_4' class='yards_att'>{{ yd_att_4}}</td>
+<td id='num_att_4' class='num_att'>{{ num_att_4}}</td>
+<td id='comp_4' class='comp'>{{ comp_4}}</td>
+<td id='comp_perc_4' class='comp_perc'>{{ comp_perc_4}}</td>
+<td id='td_4' class='td'>{{ td_4}}</td>
+<td id='int_4' class='int'>{{ int_4}}</td>
+<td id='rating_4' class='rating'>{{ rating_4}}</td>
+<td id='first_downs_4' class='first_downs'>{{ first_downs_4}}</td>
+<td id='first_downs_perc_4' class='first_downs_perc'>{{ first_downs_perc_4}}</td>
+<td id='more_20_4' class='more_20'>{{ more_20_4}}</td>
+<td id='more_40_4' class='more_40'>{{ more_40_4}}</td>
+<td id='long_4' class='long'>{{ long_4}}</td>
+<td id='sacks_4' class='sacks'>{{ sacks_4}}</td>
+<td id='sacks_yds_4' class='sacks_yds'>{{ sacks_yds_4}}</td>
+</tr>
+<tr>
+  <td id = 'qb_5' class="player">{{ qb_5}}</td>
+<td id='s_qb_5' class='yards'>{{ s_qb_5}}</td>
+<td id='yd_att_5' class='yards_att'>{{ yd_att_5}}</td>
+<td id='num_att_5' class='num_att'>{{ num_att_5}}</td>
+<td id='comp_5' class='comp'>{{ comp_5}}</td>
+<td id='comp_perc_5' class='comp_perc'>{{ comp_perc_5}}</td>
+<td id='td_5' class='td'>{{ td_5}}</td>
+<td id='int_5' class='int'>{{ int_5}}</td>
+<td id='rating_5' class='rating'>{{ rating_5}}</td>
+<td id='first_downs_5' class='first_downs'>{{ first_downs_5}}</td>
+<td id='first_downs_perc_5' class='first_downs_perc'>{{ first_downs_perc_5}}</td>
+<td id='more_20_5' class='more_20'>{{ more_20_5}}</td>
+<td id='more_40_5' class='more_40'>{{ more_40_5}}</td>
+<td id='long_5' class='long'>{{ long_5}}</td>
+<td id='sacks_5' class='sacks'>{{ sacks_5}}</td>
+<td id='sacks_yds_5' class='sacks_yds'>{{ sacks_yds_5}}</td>
+</tr>
+<tr>
+  <td id='qb_6' class="player">{{ qb_6}}</td>
+<td id='s_qb_6' class='yards'>{{ s_qb_6}}</td>
+<td id='yd_att_6' class='yards_att'>{{ yd_att_6}}</td>
+<td id='num_att_6' class='num_att'>{{ num_att_6}}</td>
+<td id='comp_6' class='comp'>{{ comp_6}}</td>
+<td id='comp_perc_6' class='comp_perc'>{{ comp_perc_6}}</td>
+<td id='td_6' class='td'>{{ td_6}}</td>
+<td id='int_6' class='int'>{{ int_6}}</td>
+<td id='rating_6' class='rating'>{{ rating_6}}</td>
+<td id='first_downs_6' class='first_downs'>{{ first_downs_6}}</td>
+<td id='first_downs_perc_6' class='first_downs_perc'>{{ first_downs_perc_6}}</td>
+<td id='more_20_6' class='more_20'>{{ more_20_6}}</td>
+<td id='more_40_6' class='more_40'>{{ more_40_6}}</td>
+<td id='long_6' class='long'>{{ long_6}}</td>
+<td id='sacks_6' class='sacks'>{{ sacks_6}}</td>
+<td id='sacks_yds_6' class='sacks_yds'>{{ sacks_yds_6}}</td>
+</tr>
+<tr>
+  <td id='qb_7' class="player">{{ qb_7}}</td>
+<td id='s_qb_7' class='yards'>{{ s_qb_7}}</td>
+<td id='yd_att_7' class='yards_att'>{{ yd_att_7}}</td>
+<td id='num_att_7' class='num_att'>{{ num_att_7}}</td>
+<td id='comp_7' class='comp'>{{ comp_7}}</td>
+<td id='comp_perc_7' class='comp_perc'>{{ comp_perc_7}}</td>
+<td id='td_7' class='td'>{{ td_7}}</td>
+<td id='int_7' class='int'>{{ int_7}}</td>
+<td id='rating_7' class='rating'>{{ rating_7}}</td>
+<td id='first_downs_7' class='first_downs'>{{ first_downs_7}}</td>
+<td id='first_downs_perc_7' class='first_downs_perc'>{{ first_downs_perc_7}}</td>
+<td id='more_20_7' class='more_20'>{{ more_20_7}}</td>
+<td id='more_40_7' class='more_40'>{{ more_40_7}}</td>
+<td id='long_7' class='long'>{{ long_7}}</td>
+<td id='sacks_7' class='sacks'>{{ sacks_7}}</td>
+<td id='sacks_yds_7' class='sacks_yds'>{{ sacks_yds_7}}</td>
+</tr>
+<tr>
+  <td id='qb_8' class="player">{{ qb_8}}</td>
+<td id='s_qb_8' class='yards'>{{ s_qb_8}}</td>
+<td id='yd_att_8' class='yards_att'>{{ yd_att_8}}</td>
+<td id='num_att_8' class='num_att'>{{ num_att_8}}</td>
+<td id='comp_8' class='comp'>{{ comp_8}}</td>
+<td id='comp_perc_8' class='comp_perc'>{{ comp_perc_8}}</td>
+<td id='td_8' class='td'>{{ td_8}}</td>
+<td id='int_8' class='int'>{{ int_8}}</td>
+<td id='rating_8' class='rating'>{{ rating_8}}</td>
+<td id='first_downs_8' class='first_downs'>{{ first_downs_8}}</td>
+<td id='first_downs_perc_8' class='first_downs_perc'>{{ first_downs_perc_8}}</td>
+<td id='more_20_8' class='more_20'>{{ more_20_8}}</td>
+<td id='more_40_8' class='more_40'>{{ more_40_8}}</td>
+<td id='long_8' class='long'>{{ long_8}}</td>
+<td id='sacks_8' class='sacks'>{{ sacks_8}}</td>
+<td id='sacks_yds_8' class='sacks_yds'>{{ sacks_yds_8}}</td>
+</tr>
+<tr>
+  <td id='qb_9' class="player">{{ qb_9}}</td>
+<td id='s_qb_9' class='yards'>{{ s_qb_9}}</td>
+<td id='yd_att_9' class='yards_att'>{{ yd_att_9}}</td>
+<td id='num_att_9' class='num_att'>{{ num_att_9}}</td>
+<td id='comp_9' class='comp'>{{ comp_9}}</td>
+<td id='comp_perc_9' class='comp_perc'>{{ comp_perc_9}}</td>
+<td id='td_9' class='td'>{{ td_9}}</td>
+<td id='int_9' class='int'>{{ int_9}}</td>
+<td id='rating_9' class='rating'>{{ rating_9}}</td>
+<td id='first_downs_9' class='first_downs'>{{ first_downs_9}}</td>
+<td id='first_downs_perc_9' class='first_downs_perc'>{{ first_downs_perc_9}}</td>
+<td id='more_20_9' class='more_20'>{{ more_20_9}}</td>
+<td id='more_40_9' class='more_40'>{{ more_40_9}}</td>
+<td id='long_9' class='long'>{{ long_9}}</td>
+<td id='sacks_9' class='sacks'>{{ sacks_9}}</td>
+<td id='sacks_yds_9' class='sacks_yds'>{{ sacks_yds_9}}</td>
+</tr>
+<tr>
+  <td id='qb_10' class="player">{{ qb_10}}</td>
+<td id='s_qb_10' class='yards'>{{ s_qb_10}}</td>
+<td id='yd_att_10' class='yards_att'>{{ yd_att_10}}</td>
+<td id='num_att_10' class='num_att'>{{ num_att_10}}</td>
+<td id='comp_10' class='comp'>{{ comp_10}}</td>
+<td id='comp_perc_10' class='comp_perc'>{{ comp_perc_10}}</td>
+<td id='td_10' class='td'>{{ td_10}}</td>
+<td id='int_10' class='int'>{{ int_10}}</td>
+<td id='rating_10' class='rating'>{{ rating_10}}</td>
+<td id='first_downs_10' class='first_downs'>{{ first_downs_10}}</td>
+<td id='first_downs_perc_10' class='first_downs_perc'>{{ first_downs_perc_10}}</td>
+<td id='more_20_10' class='more_20'>{{ more_20_10}}</td>
+<td id='more_40_10' class='more_40'>{{ more_40_10}}</td>
+<td id='long_10' class='long'>{{ long_10}}</td>
+<td id='sacks_10' class='sacks'>{{ sacks_10}}</td>
+<td id='sacks_yds_10' class='sacks_yds'>{{ sacks_yds_10}}</td>
+</tr>
+<tr>
+  <td id='qb_11' class="player">{{ qb_11}}</td>
+<td id='s_qb_11' class='yards'>{{ s_qb_11}}</td>
+<td id='yd_att_11' class='yards_att'>{{ yd_att_11}}</td>
+<td id='num_att_11' class='num_att'>{{ num_att_11}}</td>
+<td id='comp_11' class='comp'>{{ comp_11}}</td>
+<td id='comp_perc_11' class='comp_perc'>{{ comp_perc_11}}</td>
+<td id='td_11' class='td'>{{ td_11}}</td>
+<td id='int_11' class='int'>{{ int_11}}</td>
+<td id='rating_11' class='rating'>{{ rating_11}}</td>
+<td id='first_downs_11' class='first_downs'>{{ first_downs_11}}</td>
+<td id='first_downs_perc_11' class='first_downs_perc'>{{ first_downs_perc_11}}</td>
+<td id='more_20_11' class='more_20'>{{ more_20_11}}</td>
+<td id='more_40_11' class='more_40'>{{ more_40_11}}</td>
+<td id='long_11' class='long'>{{ long_11}}</td>
+<td id='sacks_11' class='sacks'>{{ sacks_11}}</td>
+<td id='sacks_yds_11' class='sacks_yds'>{{ sacks_yds_11}}</td>
+</tr>
+<tr>
+  <td id='qb_12' class="player">{{ qb_12}}</td>
+<td id='s_qb_12' class='yards'>{{ s_qb_12}}</td>
+<td id='yd_att_12' class='yards_att'>{{ yd_att_12}}</td>
+<td id='num_att_12' class='num_att'>{{ num_att_12}}</td>
+<td id='comp_12' class='comp'>{{ comp_12}}</td>
+<td id='comp_perc_12' class='comp_perc'>{{ comp_perc_12}}</td>
+<td id='td_12' class='td'>{{ td_12}}</td>
+<td id='int_12' class='int'>{{ int_12}}</td>
+<td id='rating_12' class='rating'>{{ rating_12}}</td>
+<td id='first_downs_12' class='first_downs'>{{ first_downs_12}}</td>
+<td id='first_downs_perc_12' class='first_downs_perc'>{{ first_downs_perc_12}}</td>
+<td id='more_20_12' class='more_20'>{{ more_20_12}}</td>
+<td id='more_40_12' class='more_40'>{{ more_40_12}}</td>
+<td id='long_12' class='long'>{{ long_12}}</td>
+<td id='sacks_12' class='sacks'>{{ sacks_12}}</td>
+<td id='sacks_yds_12' class='sacks_yds'>{{ sacks_yds_12}}</td>
+</tr>
+<tr>
+  <td id='qb_13' class="player">{{ qb_13}}</td>
+<td id='s_qb_13' class='yards'>{{ s_qb_13}}</td>
+<td id='yd_att_13' class='yards_att'>{{ yd_att_13}}</td>
+<td id='num_att_13' class='num_att'>{{ num_att_13}}</td>
+<td id='comp_13' class='comp'>{{ comp_13}}</td>
+<td id='comp_perc_13' class='comp_perc'>{{ comp_perc_13}}</td>
+<td id='td_13' class='td'>{{ td_13}}</td>
+<td id='int_13' class='int'>{{ int_13}}</td>
+<td id='rating_13' class='rating'>{{ rating_13}}</td>
+<td id='first_downs_13' class='first_downs'>{{ first_downs_13}}</td>
+<td id='first_downs_perc_13' class='first_downs_perc'>{{ first_downs_perc_13}}</td>
+<td id='more_20_13' class='more_20'>{{ more_20_13}}</td>
+<td id='more_40_13' class='more_40'>{{ more_40_13}}</td>
+<td id='long_13' class='long'>{{ long_13}}</td>
+<td id='sacks_13' class='sacks'>{{ sacks_13}}</td>
+<td id='sacks_yds_13' class='sacks_yds'>{{ sacks_yds_13}}</td>
+</tr>
+<tr>
+  <td id='qb_14' class="player">{{ qb_14}}</td>
+<td id='s_qb_14' class='yards'>{{ s_qb_14}}</td>
+<td id='yd_att_14' class='yards_att'>{{ yd_att_14}}</td>
+<td id='num_att_14' class='num_att'>{{ num_att_14}}</td>
+<td id='comp_14' class='comp'>{{ comp_14}}</td>
+<td id='comp_perc_14' class='comp_perc'>{{ comp_perc_14}}</td>
+<td id='td_14' class='td'>{{ td_14}}</td>
+<td id='int_14' class='int'>{{ int_14}}</td>
+<td id='rating_14' class='rating'>{{ rating_14}}</td>
+<td id='first_downs_14' class='first_downs'>{{ first_downs_14}}</td>
+<td id='first_downs_perc_14' class='first_downs_perc'>{{ first_downs_perc_14}}</td>
+<td id='more_20_14' class='more_20'>{{ more_20_14}}</td>
+<td id='more_40_14' class='more_40'>{{ more_40_14}}</td>
+<td id='long_14' class='long'>{{ long_14}}</td>
+<td id='sacks_14' class='sacks'>{{ sacks_14}}</td>
+<td id='sacks_yds_14' class='sacks_yds'>{{ sacks_yds_14}}</td>
+</tr>
+<tr>
+  <td id='qb_15' class="player">{{ qb_15}}</td>
+<td id='s_qb_15' class='yards'>{{ s_qb_15}}</td>
+<td id='yd_att_15' class='yards_att'>{{ yd_att_15}}</td>
+<td id='num_att_15' class='num_att'>{{ num_att_15}}</td>
+<td id='comp_15' class='comp'>{{ comp_15}}</td>
+<td id='comp_perc_15' class='comp_perc'>{{ comp_perc_15}}</td>
+<td id='td_15' class='td'>{{ td_15}}</td>
+<td id='int_15' class='int'>{{ int_15}}</td>
+<td id='rating_15' class='rating'>{{ rating_15}}</td>
+<td id='first_downs_15' class='first_downs'>{{ first_downs_15}}</td>
+<td id='first_downs_perc_15' class='first_downs_perc'>{{ first_downs_perc_15}}</td>
+<td id='more_20_15' class='more_20'>{{ more_20_15}}</td>
+<td id='more_40_15' class='more_40'>{{ more_40_15}}</td>
+<td id='long_15' class='long'>{{ long_15}}</td>
+<td id='sacks_15' class='sacks'>{{ sacks_15}}</td>
+<td id='sacks_yds_15' class='sacks_yds'>{{ sacks_yds_15}}</td>
+</tr>
+<tr>
+  <td id='qb_16' class="player">{{ qb_16}}</td>
+<td id='s_qb_16' class='yards'>{{ s_qb_16}}</td>
+<td id='yd_att_16' class='yards_att'>{{ yd_att_16}}</td>
+<td id='num_att_16' class='num_att'>{{ num_att_16}}</td>
+<td id='comp_16' class='comp'>{{ comp_16}}</td>
+<td id='comp_perc_16' class='comp_perc'>{{ comp_perc_16}}</td>
+<td id='td_16' class='td'>{{ td_16}}</td>
+<td id='int_16' class='int'>{{ int_16}}</td>
+<td id='rating_16' class='rating'>{{ rating_16}}</td>
+<td id='first_downs_16' class='first_downs'>{{ first_downs_16}}</td>
+<td id='first_downs_perc_16' class='first_downs_perc'>{{ first_downs_perc_16}}</td>
+<td id='more_20_16' class='more_20'>{{ more_20_16}}</td>
+<td id='more_40_16' class='more_40'>{{ more_40_16}}</td>
+<td id='long_16' class='long'>{{ long_16}}</td>
+<td id='sacks_16' class='sacks'>{{ sacks_16}}</td>
+<td id='sacks_yds_16' class='sacks_yds'>{{ sacks_yds_16}}</td>
+</tr>
+<tr>
+  <td id='qb_17' class="player">{{ qb_17}}</td>
+<td id='s_qb_17' class='yards'>{{ s_qb_17}}</td>
+<td id='yd_att_17' class='yards_att'>{{ yd_att_17}}</td>
+<td id='num_att_17' class='num_att'>{{ num_att_17}}</td>
+<td id='comp_17' class='comp'>{{ comp_17}}</td>
+<td id='comp_perc_17' class='comp_perc'>{{ comp_perc_17}}</td>
+<td id='td_17' class='td'>{{ td_17}}</td>
+<td id='int_17' class='int'>{{ int_17}}</td>
+<td id='rating_17' class='rating'>{{ rating_17}}</td>
+<td id='first_downs_17' class='first_downs'>{{ first_downs_17}}</td>
+<td id='first_downs_perc_17' class='first_downs_perc'>{{ first_downs_perc_17}}</td>
+<td id='more_20_17' class='more_20'>{{ more_20_17}}</td>
+<td id='more_40_17' class='more_40'>{{ more_40_17}}</td>
+<td id='long_17' class='long'>{{ long_17}}</td>
+<td id='sacks_17' class='sacks'>{{ sacks_17}}</td>
+<td id='sacks_yds_17' class='sacks_yds'>{{ sacks_yds_17}}</td>
+</tr>
+<tr>
+  <td id='qb_18' class="player">{{ qb_18}}</td>
+<td id='s_qb_18' class='yards'>{{ s_qb_18}}</td>
+<td id='yd_att_18' class='yards_att'>{{ yd_att_18}}</td>
+<td id='num_att_18' class='num_att'>{{ num_att_18}}</td>
+<td id='comp_18' class='comp'>{{ comp_18}}</td>
+<td id='comp_perc_18' class='comp_perc'>{{ comp_perc_18}}</td>
+<td id='td_18' class='td'>{{ td_18}}</td>
+<td id='int_18' class='int'>{{ int_18}}</td>
+<td id='rating_18' class='rating'>{{ rating_18}}</td>
+<td id='first_downs_18' class='first_downs'>{{ first_downs_18}}</td>
+<td id='first_downs_perc_18' class='first_downs_perc'>{{ first_downs_perc_18}}</td>
+<td id='more_20_18' class='more_20'>{{ more_20_18}}</td>
+<td id='more_40_18' class='more_40'>{{ more_40_18}}</td>
+<td id='long_18' class='long'>{{ long_18}}</td>
+<td id='sacks_18' class='sacks'>{{ sacks_18}}</td>
+<td id='sacks_yds_18' class='sacks_yds'>{{ sacks_yds_18}}</td>
+</tr>
+<tr>
+  <td id='qb_19' class="player">{{ qb_19}}</td>
+<td id='s_qb_19' class='yards'>{{ s_qb_19}}</td>
+<td id='yd_att_19' class='yards_att'>{{ yd_att_19}}</td>
+<td id='num_att_19' class='num_att'>{{ num_att_19}}</td>
+<td id='comp_19' class='comp'>{{ comp_19}}</td>
+<td id='comp_perc_19' class='comp_perc'>{{ comp_perc_19}}</td>
+<td id='td_19' class='td'>{{ td_19}}</td>
+<td id='int_19' class='int'>{{ int_19}}</td>
+<td id='rating_19' class='rating'>{{ rating_19}}</td>
+<td id='first_downs_19' class='first_downs'>{{ first_downs_19}}</td>
+<td id='first_downs_perc_19' class='first_downs_perc'>{{ first_downs_perc_19}}</td>
+<td id='more_20_19' class='more_20'>{{ more_20_19}}</td>
+<td id='more_40_19' class='more_40'>{{ more_40_19}}</td>
+<td id='long_19' class='long'>{{ long_19}}</td>
+<td id='sacks_19' class='sacks'>{{ sacks_19}}</td>
+<td id='sacks_yds_19' class='sacks_yds'>{{ sacks_yds_19}}</td>
+</tr>
+<tr>
+  <td id='qb_20' class="player">{{ qb_20}}</td>
+<td id='s_qb_20' class='yards'>{{ s_qb_20}}</td>
+<td id='yd_att_20' class='yards_att'>{{ yd_att_20}}</td>
+<td id='num_att_20' class='num_att'>{{ num_att_20}}</td>
+<td id='comp_20' class='comp'>{{ comp_20}}</td>
+<td id='comp_perc_20' class='comp_perc'>{{ comp_perc_20}}</td>
+<td id='td_20' class='td'>{{ td_20}}</td>
+<td id='int_20' class='int'>{{ int_20}}</td>
+<td id='rating_20' class='rating'>{{ rating_20}}</td>
+<td id='first_downs_20' class='first_downs'>{{ first_downs_20}}</td>
+<td id='first_downs_perc_20' class='first_downs_perc'>{{ first_downs_perc_20}}</td>
+<td id='more_20_20' class='more_20'>{{ more_20_20}}</td>
+<td id='more_40_20' class='more_40'>{{ more_40_20}}</td>
+<td id='long_20' class='long'>{{ long_20}}</td>
+<td id='sacks_20' class='sacks'>{{ sacks_20}}</td>
+<td id='sacks_yds_20' class='sacks_yds'>{{ sacks_yds_20}}</td>
+</tr>
+<tr>
+  <td id='qb_21' class="player">{{ qb_21}}</td>
+<td id='s_qb_21' class='yards'>{{ s_qb_21}}</td>
+<td id='yd_att_21' class='yards_att'>{{ yd_att_21}}</td>
+<td id='num_att_21' class='num_att'>{{ num_att_21}}</td>
+<td id='comp_21' class='comp'>{{ comp_21}}</td>
+<td id='comp_perc_21' class='comp_perc'>{{ comp_perc_21}}</td>
+<td id='td_21' class='td'>{{ td_21}}</td>
+<td id='int_21' class='int'>{{ int_21}}</td>
+<td id='rating_21' class='rating'>{{ rating_21}}</td>
+<td id='first_downs_21' class='first_downs'>{{ first_downs_21}}</td>
+<td id='first_downs_perc_21' class='first_downs_perc'>{{ first_downs_perc_21}}</td>
+<td id='more_20_21' class='more_20'>{{ more_20_21}}</td>
+<td id='more_40_21' class='more_40'>{{ more_40_21}}</td>
+<td id='long_21' class='long'>{{ long_21}}</td>
+<td id='sacks_21' class='sacks'>{{ sacks_21}}</td>
+<td id='sacks_yds_21' class='sacks_yds'>{{ sacks_yds_21}}</td>
+</tr>
+<tr>
+  <td id='qb_22' class="player">{{ qb_22}}</td>
+<td id='s_qb_22' class='yards'>{{ s_qb_22}}</td>
+<td id='yd_att_22' class='yards_att'>{{ yd_att_22}}</td>
+<td id='num_att_22' class='num_att'>{{ num_att_22}}</td>
+<td id='comp_22' class='comp'>{{ comp_22}}</td>
+<td id='comp_perc_22' class='comp_perc'>{{ comp_perc_22}}</td>
+<td id='td_22' class='td'>{{ td_22}}</td>
+<td id='int_22' class='int'>{{ int_22}}</td>
+<td id='rating_22' class='rating'>{{ rating_22}}</td>
+<td id='first_downs_22' class='first_downs'>{{ first_downs_22}}</td>
+<td id='first_downs_perc_22' class='first_downs_perc'>{{ first_downs_perc_22}}</td>
+<td id='more_20_22' class='more_20'>{{ more_20_22}}</td>
+<td id='more_40_22' class='more_40'>{{ more_40_22}}</td>
+<td id='long_22' class='long'>{{ long_22}}</td>
+<td id='sacks_22' class='sacks'>{{ sacks_22}}</td>
+<td id='sacks_yds_22' class='sacks_yds'>{{ sacks_yds_22}}</td>
+</tr>
+<tr>
+  <td id='qb_23' class="player">{{ qb_23}}</td>
+<td id='s_qb_23' class='yards'>{{ s_qb_23}}</td>
+<td id='yd_att_23' class='yards_att'>{{ yd_att_23}}</td>
+<td id='num_att_23' class='num_att'>{{ num_att_23}}</td>
+<td id='comp_23' class='comp'>{{ comp_23}}</td>
+<td id='comp_perc_23' class='comp_perc'>{{ comp_perc_23}}</td>
+<td id='td_23' class='td'>{{ td_23}}</td>
+<td id='int_23' class='int'>{{ int_23}}</td>
+<td id='rating_23' class='rating'>{{ rating_23}}</td>
+<td id='first_downs_23' class='first_downs'>{{ first_downs_23}}</td>
+<td id='first_downs_perc_23' class='first_downs_perc'>{{ first_downs_perc_23}}</td>
+<td id='more_20_23' class='more_20'>{{ more_20_23}}</td>
+<td id='more_40_23' class='more_40'>{{ more_40_23}}</td>
+<td id='long_23' class='long'>{{ long_23}}</td>
+<td id='sacks_23' class='sacks'>{{ sacks_23}}</td>
+<td id='sacks_yds_23' class='sacks_yds'>{{ sacks_yds_23}}</td>
+</tr>
+<tr>
+  <td id='qb_24' class="player">{{ qb_24}}</td>
+<td id='s_qb_24' class='yards'>{{ s_qb_24}}</td>
+<td id='yd_att_24' class='yards_att'>{{ yd_att_24}}</td>
+<td id='num_att_24' class='num_att'>{{ num_att_24}}</td>
+<td id='comp_24' class='comp'>{{ comp_24}}</td>
+<td id='comp_perc_24' class='comp_perc'>{{ comp_perc_24}}</td>
+<td id='td_24' class='td'>{{ td_24}}</td>
+<td id='int_24' class='int'>{{ int_24}}</td>
+<td id='rating_24' class='rating'>{{ rating_24}}</td>
+<td id='first_downs_24' class='first_downs'>{{ first_downs_24}}</td>
+<td id='first_downs_perc_24' class='first_downs_perc'>{{ first_downs_perc_24}}</td>
+<td id='more_20_24' class='more_20'>{{ more_20_24}}</td>
+<td id='more_40_24' class='more_40'>{{ more_40_24}}</td>
+<td id='long_24' class='long'>{{ long_24}}</td>
+<td id='sacks_24' class='sacks'>{{ sacks_24}}</td>
+<td id='sacks_yds_24' class='sacks_yds'>{{ sacks_yds_24}}</td>
+</tr>
+<tr>
+  <td id='qb_25' class="player">{{ qb_25}}</td>
+<td id='s_qb_25' class='yards'>{{ s_qb_25}}</td>
+<td id='yd_att_25' class='yards_att'>{{ yd_att_25}}</td>
+<td id='num_att_25' class='num_att'>{{ num_att_25}}</td>
+<td id='comp_25' class='comp'>{{ comp_25}}</td>
+<td id='comp_perc_25' class='comp_perc'>{{ comp_perc_25}}</td>
+<td id='td_25' class='td'>{{ td_25}}</td>
+<td id='int_25' class='int'>{{ int_25}}</td>
+<td id='rating_25' class='rating'>{{ rating_25}}</td>
+<td id='first_downs_25' class='first_downs'>{{ first_downs_25}}</td>
+<td id='first_downs_perc_25' class='first_downs_perc'>{{ first_downs_perc_25}}</td>
+<td id='more_20_25' class='more_20'>{{ more_20_25}}</td>
+<td id='more_40_25' class='more_40'>{{ more_40_25}}</td>
+<td id='long_25' class='long'>{{ long_25}}</td>
+<td id='sacks_25' class='sacks'>{{ sacks_25}}</td>
+<td id='sacks_yds_25' class='sacks_yds'>{{ sacks_yds_25}}</td>
+</tr>
+</table>
+<br><br>
+</div>
+{% endblock %}
+<script src="{% static '/javascript/game.js' %}" type='text/javascript'>
+</script>
+  </body>
+</html>

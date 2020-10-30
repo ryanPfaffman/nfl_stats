@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+{% load static %}
+
+<body>
+  {% block content %}
+  <label for="test_">Choose one (Passing, Rushing, Defense)   <input type="text" name="choose_stat_1" value=""></label>
+  <br>
+  <input id="choose_stat_1" type="submit" name="choose_stat_1" value="Submit">
+  {% endblock %}
+</body>
