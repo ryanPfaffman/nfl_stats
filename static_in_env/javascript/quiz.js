@@ -707,23 +707,23 @@ const def_quiz = () => {
     play_game(def_pass_yds_div, answer_def_pass_yds, answer_def_pass_yds_row, def_pass_yds_num_1, def_pass_yds_num_2, def_pass_yds_num_3, def_pass_yds_num_4, def_pass_yds_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value == "Passing yards per game") {
+  } else if (which_def_stat.value == "Passing Yards Per Game") {
     play_game(def_pass_yds_g_div, answer_def_pass_yds_g, answer_def_pass_yds_g_row, def_pass_yds_g_num_1, def_pass_yds_g_num_2, def_pass_yds_g_num_3, def_pass_yds_g_num_4, def_pass_yds_g_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "rushing yards") {
+  } else if (which_def_stat.value.toLowerCase() == "Rushing Yards") {
     play_game(def_rush_yds_div, answer_def_rush_yds, answer_def_rush_yds_row, def_rush_yds_num_1, def_rush_yds_num_2, def_rush_yds_num_3, def_rush_yds_num_4, def_rush_yds_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "rushing yards per game") {
+  } else if (which_def_stat.value.toLowerCase() == "Rushing Yards Per Game") {
     play_game(def_rush_yds_g_div, answer_def_rush_yds_g, answer_def_rush_yds_g_row, def_rush_yds_g_num_1, def_rush_yds_g_num_2, def_rush_yds_g_num_3, def_rush_yds_g_num_4, def_rush_yds_g_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "points") {
+  } else if (which_def_stat.value.toLowerCase() == "Points") {
     play_game(def_points_div, answer_def_points, answer_def_points_row, def_points_num_1, def_points_num_2, def_points_num_3, def_points_num_4, def_points_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "points per game") {
+  } else if (which_def_stat.value.toLowerCase() == "Points Per Game") {
     play_game(def_points_g_div, answer_def_points_g, answer_def_points_g_row, def_points_g_num_1, def_points_g_num_2, def_points_g_num_3, def_points_g_num_4, def_points_g_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
