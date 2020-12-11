@@ -1,6 +1,10 @@
 import csv
 import random as r
 from stats_qb import qb_stats_real, nary_value
+from stats_defense import def_stats_real
+from stats_rb import rb_stats_real
+
+#print(qb_stats_real)
 
 #put encoding='utf-8-sig' to get rid of the \ufeff BOM (byte order mark)
 
@@ -24,7 +28,6 @@ def get_new():
             nary_1['First Downs'] = qb_stats_real[x+9]
             nary_1['First Down %'] = qb_stats_real[x+10]
             nary_1['20+'] = qb_stats_real[x+11]
-            nary_1['40+'] = qb_stats_real[x+12]
             nary_1['Long'] = qb_stats_real[x+13]
             nary_1['Sacks'] = qb_stats_real[x+14]
             nary_1['Sack Yards'] = qb_stats_real[x+15]
@@ -117,7 +120,7 @@ def highest(lst,stat):
         check = 'Stat: ' + return_stat(stat)  + '\nLeader: ' + best_qb + "\n" + return_stat(stat) + ": " + str(check)
         return return_nary, check
 
-print(highest(big_list,'TD'))
+#print(highest(big_list,'TD'))
 
 def game_highest(lst,stat):
     check = float('-inf')
@@ -221,6 +224,6 @@ def play_game(lst,stat):
             return msg
 
 #print(game_highest(return_l,'Yards'))
-print(play_game(big_list,input("\nChoose a stat:\nChoose from:(Yards,Yards Per Att,Attempts, Completions,Completion %, TD, INT, QB Rating ,First Downs, First Down %, 20+, 40+	Long, Sacks, Sack Yards")))
+#print(play_game(big_list,input("\nChoose a stat:\nChoose from:(Yards,Yards Per Att,Attempts, Completions,Completion %, TD, INT, QB Rating ,First Downs, First Down %, 20+, 40+	Long, Sacks, Sack Yards")))
 
 #print(highest(return_l,input("Highest stat: Choose from:(Yards,Yards Per Att,Attempts, Completions,Completion %, TD, INT, QB Rating ,First Downs, First Down %, 20+, 40+	Long, Sacks, Sack Yards")))
