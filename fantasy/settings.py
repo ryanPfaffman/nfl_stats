@@ -88,7 +88,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'nfl_stats',
-            'USER': 'ryan_ryan',
+            'USER': 'ryan',
             'PASSWORD': 'InGodweT117',
             'HOST': 'localhost',
             'PORT': '',
