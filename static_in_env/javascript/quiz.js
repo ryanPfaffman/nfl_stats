@@ -600,8 +600,6 @@ const qb_quiz = () => {
     play_game(qb_sack_yds_div, answer_qb_sack_yds, answer_qb_sack_yds_row, qb_sack_yds_num_1, qb_sack_yds_num_2, qb_sack_yds_num_3, qb_sack_yds_num_4, qb_sack_yds_num_5);
     qb_button.removeEventListener('click', qb_quiz);
     qb_button.addEventListener('click', broke);
-  } else {
-    alert("Invalid Input. Try Again");
   }
 }
 
@@ -667,8 +665,6 @@ const rb_quiz = () => {
     play_game(rb_fumbles_div, answer_rb_fumbles, answer_rb_fumbles_row, rb_fumbles_num_1, rb_fumbles_num_2, rb_fumbles_num_3, rb_fumbles_num_4, rb_fumbles_num_5);
     rb_button.removeEventListener('click', rb_quiz);
     rb_button.addEventListener('click', broke);
-  } else {
-    alert("Invalid Input. Try again");
   }
 
 }
@@ -711,24 +707,22 @@ const def_quiz = () => {
     play_game(def_pass_yds_g_div, answer_def_pass_yds_g, answer_def_pass_yds_g_row, def_pass_yds_g_num_1, def_pass_yds_g_num_2, def_pass_yds_g_num_3, def_pass_yds_g_num_4, def_pass_yds_g_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "Rushing Yards") {
+  } else if (which_def_stat.value == "Rushing Yards") {
     play_game(def_rush_yds_div, answer_def_rush_yds, answer_def_rush_yds_row, def_rush_yds_num_1, def_rush_yds_num_2, def_rush_yds_num_3, def_rush_yds_num_4, def_rush_yds_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "Rushing Yards Per Game") {
+  } else if (which_def_stat.value == "Rushing Yards Per Game") {
     play_game(def_rush_yds_g_div, answer_def_rush_yds_g, answer_def_rush_yds_g_row, def_rush_yds_g_num_1, def_rush_yds_g_num_2, def_rush_yds_g_num_3, def_rush_yds_g_num_4, def_rush_yds_g_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "Points") {
+  } else if (which_def_stat.value == "Points") {
     play_game(def_points_div, answer_def_points, answer_def_points_row, def_points_num_1, def_points_num_2, def_points_num_3, def_points_num_4, def_points_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else if (which_def_stat.value.toLowerCase() == "Points Per Game") {
+  } else if (which_def_stat.value == "Points Per Game") {
     play_game(def_points_g_div, answer_def_points_g, answer_def_points_g_row, def_points_g_num_1, def_points_g_num_2, def_points_g_num_3, def_points_g_num_4, def_points_g_num_5)
     def_button.removeEventListener('click', def_quiz);
     def_button.addEventListener('click', broke);
-  } else {
-    alert("Invalid Input. Try again");
   }
 }
 
