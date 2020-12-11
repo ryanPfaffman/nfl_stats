@@ -26,7 +26,7 @@ SECRET_KEY = 'tx6v0692fxgukj3ip#7)i)q9s(2kap%f-$4acjnw=&ccq_+!4s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1', '167.71.190.163']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'stats',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -75,11 +76,22 @@ WSGI_APPLICATION = 'fantasy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'nfl_stats',
+            'USER': 'ryanpfaffman',
+            'PASSWORD': 'InGodweT117',
+            'HOST': 'localhost',
+            'PORT': '',
     }
 }
 
@@ -125,5 +137,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static_in_env'),
 ]

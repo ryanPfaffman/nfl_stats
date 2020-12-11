@@ -1,63 +1,144 @@
 from django.shortcuts import render
 
-from stats_qb import qb_pass_yds, qb_yds_att, qb_num_att, qb_comp, qb_comp_perc, qb_td, qb_int, qb_rating, qb_first_downs,qb_first_down_perc, qb_more_20, qb_more_40, qb_long, qb_sacks, qb_sacks_yds, yrd_per_sack
+import random as r
 
-from stats_rb import rb_stats_real
+from datetime import datetime, timedelta
+
+from stats_qb import qb_stats_real
 
 from stats_defense import def_stats_real
 
-#start of qb_s
-def create_nary_lst(nary):
-    lst = []
-    for x,y in nary.items():
-        lst.append({x:y})
-    return lst
+from stats_rb import rb_stats_real
 
-def make_names(nary):
-    new_string = ''
-    space = [' ']
-    strings = []
-    for v,y in nary.items():
-        for el in v:
-            if el not in space:
-                new_string += el
-            else:
-                new_string += '_'
-        strings.append(new_string)
-        new_string = ''
-    return strings
+from game_stats_2 import get_stat, get_names_qb, get_names_rb, get_answers_qb, get_answers_rb, get_answers_def, get_stat_def, get_teams_def
 
-def get_values(nary):
-    lst = []
-    for y in nary.values():
-        lst.append(y)
-    return lst
+from .models import Qb, Rb, Defense
+#start of quiz
 
-def get_keys(nary):
-    lst = []
-    for y in nary.keys():
-        lst.append(y)
-    return lst
-'''
-qb_names = make_names(qb_pass_yds)
-for x in range(len(qb_names)):
-    index = 0
-    while index < len(qb_names) - 1:
-        print("'qb_" + str(x+1) + '\': qb_names_left[' + str(x) + '],\n\'s_qb_' + str(x+1) + '\':qb_stats_lst[' + str(x) + '],\n\'yd_att_' + str(x+1) + '\':qb_att_lst[' + str(x) + '],\n\'num_att_' + str(x+1) + '\':qb_num_att_lst[' + str(x) + '],\n\'comp_' + str(x+1) + '\':qb_comp_lst[' + str(x) + '],\n\'comp_perc_' + str(x+1) + '\':qb_comp_perc_lst[' + str(x) + '],\n\'td_' + str(x+1) + '\':qb_td_lst[' + str(x) + '],\n\'int_' + str(x+1) + '\':qb_int_lst[' + str(x) + '],\n\'rating_' + str(x+1) + '\':qb_rating_lst[' + str(x) + '],\n\'first_downs_' + str(x+1) + '\':qb_first_downs_lst[' + str(x) + '],\n\'first_downs_perc_' + str(x+1) + '\':qb_first_down_perc_lst[' + str(x) + '],\n\'more_20_' + str(x+1) + '\':qb_more_20_lst[' + str(x) + '],\n\'more_40_' + str(x+1) + '\':qb_more_40_lst[' + str(x) + '],\n\'long_' + str(x+1) + '\':qb_long_lst[' + str(x) + '],\n\'sacks_' + str(x+1) + '\':qb_sacks_lst[' + str(x) + '],\n\'sacks_yds_' + str(x+1) + '\':qb_sacks_yds_lst[' + str(x) + '],')
-        index += 1
-        break
 
-qb_names = make_names(qb_pass_yds)
-for x in range(len(qb_names)):
-    num = input("Number:")
-    print('<td>{{ qb_' + num + '}}</td>\n<td>{{ s_qb_' + num + '}}</td>\n<td>{{ yd_att_' + num + '}}</td>\n<td>{{ num_att_' + num + '}}</td>\n<td>{{ comp_' + num + '}}</td>\n<td>{{ comp_perc_' + num + '}}</td>\n<td>{{ td_' + num + '}}</td>\n<td>{{ int_' + num + '}}</td>\n<td>{{ rating_' + num + '}}</td>\n<td>{{ first_downs_' + num + '}}</td>\n<td>{{ first_downs_perc_' + num + '}}</td>\n<td>{{ more_20_' + num + '}}</td>\n<td>{{ more_40_' + num + '}}</td>\n<td>{{ long_' + num + '}}</td>\n<td>{{ sacks_' + num + '}}</td>\n<td>{{ sacks_yds_' + num + '}}</td>')
-'''
-#end of qbs
-#start of rbs
+
+#Quarterbacks
+qb_stats_list = []
+
+for nary in qb_stats_real:
+    for val in nary.values():
+        qb_stats_list.append(val)
+
+for x in range(len(qb_stats_list)):
+    if type(qb_stats_list[x]) == str:
+        a_count = Qb(name=qb_stats_list[x],pass_yds=qb_stats_list[x+1],yds_att=qb_stats_list[x+2],att=qb_stats_list[x+3],cmp=qb_stats_list[x+4],cmp_perc=round(qb_stats_list[x+5] * 100,2),td=qb_stats_list[x+6],int=qb_stats_list[x+7],qb_rating=qb_stats_list[x+8],first=qb_stats_list[x+9],first_perc=round(qb_stats_list[x+10] * 100,2),more_20=qb_stats_list[x+11],more_40=qb_stats_list[x+12],lng=qb_stats_list[x+13],sack=qb_stats_list[x+14],sack_Y=qb_stats_list[x+15])
+        a_count.save()
+
+
+nary = {}
+qb_stats_real = []
+
+for x in Qb.objects.all():
+    nary['qb_name'] = x.name
+    nary['qb_pass_yds'] = x.pass_yds
+    nary['qb_yds_att'] = x.yds_att
+    nary['qb_att'] = x.att
+    nary['qb_cmp'] = x.cmp
+    nary['qb_cmp_perc'] = x.cmp_perc
+    nary['qb_td'] = x.td
+    nary['qb_int'] = x.int
+    nary['qb_rating'] = x.qb_rating
+    nary['qb_1st'] = x.first
+    nary['qb_1st_perc'] = x.first_perc
+    nary['qb_20+'] = x.more_20
+    nary['qb_40+'] = x.more_40
+    nary['qb_long'] = x.lng
+    nary['qb_sack'] = x.sack
+    nary['qb_sack_yds'] = x.sack_Y
+    qb_stats_real.append(nary)
+    nary= {}
+
+qb_names_left = []
+qb_stats_lst = []
+qb_att_lst = []
+qb_num_att_lst = []
+qb_comp_lst = []
+qb_comp_perc_lst = []
+qb_td_lst = []
+qb_int_lst = []
+qb_rating_lst = []
+qb_first_downs_lst = []
+qb_first_down_perc_lst = []
+qb_more_20_lst = []
+qb_more_40_lst = []
+qb_long_lst = []
+qb_sacks_lst = []
+qb_sacks_yds_lst = []
+
+for nary in qb_stats_real:
+    for x, y in nary.items():
+        if x == 'qb_name':
+            qb_names_left.append(y)
+        elif x == 'qb_pass_yds':
+            qb_stats_lst.append(y)
+        elif x == 'qb_yds_att':
+            qb_att_lst.append(y)
+        elif x == 'qb_att':
+            qb_num_att_lst.append(y)
+        elif x == 'qb_cmp':
+            qb_comp_lst.append(y)
+        elif x == 'qb_cmp_perc':
+            qb_comp_perc_lst.append(y)
+        elif x == 'qb_td':
+            qb_td_lst.append(y)
+        elif x == 'qb_int':
+            qb_int_lst.append(y)
+        elif x == 'qb_rating':
+            qb_rating_lst.append(y)
+        elif x == 'qb_1st':
+            qb_first_downs_lst.append(y)
+        elif x == 'qb_1st_perc':
+            qb_first_down_perc_lst.append(y)
+        elif x == 'qb_20+':
+            qb_more_20_lst.append(y)
+        elif x == 'qb_40+':
+            qb_more_40_lst.append(y)
+        elif x == 'qb_long':
+            qb_long_lst.append(y)
+        elif x == 'qb_sack':
+            qb_sacks_lst.append(y)
+        elif x == 'qb_sack_yds':
+            qb_sacks_yds_lst.append(y)
+
+#start of Rb
+rb_stats_list = []
+
+for nary in rb_stats_real:
+    for val in nary.values():
+        rb_stats_list.append(val)
+
+for x in range(len(rb_stats_list)):
+    if type(rb_stats_list[x]) == str:
+        b_count = Rb(name=rb_stats_list[x], rush_yds=rb_stats_list[x+1], att=rb_stats_list[x+2], rush_yds_att=round(rb_stats_list[x+1]/rb_stats_list[x+2],2),td=rb_stats_list[x+3],twenty=rb_stats_list[x+4], fourty=rb_stats_list[x+5], long=rb_stats_list[x+6], rush_1st=rb_stats_list[x+7], rush_1st_perc=rb_stats_list[x+8], rush_fum=rb_stats_list[x+9])
+        b_count.save()
+
+
+nary = {}
+rb_stats_real = []
+for rb in Rb.objects.all():
+    nary['name'] = rb.name
+    nary['rush_yds'] = rb.rush_yds
+    nary['rush_yds_att'] = rb.rush_yds_att
+    nary['att'] = rb.att
+    nary['td'] = rb.td
+    nary['20+'] = rb.twenty
+    nary['40+'] = rb.fourty
+    nary['long'] = rb.long
+    nary['rush_1st'] = rb.rush_1st
+    nary['rush_1st_perc'] = rb.rush_1st_perc
+    nary['rush_fum'] = rb.rush_fum
+    rb_stats_real.append(nary)
+    nary = {}
 
 rb_names = []
 rb_rush_yds = []
 rb_att = []
+rb_rush_yds_att = []
 rb_td = []
 rb_20 = []
 rb_40 = []
@@ -74,6 +155,8 @@ for nary in rb_stats_real:
             rb_rush_yds.append(y)
         elif x == 'att':
             rb_att.append(y)
+        elif x == 'rush_yds_att':
+            rb_rush_yds_att.append(y)
         elif x == 'td':
             rb_td.append(y)
         elif x == '20+':
@@ -82,17 +165,44 @@ for nary in rb_stats_real:
             rb_40.append(y)
         elif x == 'long':
             rb_long.append(y)
-        elif x == 'rush 1st':
+        elif x == 'rush_1st':
             rb_rush_1st.append(y)
-        elif x == 'rush 1st%':
+        elif x == 'rush_1st_perc':
             rb_rush_1st_perc.append(y)
-        elif x == 'rush fum':
+        elif x == 'rush_fum':
             rb_rush_fum.append(y)
         else:
             pass
 
 #end of rbs
 #start of defense
+def_stats_list = []
+
+for nary in def_stats_real:
+    for val in nary.values():
+        def_stats_list.append(val)
+
+for x in range(len(def_stats_list)):
+    if type(def_stats_list[x]) == str:
+        c_count = Defense(team=def_stats_list[x],g_p=def_stats_list[x+1],yds=def_stats_list[x+2],yds_g=def_stats_list[x+3],pass_yds=def_stats_list[x+4],pass_yds_g=def_stats_list[x+5],rush_yds=def_stats_list[x+6],rush_yds_g=def_stats_list[x+7],points=def_stats_list[x+8],point_g=def_stats_list[x+9])
+        c_count.save()
+
+nary = {}
+def_stats_real = []
+
+for defense in Defense.objects.all():
+    nary['team'] = defense.team
+    nary['g_p'] = defense.g_p
+    nary['yds'] = defense.yds
+    nary['yds_g'] = defense.yds_g
+    nary['pass_yds'] = defense.pass_yds
+    nary['pass_yds_g'] = defense.pass_yds_g
+    nary['rush_yds'] = defense.rush_yds
+    nary['rush_yds_g'] = defense.rush_yds_g
+    nary['points'] = defense.points
+    nary['points_g'] = defense.point_g
+    def_stats_real.append(nary)
+    nary = {}
 
 team_names_def = []
 gp_def = []
@@ -109,23 +219,23 @@ for nary in def_stats_real:
     for x,y in nary.items():
         if x == 'team':
             team_names_def.append(y)
-        elif x == 'gp':
+        elif x == 'g_p':
             gp_def.append(y)
         elif x == 'yds':
             yds_def.append(y)
-        elif x == 'yds/g':
+        elif x == 'yds_g':
             yds_g_def.append(y)
         elif x == 'pass_yds':
             pass_yds_def.append(y)
-        elif x == 'pass_yds/g':
+        elif x == 'pass_yds_g':
             pass_yds_game_def.append(y)
         elif x == 'rush_yds':
             rush_yds_def.append(y)
-        elif x == 'rush_yds/g':
+        elif x == 'rush_yds_g':
             rush_yds_g_def.append(y)
         elif x == 'points':
             points_def.append(y)
-        elif x == 'pts/g':
+        elif x == 'points_g':
             points_p_def.append(y)
         else:
             pass
@@ -135,26 +245,916 @@ def home_view(request, *args, **kwargs):
     return render(request, 'index.html')
 
 def quiz_view(request, *args, **kwargs):
-    return render(request, 'quiz.html')
+    #Quarterbacks
+
+    #qb_pass_yds
+    top_five_stat_pass_yds = get_stat(qb_stats_real, 'qb_pass_yds')
+    best_qb_pass_yds_stat = top_five_stat_pass_yds[0]
+
+    top_five_qb_pass_yds = get_names_qb(qb_stats_real, 'qb_pass_yds')
+    answer_qb_pass_yds = top_five_qb_pass_yds[0]
+    r.shuffle(top_five_qb_pass_yds)
+
+    checker_pass_yds = get_answers_qb(qb_stats_real, 'qb_pass_yds')
+    if len(checker_pass_yds) > 1:
+        answer_pass_yds_string = ''
+        for nary in checker_pass_yds:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_yds_string += y + ', '
+        answer_pass_yds_string = answer_pass_yds_string.strip(', ')
+    else:
+        answer_pass_yds_string = answer_qb_pass_yds
+
+    #qb_pass_yds_att
+    top_five_stat_pass_yds_att = get_stat(qb_stats_real, 'qb_yds_att')
+    best_qb_yds_att_stat = top_five_stat_pass_yds_att[0]
+
+    top_five_pass_yds_att = get_names_qb(qb_stats_real, 'qb_yds_att')
+    answer_pass_yds_att = top_five_pass_yds_att[0]
+    r.shuffle(top_five_pass_yds_att)
+
+    checker_pass_yds_att = get_answers_qb(qb_stats_real, 'qb_yds_att')
+    if len(checker_pass_yds_att) > 1:
+        answer_pass_yds_att_string = ''
+        for nary in checker_pass_yds_att:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_yds_att_string += y + ', '
+        answer_pass_yds_att_string = answer_pass_yds_att_string.strip(', ')
+    else:
+        answer_pass_yds_att_string = answer_pass_yds_att
+
+    #qb_pass_att
+    top_five_stat_pass_att = get_stat(qb_stats_real, 'qb_att')
+    best_qb_att_stat = top_five_stat_pass_att[0]
+
+    top_five_pass_att = get_names_qb(qb_stats_real, 'qb_att')
+    answer_pass_att = top_five_pass_att[0]
+    r.shuffle(top_five_pass_yds_att)
+
+    checker_pass_att = get_answers_qb(qb_stats_real, 'qb_att')
+    if len(checker_pass_att) > 1:
+        answer_pass_att_string = ''
+        for nary in checker_pass_att:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_att_string += y + ', '
+        answer_pass_att_string = answer_pass_att_string.strip(', ')
+    else:
+        answer_pass_att_string = answer_pass_att
+
+    #qb_pass_cmp
+    top_five_stat_pass_cmp = get_stat(qb_stats_real, 'qb_cmp')
+    best_qb_cmp_stat = top_five_stat_pass_cmp[0]
+
+    top_five_pass_cmp = get_names_qb(qb_stats_real, 'qb_cmp')
+    answer_pass_cmp = top_five_pass_cmp[0]
+    r.shuffle(top_five_pass_cmp)
+
+    checker_pass_cmp = get_answers_qb(qb_stats_real, 'qb_cmp')
+    if len(checker_pass_cmp) > 1:
+        answer_pass_cmp_string = ''
+        for nary in checker_pass_cmp:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_cmp_string += y + ', '
+        answer_pass_cmp_string = answer_pass_cmp_string.strip(', ')
+    else:
+        answer_pass_cmp_string = answer_pass_cmp
+
+    #qb_pass_cmp_perc
+    top_five_stat_pass_cmp_perc = get_stat(qb_stats_real, 'qb_cmp_perc')
+    best_qb_cmp_perc_stat = top_five_stat_pass_cmp_perc[0]
+
+    top_five_pass_cmp_perc = get_names_qb(qb_stats_real, 'qb_cmp_perc')
+    answer_pass_cmp_perc= top_five_pass_cmp_perc[0]
+    r.shuffle(top_five_pass_cmp_perc)
+
+    checker_pass_cmp_perc = get_answers_qb(qb_stats_real, 'qb_cmp_perc')
+    if len(checker_pass_cmp_perc) > 1:
+        answer_pass_cmp_perc_string = ''
+        for nary in checker_pass_cmp_perc:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_cmp_perc_string += y + ', '
+        answer_pass_cmp_perc_string = answer_pass_cmp_perc_string.strip(', ')
+    else:
+        answer_pass_cmp_perc_string = answer_pass_cmp_perc
+
+    #qb_pass_td
+    top_five_stat_pass_td = get_stat(qb_stats_real, 'qb_td')
+    best_qb_td_stat = top_five_stat_pass_td[0]
+
+    top_five_pass_td = get_names_qb(qb_stats_real, 'qb_td')
+    answer_pass_td = top_five_pass_td[0]
+    r.shuffle(top_five_pass_td)
+
+    checker_pass_td = get_answers_qb(qb_stats_real, 'qb_td')
+    if len(checker_pass_td) > 1:
+        answer_pass_td_string = ''
+        for nary in checker_pass_td:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_td_string += y + ', '
+        answer_pass_td_string = answer_pass_td_string.strip(', ')
+    else:
+        answer_pass_td_string = answer_pass_td
+
+    #qb_pass_int
+    top_five_stat_pass_int = get_stat(qb_stats_real, 'qb_int')
+    best_qb_int_stat = top_five_stat_pass_int[0]
+
+    top_five_pass_int = get_names_qb(qb_stats_real, 'qb_int')
+    answer_pass_int = top_five_pass_int[0]
+    r.shuffle(top_five_pass_int)
+
+    checker_pass_int = get_answers_qb(qb_stats_real, 'qb_int')
+    if len(checker_pass_int) > 1:
+        answer_pass_int_string = ''
+        for nary in checker_pass_int:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_int_string += y + ', '
+        answer_pass_int_string = answer_pass_int_string.strip(', ')
+    else:
+        answer_pass_int_string = answer_pass_int
+
+    #qb_pass_rating
+    top_five_stat_pass_rating = get_stat(qb_stats_real, 'qb_rating')
+    best_qb_rating_stat = top_five_stat_pass_rating[0]
+
+    top_five_pass_rating = get_names_qb(qb_stats_real, 'qb_rating')
+    answer_pass_rating = top_five_pass_rating[0]
+    r.shuffle(top_five_pass_rating)
+
+    checker_pass_rating = get_answers_qb(qb_stats_real, 'qb_rating')
+    if len(checker_pass_rating) > 1:
+        answer_pass_rating_string = ''
+        for nary in checker_pass_rating:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_rating_string += y + ', '
+        answer_pass_rating_string = answer_pass_rating_string.strip(', ')
+    else:
+        answer_pass_rating_string = answer_pass_rating
+
+    #qb_pass_1st
+    top_five_stat_pass_1st = get_stat(qb_stats_real, 'qb_1st')
+    best_qb_1st_stat = top_five_stat_pass_1st[0]
+
+    top_five_pass_1st = get_names_qb(qb_stats_real, 'qb_1st')
+    answer_pass_1st = top_five_pass_1st[0]
+    r.shuffle(top_five_pass_1st)
+
+    checker_pass_1st = get_answers_qb(qb_stats_real, 'qb_1st')
+    if len(checker_pass_1st) > 1:
+        answer_pass_1st_string = ''
+        for nary in checker_pass_1st:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_1st_string += y + ', '
+        answer_pass_1st_string = answer_pass_1st_string.strip(', ')
+    else:
+        answer_pass_1st_string = answer_pass_1st
+
+    #qb_pass_1st_perc
+    top_five_stat_pass_1st_perc = get_stat(qb_stats_real, 'qb_1st_perc')
+    best_qb_1st_perc_stat = top_five_stat_pass_1st_perc[0]
+
+    top_five_pass_1st_perc = get_names_qb(qb_stats_real, 'qb_1st_perc')
+    answer_pass_1st_perc = top_five_pass_1st_perc[0]
+    r.shuffle(top_five_pass_1st_perc)
+
+    checker_pass_1st_perc = get_answers_qb(qb_stats_real, 'qb_1st_perc')
+    if len(checker_pass_1st_perc) > 1:
+        answer_pass_1st_perc_string = ''
+        for nary in checker_pass_1st_perc:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_1st_perc_string += y + ", "
+        answer_pass_1st_perc_string = answer_pass_1st_perc_string.strip(', ')
+    else:
+        answer_pass_1st_perc_string = answer_pass_1st_perc
+
+    #qb_pass_20
+    top_five_stat_pass_20 = get_stat(qb_stats_real, 'qb_20+')
+    best_qb_20_stat = top_five_stat_pass_20[0]
+
+    top_five_pass_20 = get_names_qb(qb_stats_real, 'qb_20+')
+    answer_pass_20 = top_five_pass_20[0]
+    r.shuffle(top_five_pass_20)
+
+    checker_pass_20 = get_answers_qb(qb_stats_real, 'qb_20+')
+    if len(checker_pass_20) > 1:
+        answer_qb_20_string = ''
+        for nary in checker_pass_20:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_qb_20_string += y + ', '
+        answer_qb_20_string = answer_qb_20_string.strip(', ')
+    else:
+        answer_qb_20_string = answer_pass_20
+
+    #qb_pass_40
+    top_five_stat_pass_40 = get_stat(qb_stats_real, 'qb_40+')
+    best_qb_40_stat = top_five_stat_pass_40[0]
+
+    top_five_pass_40 = get_names_qb(qb_stats_real, 'qb_40+')
+    answer_qb_40 = top_five_pass_40[0]
+    r.shuffle(top_five_pass_40)
+
+    checker_pass_40 = get_answers_qb(qb_stats_real, 'qb_40+')
+    if len(checker_pass_40) > 1:
+        answer_qb_40_string = ''
+        for nary in checker_pass_40:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_qb_40_string += y + ', '
+        answer_qb_40_string = answer_qb_40_string.strip(', ')
+    else:
+        answer_qb_40_string = answer_qb_40
+
+    #qb_long
+    top_five_stat_pass_long = get_stat(qb_stats_real, 'qb_long')
+    best_qb_long_stat = top_five_stat_pass_long[0]
+
+    top_five_pass_long = get_names_qb(qb_stats_real, 'qb_long')
+    answer_pass_long = top_five_pass_long[0]
+    r.shuffle(top_five_pass_long)
+
+    checker_pass_long = get_answers_qb(qb_stats_real, 'qb_long')
+    if len(checker_pass_long) > 1:
+        answer_pass_long_string = ''
+        for nary in checker_pass_long:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_long_string += y + ', '
+        answer_pass_long_string = answer_pass_long_string.strip(', ')
+    else:
+        answer_pass_long_string = answer_pass_long
+
+    #qb_sack
+    top_five_stat_pass_sack = get_stat(qb_stats_real, 'qb_sack')
+    best_qb_sack_stat = top_five_stat_pass_sack[0]
+
+    top_five_pass_sack = get_names_qb(qb_stats_real, 'qb_sack')
+    answer_pass_sack = top_five_pass_sack[0]
+    r.shuffle(top_five_pass_sack)
+
+    checker_pass_sack = get_answers_qb(qb_stats_real, 'qb_sack')
+    if len(checker_pass_sack) > 1:
+        answer_pass_sack_string = ''
+        for nary in checker_pass_sack:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_sack_string += y + ', '
+        answer_pass_sack_string = answer_pass_sack_string.strip(', ')
+    else:
+        answer_pass_sack_string = answer_pass_sack
+
+    #qb_sack_yds
+    top_five_stat_pass_sack_yds = get_stat(qb_stats_real, 'qb_sack_yds')
+    best_qb_sack_yds_stat = top_five_stat_pass_sack_yds[0]
+
+    top_five_pass_sack_yds = get_names_qb(qb_stats_real, 'qb_sack_yds')
+    answer_pass_sack_yds = top_five_pass_sack_yds[0]
+    r.shuffle(top_five_pass_sack_yds)
+
+    checker_pass_sack_yds = get_answers_qb(qb_stats_real, 'qb_sack_yds')
+    if len(checker_pass_sack_yds) > 1:
+        answer_pass_sack_yds_string = ''
+        for nary in checker_pass_sack_yds:
+            for x,y in nary.items():
+                if x == 'qb_name':
+                    answer_pass_sack_yds_string += y + ', '
+        answer_pass_sack_yds_string = answer_pass_sack_yds_string.strip(', ')
+    else:
+        answer_pass_sack_yds_string = answer_pass_sack_yds
+
+    #Running Backs
+
+    #rb_rush_yds
+    top_five_stat_rush_yds = get_stat(rb_stats_real,'rush_yds')
+    best_rb_yds_stat = top_five_stat_rush_yds[0]
+
+    top_five_rb_rush_yds = get_names_rb(rb_stats_real,'rush_yds')
+    answer_rb_rush_yds = top_five_rb_rush_yds[0]
+    r.shuffle(top_five_rb_rush_yds)
+
+    checker_rush_yds = get_answers_rb(rb_stats_real, 'rush_yds')
+    if len(checker_rush_yds) > 1:
+        answer_rb_rush_yds_string = ''
+        for nary in checker_rush_yds:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_rush_yds_string += y + ', '
+        answer_rb_rush_yds_string = answer_rb_rush_yds_string.strip(', ')
+    else:
+        answer_rb_rush_yds_string = answer_rb_rush_yds
+
+    #rb_att
+    top_five_stat_rb_att = get_stat(rb_stats_real, 'att')
+    best_rb_att_stat = top_five_stat_rb_att[0]
+
+    top_five_rb_att = get_names_rb(rb_stats_real, 'att')
+    answer_rb_att = top_five_rb_att[0]
+    r.shuffle(top_five_rb_att)
+
+    checker_rb_att = get_answers_rb(rb_stats_real, 'att')
+    if len(checker_rush_yds) > 1:
+        answer_rb_att_string = ''
+        for nary in checker_rb_att:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_att_string += y + ', '
+        answer_rb_att_string = answer_rb_att_string.strip(', ')
+    else:
+        answer_rb_att_string = answer_rb_att
+
+    #rb_yds_att
+    top_five_stat_rb_yds_att = get_stat(rb_stats_real, 'rush_yds_att')
+    best_rb_yds_att_stat = top_five_stat_rb_yds_att[0]
+
+    top_five_rb_yds_att = get_names_rb(rb_stats_real, 'rush_yds_att')
+    answer_rb_yds_att = top_five_rb_yds_att[0]
+    r.shuffle(top_five_rb_yds_att)
+
+    checker_rb_yds_att = get_answers_rb(rb_stats_real, 'rush_yds_att')
+    if len(checker_rush_yds) > 1:
+        answer_rb_yds_att_string = ''
+        for nary in checker_rb_yds_att:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_yds_att_string += y + ', '
+        answer_rb_yds_att_string = answer_rb_yds_att_string.strip(', ')
+    else:
+        answer_rb_yds_att_string = answer_rb_yds_att
+
+    #rb_td
+    top_five_stat_rb_td = get_stat(rb_stats_real, 'td')
+    best_rb_td_stat = top_five_stat_rb_td[0]
+
+    top_five_rb_td = get_names_rb(rb_stats_real, 'td')
+    answer_rb_td = top_five_rb_td[0]
+    r.shuffle(top_five_rb_td)
+
+    checker_rb_td = get_answers_rb(rb_stats_real, 'td')
+    if len(checker_rb_td) > 1:
+        answer_rb_td_string = ''
+        for nary in checker_rb_td:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_td_string += y + ', '
+        answer_rb_td_string = answer_rb_td_string.strip(', ')
+    else:
+        answer_rb_td_string = answer_rb_td
+
+    #rb_20+
+    top_five_stat_rb_20 = get_stat(rb_stats_real, '20+')
+    best_rb_20_stat = top_five_stat_rb_20[0]
+
+    top_five_rb_20 = get_names_rb(rb_stats_real, '20+')
+    answer_rb_20 = top_five_rb_20[0]
+    r.shuffle(top_five_rb_td)
+
+    checker_rb_20 = get_answers_rb(rb_stats_real, '20+')
+    if len(checker_rb_20) > 1:
+        answer_rb_20_string = ''
+        for nary in checker_rb_20:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_20_string += y + ', '
+        answer_rb_20_string = answer_rb_20_string.strip(', ')
+    else:
+        answer_rb_20_string = answer_rb_20
+
+    #rb_40+
+    top_five_stat_rb_40 = get_stat(rb_stats_real, '40+')
+    best_rb_40_stat = top_five_stat_rb_40[0]
+
+    top_five_rb_40 = get_names_rb(rb_stats_real, '40+')
+    answer_rb_40 = top_five_rb_40[0]
+    r.shuffle(top_five_rb_40)
+
+    checker_rb_40 = get_answers_rb(rb_stats_real, '40+')
+    if len(checker_rb_40) > 1:
+        answer_rb_40_string = ''
+        for nary in checker_rb_40:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_40_string += y + ', '
+        answer_rb_40_string = answer_rb_40_string.strip(', ')
+    else:
+        answer_rb_40_string = answer_rb_40
+
+    #rb_long
+    top_five_stat_rb_long = get_stat(rb_stats_real, 'long')
+    best_rb_long_stat = top_five_stat_rb_long[0]
+
+    top_five_rb_long = get_names_rb(rb_stats_real, 'long')
+    answer_rb_long = top_five_rb_long[0]
+    r.shuffle(top_five_rb_long)
+
+    checker_rb_long = get_answers_rb(rb_stats_real, 'long')
+    if len(checker_rb_long) > 1:
+        answer_rb_long_string = ''
+        for nary in checker_rb_long:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_long_string += y + ', '
+        answer_rb_long_string = answer_rb_long_string.strip(', ')
+    else:
+        answer_rb_long_string = answer_rb_long
+
+    #rb_first
+    top_five_stat_rb_first = get_stat(rb_stats_real, 'rush_1st')
+    best_rb_first_stat = top_five_stat_rb_first[0]
+
+    top_five_rb_first = get_names_rb(rb_stats_real, 'rush_1st')
+    answer_rb_first = top_five_rb_first[0]
+    r.shuffle(top_five_rb_first)
+
+    checker_rb_first = get_answers_rb(rb_stats_real, 'rush_1st')
+    if len(checker_rb_first) > 1:
+        answer_rb_first_string = ''
+        for nary in checker_rb_first:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_first_string += y + ', '
+        answer_rb_first_string = answer_rb_first_string.strip(', ')
+    else:
+        answer_rb_first_string = answer_rb_first
+
+    #rb_first_perc
+    top_five_stat_rb_first_perc = get_stat(rb_stats_real, 'rush_1st_perc')
+    best_rb_first_perc_stat = top_five_stat_rb_first_perc[0]
+
+    top_five_rb_first_perc = get_names_rb(rb_stats_real, 'rush_1st_perc')
+    answer_rb_first_perc = top_five_rb_first_perc[0]
+    r.shuffle(top_five_rb_first_perc)
+
+    checker_rb_first_perc = get_answers_rb(rb_stats_real, 'rush_1st_perc')
+    if len(checker_rb_first_perc) > 1:
+        answer_rb_first_perc_string = ''
+        for nary in checker_rb_first_perc:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_first_perc_string += y + ', '
+        answer_rb_first_perc_string = answer_rb_first_perc_string.strip(', ')
+    else:
+        answer_rb_first_perc_string = answer_rb_first_perc
+
+    #rb_fumbles
+    top_five_stat_rb_fumbles = get_stat(rb_stats_real, 'rush_fum')
+    best_rb_fumbles_stat = top_five_stat_rb_fumbles[0]
+
+    top_five_rb_fumbles = get_names_rb(rb_stats_real, 'rush_fum')
+    answer_rb_fumbles = top_five_rb_fumbles[0]
+    r.shuffle(top_five_rb_fumbles)
+
+    checker_rb_fumbles = get_answers_rb(rb_stats_real, 'rush_fum')
+    if len(checker_rb_fumbles) > 1:
+        answer_rb_fumbles_string = ''
+        for nary in checker_rb_fumbles:
+            for x,y in nary.items():
+                if x == 'name':
+                    answer_rb_fumbles_string += y + ', '
+        answer_rb_fumbles_string = answer_rb_fumbles_string.strip(', ')
+    else:
+        answer_rb_fumbles_string = answer_rb_fumbles
+
+    #Defense
+
+    #def_yds
+    top_five_stat_def_yds = get_stat_def(def_stats_real, 'yds')
+    best_def_yds_stat = top_five_stat_def_yds[0]
+
+    top_five_def_yds = get_teams_def(def_stats_real, 'yds')
+    answer_def_yds = top_five_def_yds[0]
+    r.shuffle(top_five_def_yds)
+
+    checker_def_yds = get_answers_def(def_stats_real, 'yds')
+    if len(checker_def_yds) > 1:
+        answer_def_yds_string = ''
+        for nary in checker_def_yds:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_yds_string += y + ', '
+        answer_def_yds_string = answer_def_yds_string.strip(', ')
+    else:
+        answer_def_yds_string = answer_def_yds
+
+    #def_yds_g
+    top_five_stat_def_yds_g = get_stat_def(def_stats_real, 'yds_g')
+    best_def_yds_g_stat = top_five_stat_def_yds_g[0]
+
+    top_five_def_yds_g = get_teams_def(def_stats_real, 'yds_g')
+    answer_def_yds_g = top_five_def_yds_g[0]
+    r.shuffle(top_five_def_yds_g)
+
+    checker_def_yds_g = get_answers_def(def_stats_real, 'yds_g')
+    if len(checker_def_yds_g) > 1:
+        answer_def_yds_g_string = ''
+        for nary in checker_def_yds_g:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_yds_g_string += y + ', '
+        answer_def_yds_g_string = answer_def_yds_g_string.strip(', ')
+    else:
+        answer_def_yds_g_string = answer_def_yds_g
+
+    #def_pass_yds
+    top_five_stat_def_pass_yds = get_stat_def(def_stats_real, 'pass_yds')
+    best_def_pass_yds_stat = top_five_stat_def_pass_yds[0]
+
+    top_five_def_pass_yds = get_teams_def(def_stats_real, 'pass_yds')
+    answer_def_pass_yds = top_five_def_pass_yds[0]
+    r.shuffle(top_five_def_pass_yds)
+
+    checker_def_pass_yds = get_answers_def(def_stats_real, 'pass_yds')
+    if len(checker_def_pass_yds) > 1:
+        answer_def_pass_yds_string = ''
+        for nary in checker_def_pass_yds:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_pass_yds_string += y + ', '
+        answer_def_pass_yds_string = answer_def_pass_yds_string.strip(', ')
+    else:
+        answer_def_pass_yds_string = answer_def_pass_yds
+
+    #def_pass_yds_g
+    top_five_stat_def_pass_yds_g = get_stat_def(def_stats_real, 'pass_yds_g')
+    best_def_pass_yds_g_stat = top_five_stat_def_pass_yds_g[0]
+
+    top_five_def_pass_yds_g = get_teams_def(def_stats_real, 'pass_yds_g')
+    answer_def_pass_yds_g = top_five_def_pass_yds_g[0]
+    r.shuffle(top_five_def_pass_yds_g)
+
+    checker_def_pass_yds_g = get_answers_def(def_stats_real, 'pass_yds_g')
+    if len(checker_def_pass_yds_g) > 1:
+        answer_def_pass_yds_g_string = ''
+        for nary in checker_def_pass_yds_g:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_pass_yds_g_string += y + ', '
+        answer_def_pass_yds_g_string = answer_def_pass_yds_g_string.strip(', ')
+    else:
+        answer_def_pass_yds_g_string = answer_def_pass_yds_g
+
+    #def_rush_yds
+    top_five_stat_def_rush_yds = get_stat_def(def_stats_real, 'rush_yds')
+    best_def_rush_yds_stat = top_five_stat_def_rush_yds[0]
+
+    top_five_def_rush_yds = get_teams_def(def_stats_real, 'rush_yds')
+    answer_def_rush_yds = top_five_def_rush_yds[0]
+    r.shuffle(top_five_def_rush_yds)
+
+    checker_def_rush_yds = get_answers_def(def_stats_real, 'rush_yds')
+    if len(checker_def_rush_yds) > 1:
+        answer_def_rush_yds_string = ''
+        for nary in checker_def_rush_yds:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_rush_yds_string += y + ', '
+        answer_def_rush_yds_string = answer_def_rush_yds_string.strip(', ')
+    else:
+        answer_def_rush_yds_string = answer_def_rush_yds
+
+    #def_rush_yds_g
+    top_five_stat_def_rush_yds_g = get_stat_def(def_stats_real, 'rush_yds_g')
+    best_def_rush_yds_g_stat = top_five_stat_def_rush_yds_g[0]
+
+    top_five_def_rush_yds_g = get_teams_def(def_stats_real, 'rush_yds_g')
+    answer_def_rush_yds_g = top_five_def_rush_yds_g[0]
+    r.shuffle(top_five_def_rush_yds_g)
+
+    checker_def_rush_yds_g = get_answers_def(def_stats_real, 'rush_yds_g')
+    if len(checker_def_rush_yds_g) > 1:
+        answer_def_rush_yds_g_string = ''
+        for nary in checker_def_rush_yds_g:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_rush_yds_g_string += y + ', '
+        answer_def_rush_yds_g_string = answer_def_rush_yds_g_string.strip(', ')
+    else:
+        answer_def_rush_yds_g_string = answer_def_rush_yds_g
+
+    #def_points
+    top_five_stat_def_points = get_stat_def(def_stats_real, 'points')
+    best_def_points_stat = top_five_stat_def_points[0]
+
+    top_five_def_points = get_teams_def(def_stats_real, 'points')
+    answer_def_points = top_five_def_points[0]
+    r.shuffle(top_five_def_points)
+
+    checker_def_points = get_answers_def(def_stats_real, 'points')
+    if len(checker_def_points) > 1:
+        answer_def_points_string = ''
+        for nary in checker_def_points:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_points_string += y + ', '
+        answer_def_points_string = answer_def_points_string.strip(', ')
+    else:
+        answer_def_points_string = answer_def_points
+
+    #def_points_g
+    top_five_stat_def_points_g = get_stat_def(def_stats_real, 'points_g')
+    best_def_points_g_stat = top_five_stat_def_points_g[0]
+
+    top_five_def_points_g = get_teams_def(def_stats_real, 'points_g')
+    answer_def_points_g = top_five_def_points_g[0]
+    r.shuffle(top_five_def_points_g)
+
+    checker_def_points_g = get_answers_def(def_stats_real, 'points_g')
+    if len(checker_def_points_g) > 1:
+        answer_def_points_g_string = ''
+        for nary in checker_def_points_g:
+            for x,y in nary.items():
+                if x == 'team':
+                    answer_def_points_g_string += y + ', '
+        answer_def_points_g_string = answer_def_points_g_string.strip(', ')
+    else:
+        answer_def_points_g_string = answer_def_points_g
+
+    quiz_stuff = {
+    #Quarterbacks
+
+    #qb_pass_yds
+    'qb_pass_yds_num_1': top_five_qb_pass_yds[0],
+    'qb_pass_yds_num_2': top_five_qb_pass_yds[1],
+    'qb_pass_yds_num_3': top_five_qb_pass_yds[2],
+    'qb_pass_yds_num_4': top_five_qb_pass_yds[3],
+    'qb_pass_yds_num_5': top_five_qb_pass_yds[4],
+    'answer_qb_pass_yds': answer_pass_yds_string,
+    'best_qb_pass_yds_stat': best_qb_pass_yds_stat,
+    #qb_yds_per_att
+    'pass_yds_att_num_1': top_five_pass_yds_att[0],
+    'pass_yds_att_num_2': top_five_pass_yds_att[1],
+    'pass_yds_att_num_3': top_five_pass_yds_att[2],
+    'pass_yds_att_num_4': top_five_pass_yds_att[3],
+    'pass_yds_att_num_5': top_five_pass_yds_att[4],
+    'answer_qb_yds_att': answer_pass_yds_att_string,
+    'best_qb_yds_att_stat': best_qb_yds_att_stat,
+    #pass_att
+    'qb_att_num_1': top_five_pass_att[0],
+    'qb_att_num_2': top_five_pass_att[1],
+    'qb_att_num_3': top_five_pass_att[2],
+    'qb_att_num_4': top_five_pass_att[3],
+    'qb_att_num_5': top_five_pass_att[4],
+    'answer_qb_att': answer_pass_att_string,
+    'best_qb_att_stat': best_qb_att_stat,
+    #pass_cmp
+    'qb_cmp_num_1': top_five_pass_cmp[0],
+    'qb_cmp_num_2': top_five_pass_cmp[1],
+    'qb_cmp_num_3': top_five_pass_cmp[2],
+    'qb_cmp_num_4': top_five_pass_cmp[3],
+    'qb_cmp_num_5': top_five_pass_cmp[4],
+    'answer_qb_cmp': answer_pass_cmp_string,
+    'best_qb_cmp_stat': best_qb_cmp_stat,
+    #pass_cmp_perc
+    'qb_cmp_perc_num_1': top_five_pass_cmp_perc[0],
+    'qb_cmp_perc_num_2': top_five_pass_cmp_perc[1],
+    'qb_cmp_perc_num_3': top_five_pass_cmp_perc[2],
+    'qb_cmp_perc_num_4': top_five_pass_cmp_perc[3],
+    'qb_cmp_perc_num_5': top_five_pass_cmp_perc[4],
+    'answer_qb_cmp_perc': answer_pass_cmp_perc_string,
+    'best_qb_cmp_perc_stat': best_qb_cmp_perc_stat,
+    #pass_td
+    'qb_td_num_1': top_five_pass_td[0],
+    'qb_td_num_2': top_five_pass_td[1],
+    'qb_td_num_3': top_five_pass_td[2],
+    'qb_td_num_4': top_five_pass_td[3],
+    'qb_td_num_5': top_five_pass_td[4],
+    'answer_qb_td': answer_pass_td_string,
+    'best_qb_td_stat': best_qb_td_stat,
+    #pass_int
+    'qb_int_num_1': top_five_pass_int[0],
+    'qb_int_num_2': top_five_pass_int[1],
+    'qb_int_num_3': top_five_pass_int[2],
+    'qb_int_num_4': top_five_pass_int[3],
+    'qb_int_num_5': top_five_pass_int[4],
+    'answer_qb_int': answer_pass_int_string,
+    'best_qb_int_stat': best_qb_int_stat,
+    #pass_rating
+    'qb_rating_num_1': top_five_pass_rating[0],
+    'qb_rating_num_2': top_five_pass_rating[1],
+    'qb_rating_num_3': top_five_pass_rating[2],
+    'qb_rating_num_4': top_five_pass_rating[3],
+    'qb_rating_num_5': top_five_pass_rating[4],
+    'answer_qb_rating': answer_pass_rating_string,
+    'best_qb_rating_stat': best_qb_rating_stat,
+    #pass_1st
+    'qb_1st_num_1': top_five_pass_1st[0],
+    'qb_1st_num_2': top_five_pass_1st[1],
+    'qb_1st_num_3': top_five_pass_1st[2],
+    'qb_1st_num_4': top_five_pass_1st[3],
+    'qb_1st_num_5': top_five_pass_1st[4],
+    'answer_qb_1st': answer_pass_1st_string,
+    'best_qb_1st_stat': best_qb_1st_stat,
+    #pass_1st_perc
+    'qb_1st_perc_num_1': top_five_pass_1st_perc[0],
+    'qb_1st_perc_num_2': top_five_pass_1st_perc[1],
+    'qb_1st_perc_num_3': top_five_pass_1st_perc[2],
+    'qb_1st_perc_num_4': top_five_pass_1st_perc[3],
+    'qb_1st_perc_num_5': top_five_pass_1st_perc[4],
+    'answer_qb_1st_perc': answer_pass_1st_perc_string,
+    'best_qb_1st_perc_stat': best_qb_1st_perc_stat,
+    #pass_20+
+    'qb_20_num_1': top_five_pass_20[0],
+    'qb_20_num_2': top_five_pass_20[1],
+    'qb_20_num_3': top_five_pass_20[2],
+    'qb_20_num_4': top_five_pass_20[3],
+    'qb_20_num_5': top_five_pass_20[4],
+    'answer_qb_20': answer_qb_20_string,
+    'best_qb_20_stat': best_qb_20_stat,
+    #pass_40+
+    'qb_40_num_1': top_five_pass_40[0],
+    'qb_40_num_2': top_five_pass_40[1],
+    'qb_40_num_3': top_five_pass_40[2],
+    'qb_40_num_4': top_five_pass_40[3],
+    'qb_40_num_5': top_five_pass_40[4],
+    'answer_qb_40': answer_qb_40_string,
+    'best_qb_40_stat': best_qb_40_stat,
+    #pass_long
+    'qb_long_num_1': top_five_pass_long[0],
+    'qb_long_num_2': top_five_pass_long[1],
+    'qb_long_num_3': top_five_pass_long[2],
+    'qb_long_num_4': top_five_pass_long[3],
+    'qb_long_num_5': top_five_pass_long[4],
+    'answer_qb_long': answer_pass_long_string,
+    'best_qb_long_stat': best_qb_long_stat,
+    #pass_sack
+    'qb_sack_num_1': top_five_pass_sack[0],
+    'qb_sack_num_2': top_five_pass_sack[1],
+    'qb_sack_num_3': top_five_pass_sack[2],
+    'qb_sack_num_4': top_five_pass_sack[3],
+    'qb_sack_num_5': top_five_pass_sack[4],
+    'answer_qb_sack': answer_pass_sack_string,
+    'best_qb_sack_stat': best_qb_sack_stat,
+    #pass_sack_yds
+    'qb_sack_yds_num_1': top_five_pass_sack_yds[0],
+    'qb_sack_yds_num_2': top_five_pass_sack_yds[1],
+    'qb_sack_yds_num_3': top_five_pass_sack_yds[2],
+    'qb_sack_yds_num_4': top_five_pass_sack_yds[3],
+    'qb_sack_yds_num_5': top_five_pass_sack_yds[4],
+    'answer_qb_sack_yds': answer_pass_sack_yds_string,
+    'best_qb_sack_yds_stat': best_qb_sack_yds_stat,
+
+    #Running Backs
+
+    #rb_rush_yds
+    'rb_yds_num_1': top_five_rb_rush_yds[0],
+    'rb_yds_num_2': top_five_rb_rush_yds[1],
+    'rb_yds_num_3': top_five_rb_rush_yds[2],
+    'rb_yds_num_4': top_five_rb_rush_yds[3],
+    'rb_yds_num_5': top_five_rb_rush_yds[4],
+    'answer_rb_rush_yds': answer_rb_rush_yds_string,
+    'best_rb_yds_stat': best_rb_yds_stat,
+    #rb_att
+    'rb_att_num_1': top_five_rb_att[0],
+    'rb_att_num_2': top_five_rb_att[1],
+    'rb_att_num_3': top_five_rb_att[2],
+    'rb_att_num_4': top_five_rb_att[3],
+    'rb_att_num_5': top_five_rb_att[4],
+    'answer_rb_att': answer_rb_att_string,
+    'best_rb_att_stat': best_rb_att_stat,
+    #rb_yds_att
+    'rb_yds_att_num_1': top_five_rb_yds_att[0],
+    'rb_yds_att_num_2': top_five_rb_yds_att[1],
+    'rb_yds_att_num_3': top_five_rb_yds_att[2],
+    'rb_yds_att_num_4': top_five_rb_yds_att[3],
+    'rb_yds_att_num_5': top_five_rb_yds_att[4],
+    'answer_rb_yds_att': answer_rb_yds_att_string,
+    'best_rb_yds_att_stat': best_rb_yds_att_stat,
+    #rb_td
+    'rb_td_num_1': top_five_rb_td[0],
+    'rb_td_num_2': top_five_rb_td[1],
+    'rb_td_num_3': top_five_rb_td[2],
+    'rb_td_num_4': top_five_rb_td[3],
+    'rb_td_num_5': top_five_rb_td[4],
+    'answer_rb_td': answer_rb_td_string,
+    'best_rb_td_stat': best_rb_td_stat,
+    #rb_20+
+    'rb_20_num_1': top_five_rb_20[0],
+    'rb_20_num_2': top_five_rb_20[1],
+    'rb_20_num_3': top_five_rb_20[2],
+    'rb_20_num_4': top_five_rb_20[3],
+    'rb_20_num_5': top_five_rb_20[4],
+    'answer_rb_20': answer_rb_20_string,
+    'best_rb_20_stat': best_rb_20_stat,
+    #rb_40+
+    'rb_40_num_1': top_five_rb_40[0],
+    'rb_40_num_2': top_five_rb_40[1],
+    'rb_40_num_3': top_five_rb_40[2],
+    'rb_40_num_4': top_five_rb_40[3],
+    'rb_40_num_5': top_five_rb_40[4],
+    'answer_rb_40': answer_rb_40_string,
+    'best_rb_40_stat': best_rb_40_stat,
+    #rb_long
+    'rb_long_num_1': top_five_rb_long[0],
+    'rb_long_num_2': top_five_rb_long[1],
+    'rb_long_num_3': top_five_rb_long[2],
+    'rb_long_num_4': top_five_rb_long[3],
+    'rb_long_num_5': top_five_rb_long[4],
+    'answer_rb_long': answer_rb_long_string,
+    'best_rb_long_stat': best_rb_long_stat,
+    #rb_first
+    'rb_first_num_1': top_five_rb_first[0],
+    'rb_first_num_2': top_five_rb_first[1],
+    'rb_first_num_3': top_five_rb_first[2],
+    'rb_first_num_4': top_five_rb_first[3],
+    'rb_first_num_5': top_five_rb_first[4],
+    'answer_rb_first': answer_rb_first_string,
+    'best_rb_first_stat': best_rb_first_stat,
+    #rb_first_perc
+    'rb_first_perc_num_1': top_five_rb_first_perc[0],
+    'rb_first_perc_num_2': top_five_rb_first_perc[1],
+    'rb_first_perc_num_3': top_five_rb_first_perc[2],
+    'rb_first_perc_num_4': top_five_rb_first_perc[3],
+    'rb_first_perc_num_5': top_five_rb_first_perc[4],
+    'answer_rb_first_perc': answer_rb_first_perc_string,
+    'best_rb_first_perc_stat': best_rb_first_perc_stat,
+    #rb_fumbles
+    'rb_fumbles_num_1': top_five_rb_fumbles[0],
+    'rb_fumbles_num_2': top_five_rb_fumbles[1],
+    'rb_fumbles_num_3': top_five_rb_fumbles[2],
+    'rb_fumbles_num_4': top_five_rb_fumbles[3],
+    'rb_fumbles_num_5': top_five_rb_fumbles[4],
+    'answer_rb_fumbles': answer_rb_fumbles_string,
+    'best_rb_fumbles_stat': best_rb_fumbles_stat,
+
+    #Defense
+    #def_yds
+    'def_yds_num_1': top_five_def_yds[0],
+    'def_yds_num_2': top_five_def_yds[1],
+    'def_yds_num_3': top_five_def_yds[2],
+    'def_yds_num_4': top_five_def_yds[3],
+    'def_yds_num_5': top_five_def_yds[4],
+    'answer_def_yds': answer_def_yds_string,
+    'best_def_yds_stat': best_def_yds_stat,
+    #def_yds_g
+    'def_yds_g_num_1': top_five_def_yds_g[0],
+    'def_yds_g_num_2': top_five_def_yds_g[1],
+    'def_yds_g_num_3': top_five_def_yds_g[2],
+    'def_yds_g_num_4': top_five_def_yds_g[3],
+    'def_yds_g_num_5': top_five_def_yds_g[4],
+    'answer_def_yds_g': answer_def_yds_g_string,
+    'best_def_yds_g_stat': best_def_yds_g_stat,
+    #def_pass_yds
+    'def_pass_yds_num_1': top_five_def_pass_yds[0],
+    'def_pass_yds_num_2': top_five_def_pass_yds[1],
+    'def_pass_yds_num_3': top_five_def_pass_yds[2],
+    'def_pass_yds_num_4': top_five_def_pass_yds[3],
+    'def_pass_yds_num_5': top_five_def_pass_yds[4],
+    'answer_def_pass_yds': answer_def_pass_yds_string,
+    'best_def_pass_yds_stat': best_def_pass_yds_stat,
+    #def_pass_yds_g
+    'def_pass_yds_g_num_1': top_five_def_pass_yds_g[0],
+    'def_pass_yds_g_num_2': top_five_def_pass_yds_g[1],
+    'def_pass_yds_g_num_3': top_five_def_pass_yds_g[2],
+    'def_pass_yds_g_num_4': top_five_def_pass_yds_g[3],
+    'def_pass_yds_g_num_5': top_five_def_pass_yds_g[4],
+    'answer_def_pass_yds_g': answer_def_pass_yds_g_string,
+    'best_def_pass_yds_g_stat': best_def_pass_yds_g_stat,
+    #def_rush_yds
+    'def_rush_yds_num_1': top_five_def_rush_yds[0],
+    'def_rush_yds_num_2': top_five_def_rush_yds[1],
+    'def_rush_yds_num_3': top_five_def_rush_yds[2],
+    'def_rush_yds_num_4': top_five_def_rush_yds[3],
+    'def_rush_yds_num_5': top_five_def_rush_yds[4],
+    'answer_def_rush_yds': answer_def_rush_yds_string,
+    'best_def_rush_yds_stat': best_def_rush_yds_stat,
+    #def_rush_yds_g
+    'def_rush_yds_g_num_1': top_five_def_rush_yds_g[0],
+    'def_rush_yds_g_num_2': top_five_def_rush_yds_g[1],
+    'def_rush_yds_g_num_3': top_five_def_rush_yds_g[2],
+    'def_rush_yds_g_num_4': top_five_def_rush_yds_g[3],
+    'def_rush_yds_g_num_5': top_five_def_rush_yds_g[4],
+    'answer_def_rush_yds_g': answer_def_rush_yds_g_string,
+    'best_def_rush_yds_g_stat': best_def_rush_yds_g_stat,
+    #def_points
+    'def_points_num_1': top_five_def_points[0],
+    'def_points_num_2': top_five_def_points[1],
+    'def_points_num_3': top_five_def_points[2],
+    'def_points_num_4': top_five_def_points[3],
+    'def_points_num_5': top_five_def_points[4],
+    'answer_def_points': answer_def_points_string,
+    'best_def_points_stat': best_def_points_stat,
+    #def_points_g
+    'def_points_g_num_1': top_five_def_points_g[0],
+    'def_points_g_num_2': top_five_def_points_g[1],
+    'def_points_g_num_3': top_five_def_points_g[2],
+    'def_points_g_num_4': top_five_def_points_g[3],
+    'def_points_g_num_5': top_five_def_points_g[4],
+    'answer_def_points_g': answer_def_points_g_string,
+    'best_def_points_g_stat': best_def_points_g_stat,
+
+       }
+    return render(request, 'quiz.html', quiz_stuff)
 
 def passing_view(request, *args, **kwargs):
-    qb_names = make_names(qb_pass_yds)
-    qb_names_left = get_keys(qb_pass_yds)
-    qb_stats_lst = get_values(qb_pass_yds)
-    qb_att_lst = get_values(qb_yds_att)
-    qb_num_att_lst = get_values(qb_num_att)
-    qb_comp_lst = get_values(qb_comp)
-    qb_comp_perc_lst = get_values(qb_comp_perc)
-    qb_td_lst = get_values(qb_td)
-    qb_int_lst = get_values(qb_int)
-    qb_rating_lst = get_values(qb_rating)
-    qb_first_downs_lst = get_values(qb_first_downs)
-    qb_first_down_perc_lst = get_values(qb_first_down_perc)
-    qb_more_20_lst = get_values(qb_more_20)
-    qb_more_40_lst = get_values(qb_more_40)
-    qb_long_lst = get_values(qb_long)
-    qb_sacks_lst = get_values(qb_sacks)
-    qb_sacks_yds_lst = get_values(qb_sacks_yds)
     qb_stats = {
     'qb_1': qb_names_left[0],
 's_qb_1':qb_stats_lst[0],
@@ -559,11 +1559,13 @@ def passing_view(request, *args, **kwargs):
     }
     return render(request, 'passing.html',qb_stats)
 
+
 def rushing_view(request, *args, **kwargs):
     rb_stats = {
     'rb_1': rb_names[0],
 'rb_1_rush_yds': rb_rush_yds[0],
 'rb_1_att': rb_att[0],
+'rb_1_rush_yds_att': rb_rush_yds_att[0],
 'rb_1_td': rb_td[0],
 'rb_1_20': rb_20[0],
 'rb_1_40': rb_40[0],
@@ -574,6 +1576,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_2': rb_names[1],
 'rb_2_rush_yds': rb_rush_yds[1],
 'rb_2_att': rb_att[1],
+'rb_2_rush_yds_att': rb_rush_yds_att[1],
 'rb_2_td': rb_td[1],
 'rb_2_20': rb_20[1],
 'rb_2_40': rb_40[1],
@@ -584,6 +1587,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_3': rb_names[2],
 'rb_3_rush_yds': rb_rush_yds[2],
 'rb_3_att': rb_att[2],
+'rb_3_rush_yds_att': rb_rush_yds_att[2],
 'rb_3_td': rb_td[2],
 'rb_3_20': rb_20[2],
 'rb_3_40': rb_40[2],
@@ -594,6 +1598,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_4': rb_names[3],
 'rb_4_rush_yds': rb_rush_yds[3],
 'rb_4_att': rb_att[3],
+'rb_4_rush_yds_att': rb_rush_yds_att[3],
 'rb_4_td': rb_td[3],
 'rb_4_20': rb_20[3],
 'rb_4_40': rb_40[3],
@@ -604,6 +1609,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_5': rb_names[4],
 'rb_5_rush_yds': rb_rush_yds[4],
 'rb_5_att': rb_att[4],
+'rb_5_rush_yds_att': rb_rush_yds_att[4],
 'rb_5_td': rb_td[4],
 'rb_5_20': rb_20[4],
 'rb_5_40': rb_40[4],
@@ -614,6 +1620,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_6': rb_names[5],
 'rb_6_rush_yds': rb_rush_yds[5],
 'rb_6_att': rb_att[5],
+'rb_6_rush_yds_att': rb_rush_yds_att[5],
 'rb_6_td': rb_td[5],
 'rb_6_20': rb_20[5],
 'rb_6_40': rb_40[5],
@@ -624,6 +1631,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_7': rb_names[6],
 'rb_7_rush_yds': rb_rush_yds[6],
 'rb_7_att': rb_att[6],
+'rb_7_rush_yds_att': rb_rush_yds_att[6],
 'rb_7_td': rb_td[6],
 'rb_7_20': rb_20[6],
 'rb_7_40': rb_40[6],
@@ -634,6 +1642,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_8': rb_names[7],
 'rb_8_rush_yds': rb_rush_yds[7],
 'rb_8_att': rb_att[7],
+'rb_8_rush_yds_att': rb_rush_yds_att[7],
 'rb_8_td': rb_td[7],
 'rb_8_20': rb_20[7],
 'rb_8_40': rb_40[7],
@@ -644,6 +1653,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_9': rb_names[8],
 'rb_9_rush_yds': rb_rush_yds[8],
 'rb_9_att': rb_att[8],
+'rb_9_rush_yds_att': rb_rush_yds_att[8],
 'rb_9_td': rb_td[8],
 'rb_9_20': rb_20[8],
 'rb_9_40': rb_40[8],
@@ -654,6 +1664,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_10': rb_names[9],
 'rb_10_rush_yds': rb_rush_yds[9],
 'rb_10_att': rb_att[9],
+'rb_10_rush_yds_att': rb_rush_yds_att[9],
 'rb_10_td': rb_td[9],
 'rb_10_20': rb_20[9],
 'rb_10_40': rb_40[9],
@@ -664,6 +1675,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_11': rb_names[10],
 'rb_11_rush_yds': rb_rush_yds[10],
 'rb_11_att': rb_att[10],
+'rb_11_rush_yds_att': rb_rush_yds_att[10],
 'rb_11_td': rb_td[10],
 'rb_11_20': rb_20[10],
 'rb_11_40': rb_40[10],
@@ -674,6 +1686,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_12': rb_names[11],
 'rb_12_rush_yds': rb_rush_yds[11],
 'rb_12_att': rb_att[11],
+'rb_12_rush_yds_att': rb_rush_yds_att[11],
 'rb_12_td': rb_td[11],
 'rb_12_20': rb_20[11],
 'rb_12_40': rb_40[11],
@@ -684,6 +1697,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_13': rb_names[12],
 'rb_13_rush_yds': rb_rush_yds[12],
 'rb_13_att': rb_att[12],
+'rb_13_rush_yds_att': rb_rush_yds_att[12],
 'rb_13_td': rb_td[12],
 'rb_13_20': rb_20[12],
 'rb_13_40': rb_40[12],
@@ -694,6 +1708,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_14': rb_names[13],
 'rb_14_rush_yds': rb_rush_yds[13],
 'rb_14_att': rb_att[13],
+'rb_14_rush_yds_att': rb_rush_yds_att[14],
 'rb_14_td': rb_td[13],
 'rb_14_20': rb_20[13],
 'rb_14_40': rb_40[13],
@@ -704,6 +1719,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_15': rb_names[14],
 'rb_15_rush_yds': rb_rush_yds[14],
 'rb_15_att': rb_att[14],
+'rb_15_rush_yds_att': rb_rush_yds_att[14],
 'rb_15_td': rb_td[14],
 'rb_15_20': rb_20[14],
 'rb_15_40': rb_40[14],
@@ -714,6 +1730,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_16': rb_names[15],
 'rb_16_rush_yds': rb_rush_yds[15],
 'rb_16_att': rb_att[15],
+'rb_16_rush_yds_att': rb_rush_yds_att[15],
 'rb_16_td': rb_td[15],
 'rb_16_20': rb_20[15],
 'rb_16_40': rb_40[15],
@@ -724,6 +1741,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_17': rb_names[16],
 'rb_17_rush_yds': rb_rush_yds[16],
 'rb_17_att': rb_att[16],
+'rb_17_rush_yds_att': rb_rush_yds_att[16],
 'rb_17_td': rb_td[16],
 'rb_17_20': rb_20[16],
 'rb_17_40': rb_40[16],
@@ -734,6 +1752,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_18': rb_names[17],
 'rb_18_rush_yds': rb_rush_yds[17],
 'rb_18_att': rb_att[17],
+'rb_18_rush_yds_att': rb_rush_yds_att[17],
 'rb_18_td': rb_td[17],
 'rb_18_20': rb_20[17],
 'rb_18_40': rb_40[17],
@@ -744,6 +1763,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_19': rb_names[18],
 'rb_19_rush_yds': rb_rush_yds[18],
 'rb_19_att': rb_att[18],
+'rb_19_rush_yds_att': rb_rush_yds_att[18],
 'rb_19_td': rb_td[18],
 'rb_19_20': rb_20[18],
 'rb_19_40': rb_40[18],
@@ -754,6 +1774,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_20': rb_names[19],
 'rb_20_rush_yds': rb_rush_yds[19],
 'rb_20_att': rb_att[19],
+'rb_20_rush_yds_att': rb_rush_yds_att[19],
 'rb_20_td': rb_td[19],
 'rb_20_20': rb_20[19],
 'rb_20_40': rb_40[19],
@@ -764,6 +1785,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_21': rb_names[20],
 'rb_21_rush_yds': rb_rush_yds[20],
 'rb_21_att': rb_att[20],
+'rb_21_rush_yds_att': rb_rush_yds_att[20],
 'rb_21_td': rb_td[20],
 'rb_21_20': rb_20[20],
 'rb_21_40': rb_40[20],
@@ -774,6 +1796,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_22': rb_names[21],
 'rb_22_rush_yds': rb_rush_yds[21],
 'rb_22_att': rb_att[21],
+'rb_22_rush_yds_att': rb_rush_yds_att[21],
 'rb_22_td': rb_td[21],
 'rb_22_20': rb_20[21],
 'rb_22_40': rb_40[21],
@@ -784,6 +1807,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_23': rb_names[22],
 'rb_23_rush_yds': rb_rush_yds[22],
 'rb_23_att': rb_att[22],
+'rb_23_rush_yds_att': rb_rush_yds_att[22],
 'rb_23_td': rb_td[22],
 'rb_23_20': rb_20[22],
 'rb_23_40': rb_40[22],
@@ -794,6 +1818,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_24': rb_names[23],
 'rb_24_rush_yds': rb_rush_yds[23],
 'rb_24_att': rb_att[23],
+'rb_24_rush_yds_att': rb_rush_yds_att[23],
 'rb_24_td': rb_td[23],
 'rb_24_20': rb_20[23],
 'rb_24_40': rb_40[23],
@@ -804,6 +1829,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_25': rb_names[24],
 'rb_25_rush_yds': rb_rush_yds[24],
 'rb_25_att': rb_att[24],
+'rb_25_rush_yds_att': rb_rush_yds_att[24],
 'rb_25_td': rb_td[24],
 'rb_25_20': rb_20[24],
 'rb_25_40': rb_40[24],
@@ -813,6 +1839,7 @@ def rushing_view(request, *args, **kwargs):
 'rb_25_rush_fum': rb_rush_fum[24],
 }
     return render(request, 'rushing.html', rb_stats)
+
 
 def defense_view(request, *args, **kwargs):
     def_stats = {

@@ -2,10 +2,26 @@ html {
   background-color: lightgrey;
 }
 
+#wrap {
+  position: relative;
+  min-height: 100vh;
+}
+
+#main {
+  padding-bottom: 2.5rem;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
 #nav_bar {
   position: relative;
   list-style-type: none;
-  overflow: hidden;
+  overflow: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -74,7 +90,39 @@ footer ul li a:hover {
   text-align: center;
 }
 
-#choose_stat_1:hover {
+button {
+  background-color: rgb(215,211,211);
+  border-color: black;
+  margin-top: 3px;
+  border-width: thin;
+}
+
+#footer {
+  max-height: 100%;
+}
+
+
+#choose_stat_1:hover, button:hover, .user_choices:hover {
   cursor: pointer;
   background-color: red;
+}
+
+.question {
+  font-size: 1.05em;
+  font-weight: bold;
+}
+
+.question_2 {
+  font-size: 1.01em;
+  font-weight: bold;
+}
+
+button:active {
+  background-color:red;
+}
+
+@media only screen and (max-width : 480px) {
+  body {
+    background-color: red;
+  }
 }

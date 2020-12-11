@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
-  <body>
-    {% block content %}
+
+{% block content %}
     <table id='qb_stats' border='1'>
       <tr id='table_title'>
         <td colspan='16' align='center'>
@@ -489,10 +489,6 @@
 <td id='sacks_yds_25' class='sacks_yds'>{{ sacks_yds_25}}</td>
 </tr>
 </table>
-<br><br>
-</div>
 {% endblock %}
-<script src="{% static '/javascript/game.js' %}" type='text/javascript'>
-</script>
-  </body>
+
 </html>
