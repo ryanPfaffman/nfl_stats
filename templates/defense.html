@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<table id='defense_stats' border = '1'>
+  <tr id='table_title'>
+    <td colspan='10' align='center'>
+      <img src="{% static 'images/page_title.png'%}" alt='NFL Stats'>
+    </td>
+  </tr>
+  <tr>
+    <td class="title_row" colspan='1' align='center'>
+      <img src="{% static 'images/nfl_logo.jpg'%}" alt="NFL Logo">
+    </td>
+    <td class='title_row' colspan='7' align='center'>
+      <img src="{% static 'images/defense_title.png'%}" alt="Defense Title" width='300' height='78'>
+    </td>
+    <td class='title_row' colspan='2' align='center'>
+      <img src="{% static 'images/nfl_logo.jpg'%}" alt="NFL Logo" align='center'>
+    </td>
+  </tr>
+  <tr>
+    <td class='table_header'>Team</td>
+    <td class='table_header'>Games Played</td>
+    <td class='table_header'>Yards</td>
+    <td class='table_header'>Yards/Game</td>
+    <td class='table_header'>Pass Yards</td>
+    <td class='table_header'>Pass Yards/Game</td>
+    <td class='table_header'>Rush Yards</td>
+    <td class='table_header'>Rush Yards/Game</td>
+    <td class='table_header'>Points</td>
+    <td class='table_header'>Points/Game</td>
+  </tr>
+  <tr>
+<td id='team_1' class='def_team_name'>{{ team_1}}</td>
+<td id='gp_team_1' class='gp_def'>{{ gp_team_1}}</td>
+<td id='yds_team_1' class='yds_def'>{{ yds_team_1}}</td>
+<td id='yds_g_team_1' class='yds_g_def'>{{ yds_g_team_1}}</td>
+<td id='pass_yds_team_1' class='pass_yds_def'>{{ pass_yds_team_1}}</td>
+<td id='pass_yds_g_team_1' class='pass_yds_g_def'>{{ pass_yds_g_team_1}}</td>
+<td id='rush_yds_team_1' class='rush_yds_def'>{{ rush_yds_team_1}}</td>
+<td id='rush_yds_g_team_1' class='rush_yds_g_def'>{{ rush_yds_g_team_1}}</td>
+<td id='points_team_1' class='points_def'>{{ points_team_1}}</td>
+<td id='points_p_team_1' class='points_p_def'>{{ points_p_team_1}}</td>
+</tr>
+<tr>
+<td id='team_2' class='def_team_name'>{{ team_2}}</td>
+<td id='gp_team_2' class='gp_def'>{{ gp_team_2}}</td>
+<td id='yds_team_2' class='yds_def'>{{ yds_team_2}}</td>
+<td id='yds_g_team_2' class='yds_g_def'>{{ yds_g_team_2}}</td>
+<td id='pass_yds_team_2' class='pass_yds_def'>{{ pass_yds_team_2}}</td>
+<td id='pass_yds_g_team_2' class='pass_yds_g_def'>{{ pass_yds_g_team_2}}</td>
+<td id='rush_yds_team_2' class='rush_yds_def'>{{ rush_yds_team_2}}</td>
+<td id='rush_yds_g_team_2' class='rush_yds_g_def'>{{ rush_yds_g_team_2}}</td>
+<td id='points_team_2' class='points_def'>{{ points_team_2}}</td>
+<td id='points_p_team_2' class='points_p_def'>{{ points_p_team_2}}</td>
+</tr>
+<tr>
+<td id='team_3' class='def_team_name'>{{ team_3}}</td>
+<td id='gp_team_3' class='gp_def'>{{ gp_team_3}}</td>
+<td id='yds_team_3' class='yds_def'>{{ yds_team_3}}</td>
+<td id='yds_g_team_3' class='yds_g_def'>{{ yds_g_team_3}}</td>
+<td id='pass_yds_team_3' class='pass_yds_def'>{{ pass_yds_team_3}}</td>
+<td id='pass_yds_g_team_3' class='pass_yds_g_def'>{{ pass_yds_g_team_3}}</td>
+<td id='rush_yds_team_3' class='rush_yds_def'>{{ rush_yds_team_3}}</td>
+<td id='rush_yds_g_team_3' class='rush_yds_g_def'>{{ rush_yds_g_team_3}}</td>
+<td id='points_team_3' class='points_def'>{{ points_team_3}}</td>
+<td id='points_p_team_3' class='points_p_def'>{{ points_p_team_3}}</td>
+</tr>
+<tr>
+<td id='team_4' class='def_team_name'>{{ team_4}}</td>
+<td id='gp_team_4' class='gp_def'>{{ gp_team_4}}</td>
+<td id='yds_team_4' class='yds_def'>{{ yds_team_4}}</td>
+<td id='yds_g_team_4' class='yds_g_def'>{{ yds_g_team_4}}</td>
+<td id='pass_yds_team_4' class='pass_yds_def'>{{ pass_yds_team_4}}</td>
+<td id='pass_yds_g_team_4' class='pass_yds_g_def'>{{ pass_yds_g_team_4}}</td>
+<td id='rush_yds_team_4' class='rush_yds_def'>{{ rush_yds_team_4}}</td>
+<td id='rush_yds_g_team_4' class='rush_yds_g_def'>{{ rush_yds_g_team_4}}</td>
+<td id='points_team_4' class='points_def'>{{ points_team_4}}</td>
+<td id='points_p_team_4' class='points_p_def'>{{ points_p_team_4}}</td>
+</tr>
+<tr>
+<td id='team_5' class='def_team_name'>{{ team_5}}</td>
+<td id='gp_team_5' class='gp_def'>{{ gp_team_5}}</td>
+<td id='yds_team_5' class='yds_def'>{{ yds_team_5}}</td>
+<td id='yds_g_team_5' class='yds_g_def'>{{ yds_g_team_5}}</td>
+<td id='pass_yds_team_5' class='pass_yds_def'>{{ pass_yds_team_5}}</td>
+<td id='pass_yds_g_team_5' class='pass_yds_g_def'>{{ pass_yds_g_team_5}}</td>
+<td id='rush_yds_team_5' class='rush_yds_def'>{{ rush_yds_team_5}}</td>
+<td id='rush_yds_g_team_5' class='rush_yds_g_def'>{{ rush_yds_g_team_5}}</td>
+<td id='points_team_5' class='points_def'>{{ points_team_5}}</td>
+<td id='points_p_team_5' class='points_p_def'>{{ points_p_team_5}}</td>
+</tr>
+<tr>
+<td id='team_6' class='def_team_name'>{{ team_6}}</td>
+<td id='gp_team_6' class='gp_def'>{{ gp_team_6}}</td>
+<td id='yds_team_6' class='yds_def'>{{ yds_team_6}}</td>
+<td id='yds_g_team_6' class='yds_g_def'>{{ yds_g_team_6}}</td>
+<td id='pass_yds_team_6' class='pass_yds_def'>{{ pass_yds_team_6}}</td>
+<td id='pass_yds_g_team_6' class='pass_yds_g_def'>{{ pass_yds_g_team_6}}</td>
+<td id='rush_yds_team_6' class='rush_yds_def'>{{ rush_yds_team_6}}</td>
+<td id='rush_yds_g_team_6' class='rush_yds_g_def'>{{ rush_yds_g_team_6}}</td>
+<td id='points_team_6' class='points_def'>{{ points_team_6}}</td>
+<td id='points_p_team_6' class='points_p_def'>{{ points_p_team_6}}</td>
+</tr>
+<tr>
+<td id='team_7' class='def_team_name'>{{ team_7}}</td>
+<td id='gp_team_7' class='gp_def'>{{ gp_team_7}}</td>
+<td id='yds_team_7' class='yds_def'>{{ yds_team_7}}</td>
+<td id='yds_g_team_7' class='yds_g_def'>{{ yds_g_team_7}}</td>
+<td id='pass_yds_team_7' class='pass_yds_def'>{{ pass_yds_team_7}}</td>
+<td id='pass_yds_g_team_7' class='pass_yds_g_def'>{{ pass_yds_g_team_7}}</td>
+<td id='rush_yds_team_7' class='rush_yds_def'>{{ rush_yds_team_7}}</td>
+<td id='rush_yds_g_team_7' class='rush_yds_g_def'>{{ rush_yds_g_team_7}}</td>
+<td id='points_team_7' class='points_def'>{{ points_team_7}}</td>
+<td id='points_p_team_7' class='points_p_def'>{{ points_p_team_7}}</td>
+</tr>
+<tr>
+<td id='team_8' class='def_team_name'>{{ team_8}}</td>
+<td id='gp_team_8' class='gp_def'>{{ gp_team_8}}</td>
+<td id='yds_team_8' class='yds_def'>{{ yds_team_8}}</td>
+<td id='yds_g_team_8' class='yds_g_def'>{{ yds_g_team_8}}</td>
+<td id='pass_yds_team_8' class='pass_yds_def'>{{ pass_yds_team_8}}</td>
+<td id='pass_yds_g_team_8' class='pass_yds_g_def'>{{ pass_yds_g_team_8}}</td>
+<td id='rush_yds_team_8' class='rush_yds_def'>{{ rush_yds_team_8}}</td>
+<td id='rush_yds_g_team_8' class='rush_yds_g_def'>{{ rush_yds_g_team_8}}</td>
+<td id='points_team_8' class='points_def'>{{ points_team_8}}</td>
+<td id='points_p_team_8' class='points_p_def'>{{ points_p_team_8}}</td>
+</tr>
+<tr>
+<td id='team_9' class='def_team_name'>{{ team_9}}</td>
+<td id='gp_team_9' class='gp_def'>{{ gp_team_9}}</td>
+<td id='yds_team_9' class='yds_def'>{{ yds_team_9}}</td>
+<td id='yds_g_team_9' class='yds_g_def'>{{ yds_g_team_9}}</td>
+<td id='pass_yds_team_9' class='pass_yds_def'>{{ pass_yds_team_9}}</td>
+<td id='pass_yds_g_team_9' class='pass_yds_g_def'>{{ pass_yds_g_team_9}}</td>
+<td id='rush_yds_team_9' class='rush_yds_def'>{{ rush_yds_team_9}}</td>
+<td id='rush_yds_g_team_9' class='rush_yds_g_def'>{{ rush_yds_g_team_9}}</td>
+<td id='points_team_9' class='points_def'>{{ points_team_9}}</td>
+<td id='points_p_team_9' class='points_p_def'>{{ points_p_team_9}}</td>
+</tr>
+<tr>
+<td id='team_10' class='def_team_name'>{{ team_10}}</td>
+<td id='gp_team_10' class='gp_def'>{{ gp_team_10}}</td>
+<td id='yds_team_10' class='yds_def'>{{ yds_team_10}}</td>
+<td id='yds_g_team_10' class='yds_g_def'>{{ yds_g_team_10}}</td>
+<td id='pass_yds_team_10' class='pass_yds_def'>{{ pass_yds_team_10}}</td>
+<td id='pass_yds_g_team_10' class='pass_yds_g_def'>{{ pass_yds_g_team_10}}</td>
+<td id='rush_yds_team_10' class='rush_yds_def'>{{ rush_yds_team_10}}</td>
+<td id='rush_yds_g_team_10' class='rush_yds_g_def'>{{ rush_yds_g_team_10}}</td>
+<td id='points_team_10' class='points_def'>{{ points_team_10}}</td>
+<td id='points_p_team_10' class='points_p_def'>{{ points_p_team_10}}</td>
+</tr>
+<tr>
+<td id='team_11' class='def_team_name'>{{ team_11}}</td>
+<td id='gp_team_11' class='gp_def'>{{ gp_team_11}}</td>
+<td id='yds_team_11' class='yds_def'>{{ yds_team_11}}</td>
+<td id='yds_g_team_11' class='yds_g_def'>{{ yds_g_team_11}}</td>
+<td id='pass_yds_team_11' class='pass_yds_def'>{{ pass_yds_team_11}}</td>
+<td id='pass_yds_g_team_11' class='pass_yds_g_def'>{{ pass_yds_g_team_11}}</td>
+<td id='rush_yds_team_11' class='rush_yds_def'>{{ rush_yds_team_11}}</td>
+<td id='rush_yds_g_team_11' class='rush_yds_g_def'>{{ rush_yds_g_team_11}}</td>
+<td id='points_team_11' class='points_def'>{{ points_team_11}}</td>
+<td id='points_p_team_11' class='points_p_def'>{{ points_p_team_11}}</td>
+</tr>
+<tr>
+<td id='team_12' class='def_team_name'>{{ team_12}}</td>
+<td id='gp_team_12' class='gp_def'>{{ gp_team_12}}</td>
+<td id='yds_team_12' class='yds_def'>{{ yds_team_12}}</td>
+<td id='yds_g_team_12' class='yds_g_def'>{{ yds_g_team_12}}</td>
+<td id='pass_yds_team_12' class='pass_yds_def'>{{ pass_yds_team_12}}</td>
+<td id='pass_yds_g_team_12' class='pass_yds_g_def'>{{ pass_yds_g_team_12}}</td>
+<td id='rush_yds_team_12' class='rush_yds_def'>{{ rush_yds_team_12}}</td>
+<td id='rush_yds_g_team_12' class='rush_yds_g_def'>{{ rush_yds_g_team_12}}</td>
+<td id='points_team_12' class='points_def'>{{ points_team_12}}</td>
+<td id='points_p_team_12' class='points_p_def'>{{ points_p_team_12}}</td>
+</tr>
+<tr>
+<td id='team_13' class='def_team_name'>{{ team_13}}</td>
+<td id='gp_team_13' class='gp_def'>{{ gp_team_13}}</td>
+<td id='yds_team_13' class='yds_def'>{{ yds_team_13}}</td>
+<td id='yds_g_team_13' class='yds_g_def'>{{ yds_g_team_13}}</td>
+<td id='pass_yds_team_13' class='pass_yds_def'>{{ pass_yds_team_13}}</td>
+<td id='pass_yds_g_team_13' class='pass_yds_g_def'>{{ pass_yds_g_team_13}}</td>
+<td id='rush_yds_team_13' class='rush_yds_def'>{{ rush_yds_team_13}}</td>
+<td id='rush_yds_g_team_13' class='rush_yds_g_def'>{{ rush_yds_g_team_13}}</td>
+<td id='points_team_13' class='points_def'>{{ points_team_13}}</td>
+<td id='points_p_team_13' class='points_p_def'>{{ points_p_team_13}}</td>
+</tr>
+<tr>
+<td id='team_14' class='def_team_name'>{{ team_14}}</td>
+<td id='gp_team_14' class='gp_def'>{{ gp_team_14}}</td>
+<td id='yds_team_14' class='yds_def'>{{ yds_team_14}}</td>
+<td id='yds_g_team_14' class='yds_g_def'>{{ yds_g_team_14}}</td>
+<td id='pass_yds_team_14' class='pass_yds_def'>{{ pass_yds_team_14}}</td>
+<td id='pass_yds_g_team_14' class='pass_yds_g_def'>{{ pass_yds_g_team_14}}</td>
+<td id='rush_yds_team_14' class='rush_yds_def'>{{ rush_yds_team_14}}</td>
+<td id='rush_yds_g_team_14' class='rush_yds_g_def'>{{ rush_yds_g_team_14}}</td>
+<td id='points_team_14' class='points_def'>{{ points_team_14}}</td>
+<td id='points_p_team_14' class='points_p_def'>{{ points_p_team_14}}</td>
+</tr>
+<tr>
+<td id='team_15' class='def_team_name'>{{ team_15}}</td>
+<td id='gp_team_15' class='gp_def'>{{ gp_team_15}}</td>
+<td id='yds_team_15' class='yds_def'>{{ yds_team_15}}</td>
+<td id='yds_g_team_15' class='yds_g_def'>{{ yds_g_team_15}}</td>
+<td id='pass_yds_team_15' class='pass_yds_def'>{{ pass_yds_team_15}}</td>
+<td id='pass_yds_g_team_15' class='pass_yds_g_def'>{{ pass_yds_g_team_15}}</td>
+<td id='rush_yds_team_15' class='rush_yds_def'>{{ rush_yds_team_15}}</td>
+<td id='rush_yds_g_team_15' class='rush_yds_g_def'>{{ rush_yds_g_team_15}}</td>
+<td id='points_team_15' class='points_def'>{{ points_team_15}}</td>
+<td id='points_p_team_15' class='points_p_def'>{{ points_p_team_15}}</td>
+</tr>
+<tr>
+<td id='team_16' class='def_team_name'>{{ team_16}}</td>
+<td id='gp_team_16' class='gp_def'>{{ gp_team_16}}</td>
+<td id='yds_team_16' class='yds_def'>{{ yds_team_16}}</td>
+<td id='yds_g_team_16' class='yds_g_def'>{{ yds_g_team_16}}</td>
+<td id='pass_yds_team_16' class='pass_yds_def'>{{ pass_yds_team_16}}</td>
+<td id='pass_yds_g_team_16' class='pass_yds_g_def'>{{ pass_yds_g_team_16}}</td>
+<td id='rush_yds_team_16' class='rush_yds_def'>{{ rush_yds_team_16}}</td>
+<td id='rush_yds_g_team_16' class='rush_yds_g_def'>{{ rush_yds_g_team_16}}</td>
+<td id='points_team_16' class='points_def'>{{ points_team_16}}</td>
+<td id='points_p_team_16' class='points_p_def'>{{ points_p_team_16}}</td>
+</tr>
+<tr>
+<td id='team_17' class='def_team_name'>{{ team_17}}</td>
+<td id='gp_team_17' class='gp_def'>{{ gp_team_17}}</td>
+<td id='yds_team_17' class='yds_def'>{{ yds_team_17}}</td>
+<td id='yds_g_team_17' class='yds_g_def'>{{ yds_g_team_17}}</td>
+<td id='pass_yds_team_17' class='pass_yds_def'>{{ pass_yds_team_17}}</td>
+<td id='pass_yds_g_team_17' class='pass_yds_g_def'>{{ pass_yds_g_team_17}}</td>
+<td id='rush_yds_team_17' class='rush_yds_def'>{{ rush_yds_team_17}}</td>
+<td id='rush_yds_g_team_17' class='rush_yds_g_def'>{{ rush_yds_g_team_17}}</td>
+<td id='points_team_17' class='points_def'>{{ points_team_17}}</td>
+<td id='points_p_team_17' class='points_p_def'>{{ points_p_team_17}}</td>
+</tr>
+<tr>
+<td id='team_18' class='def_team_name'>{{ team_18}}</td>
+<td id='gp_team_18' class='gp_def'>{{ gp_team_18}}</td>
+<td id='yds_team_18' class='yds_def'>{{ yds_team_18}}</td>
+<td id='yds_g_team_18' class='yds_g_def'>{{ yds_g_team_18}}</td>
+<td id='pass_yds_team_18' class='pass_yds_def'>{{ pass_yds_team_18}}</td>
+<td id='pass_yds_g_team_18' class='pass_yds_g_def'>{{ pass_yds_g_team_18}}</td>
+<td id='rush_yds_team_18' class='rush_yds_def'>{{ rush_yds_team_18}}</td>
+<td id='rush_yds_g_team_18' class='rush_yds_g_def'>{{ rush_yds_g_team_18}}</td>
+<td id='points_team_18' class='points_def'>{{ points_team_18}}</td>
+<td id='points_p_team_18' class='points_p_def'>{{ points_p_team_18}}</td>
+</tr>
+<tr>
+<td id='team_19' class='def_team_name'>{{ team_19}}</td>
+<td id='gp_team_19' class='gp_def'>{{ gp_team_19}}</td>
+<td id='yds_team_19' class='yds_def'>{{ yds_team_19}}</td>
+<td id='yds_g_team_19' class='yds_g_def'>{{ yds_g_team_19}}</td>
+<td id='pass_yds_team_19' class='pass_yds_def'>{{ pass_yds_team_19}}</td>
+<td id='pass_yds_g_team_19' class='pass_yds_g_def'>{{ pass_yds_g_team_19}}</td>
+<td id='rush_yds_team_19' class='rush_yds_def'>{{ rush_yds_team_19}}</td>
+<td id='rush_yds_g_team_19' class='rush_yds_g_def'>{{ rush_yds_g_team_19}}</td>
+<td id='points_team_19' class='points_def'>{{ points_team_19}}</td>
+<td id='points_p_team_19' class='points_p_def'>{{ points_p_team_19}}</td>
+</tr>
+<tr>
+<td id='team_20' class='def_team_name'>{{ team_20}}</td>
+<td id='gp_team_20' class='gp_def'>{{ gp_team_20}}</td>
+<td id='yds_team_20' class='yds_def'>{{ yds_team_20}}</td>
+<td id='yds_g_team_20' class='yds_g_def'>{{ yds_g_team_20}}</td>
+<td id='pass_yds_team_20' class='pass_yds_def'>{{ pass_yds_team_20}}</td>
+<td id='pass_yds_g_team_20' class='pass_yds_g_def'>{{ pass_yds_g_team_20}}</td>
+<td id='rush_yds_team_20' class='rush_yds_def'>{{ rush_yds_team_20}}</td>
+<td id='rush_yds_g_team_20' class='rush_yds_g_def'>{{ rush_yds_g_team_20}}</td>
+<td id='points_team_20' class='points_def'>{{ points_team_20}}</td>
+<td id='points_p_team_20' class='points_p_def'>{{ points_p_team_20}}</td>
+</tr>
+<tr>
+<td id='team_21' class='def_team_name'>{{ team_21}}</td>
+<td id='gp_team_21' class='gp_def'>{{ gp_team_21}}</td>
+<td id='yds_team_21' class='yds_def'>{{ yds_team_21}}</td>
+<td id='yds_g_team_21' class='yds_g_def'>{{ yds_g_team_21}}</td>
+<td id='pass_yds_team_21' class='pass_yds_def'>{{ pass_yds_team_21}}</td>
+<td id='pass_yds_g_team_21' class='pass_yds_g_def'>{{ pass_yds_g_team_21}}</td>
+<td id='rush_yds_team_21' class='rush_yds_def'>{{ rush_yds_team_21}}</td>
+<td id='rush_yds_g_team_21' class='rush_yds_g_def'>{{ rush_yds_g_team_21}}</td>
+<td id='points_team_21' class='points_def'>{{ points_team_21}}</td>
+<td id='points_p_team_21' class='points_p_def'>{{ points_p_team_21}}</td>
+</tr>
+<tr>
+<td id='team_22' class='def_team_name'>{{ team_22}}</td>
+<td id='gp_team_22' class='gp_def'>{{ gp_team_22}}</td>
+<td id='yds_team_22' class='yds_def'>{{ yds_team_22}}</td>
+<td id='yds_g_team_22' class='yds_g_def'>{{ yds_g_team_22}}</td>
+<td id='pass_yds_team_22' class='pass_yds_def'>{{ pass_yds_team_22}}</td>
+<td id='pass_yds_g_team_22' class='pass_yds_g_def'>{{ pass_yds_g_team_22}}</td>
+<td id='rush_yds_team_22' class='rush_yds_def'>{{ rush_yds_team_22}}</td>
+<td id='rush_yds_g_team_22' class='rush_yds_g_def'>{{ rush_yds_g_team_22}}</td>
+<td id='points_team_22' class='points_def'>{{ points_team_22}}</td>
+<td id='points_p_team_22' class='points_p_def'>{{ points_p_team_22}}</td>
+</tr>
+<tr>
+<td id='team_23' class='def_team_name'>{{ team_23}}</td>
+<td id='gp_team_23' class='gp_def'>{{ gp_team_23}}</td>
+<td id='yds_team_23' class='yds_def'>{{ yds_team_23}}</td>
+<td id='yds_g_team_23' class='yds_g_def'>{{ yds_g_team_23}}</td>
+<td id='pass_yds_team_23' class='pass_yds_def'>{{ pass_yds_team_23}}</td>
+<td id='pass_yds_g_team_23' class='pass_yds_g_def'>{{ pass_yds_g_team_23}}</td>
+<td id='rush_yds_team_23' class='rush_yds_def'>{{ rush_yds_team_23}}</td>
+<td id='rush_yds_g_team_23' class='rush_yds_g_def'>{{ rush_yds_g_team_23}}</td>
+<td id='points_team_23' class='points_def'>{{ points_team_23}}</td>
+<td id='points_p_team_23' class='points_p_def'>{{ points_p_team_23}}</td>
+</tr>
+<tr>
+<td id='team_24' class='def_team_name'>{{ team_24}}</td>
+<td id='gp_team_24' class='gp_def'>{{ gp_team_24}}</td>
+<td id='yds_team_24' class='yds_def'>{{ yds_team_24}}</td>
+<td id='yds_g_team_24' class='yds_g_def'>{{ yds_g_team_24}}</td>
+<td id='pass_yds_team_24' class='pass_yds_def'>{{ pass_yds_team_24}}</td>
+<td id='pass_yds_g_team_24' class='pass_yds_g_def'>{{ pass_yds_g_team_24}}</td>
+<td id='rush_yds_team_24' class='rush_yds_def'>{{ rush_yds_team_24}}</td>
+<td id='rush_yds_g_team_24' class='rush_yds_g_def'>{{ rush_yds_g_team_24}}</td>
+<td id='points_team_24' class='points_def'>{{ points_team_24}}</td>
+<td id='points_p_team_24' class='points_p_def'>{{ points_p_team_24}}</td>
+</tr>
+<tr>
+<td id='team_25' class='def_team_name'>{{ team_25}}</td>
+<td id='gp_team_25' class='gp_def'>{{ gp_team_25}}</td>
+<td id='yds_team_25' class='yds_def'>{{ yds_team_25}}</td>
+<td id='yds_g_team_25' class='yds_g_def'>{{ yds_g_team_25}}</td>
+<td id='pass_yds_team_25' class='pass_yds_def'>{{ pass_yds_team_25}}</td>
+<td id='pass_yds_g_team_25' class='pass_yds_g_def'>{{ pass_yds_g_team_25}}</td>
+<td id='rush_yds_team_25' class='rush_yds_def'>{{ rush_yds_team_25}}</td>
+<td id='rush_yds_g_team_25' class='rush_yds_g_def'>{{ rush_yds_g_team_25}}</td>
+<td id='points_team_25' class='points_def'>{{ points_team_25}}</td>
+<td id='points_p_team_25' class='points_p_def'>{{ points_p_team_25}}</td>
+</tr>
+<tr>
+<td id='team_26' class='def_team_name'>{{ team_26}}</td>
+<td id='gp_team_26' class='gp_def'>{{ gp_team_26}}</td>
+<td id='yds_team_26' class='yds_def'>{{ yds_team_26}}</td>
+<td id='yds_g_team_26' class='yds_g_def'>{{ yds_g_team_26}}</td>
+<td id='pass_yds_team_26' class='pass_yds_def'>{{ pass_yds_team_26}}</td>
+<td id='pass_yds_g_team_26' class='pass_yds_g_def'>{{ pass_yds_g_team_26}}</td>
+<td id='rush_yds_team_26' class='rush_yds_def'>{{ rush_yds_team_26}}</td>
+<td id='rush_yds_g_team_26' class='rush_yds_g_def'>{{ rush_yds_g_team_26}}</td>
+<td id='points_team_26' class='points_def'>{{ points_team_26}}</td>
+<td id='points_p_team_26' class='points_p_def'>{{ points_p_team_26}}</td>
+</tr>
+<tr>
+<td id='team_27' class='def_team_name'>{{ team_27}}</td>
+<td id='gp_team_27' class='gp_def'>{{ gp_team_27}}</td>
+<td id='yds_team_27' class='yds_def'>{{ yds_team_27}}</td>
+<td id='yds_g_team_27' class='yds_g_def'>{{ yds_g_team_27}}</td>
+<td id='pass_yds_team_27' class='pass_yds_def'>{{ pass_yds_team_27}}</td>
+<td id='pass_yds_g_team_27' class='pass_yds_g_def'>{{ pass_yds_g_team_27}}</td>
+<td id='rush_yds_team_27' class='rush_yds_def'>{{ rush_yds_team_27}}</td>
+<td id='rush_yds_g_team_27' class='rush_yds_g_def'>{{ rush_yds_g_team_27}}</td>
+<td id='points_team_27' class='points_def'>{{ points_team_27}}</td>
+<td id='points_p_team_27' class='points_p_def'>{{ points_p_team_27}}</td>
+</tr>
+<tr>
+<td id='team_28' class='def_team_name'>{{ team_28}}</td>
+<td id='gp_team_28' class='gp_def'>{{ gp_team_28}}</td>
+<td id='yds_team_28' class='yds_def'>{{ yds_team_28}}</td>
+<td id='yds_g_team_28' class='yds_g_def'>{{ yds_g_team_28}}</td>
+<td id='pass_yds_team_28' class='pass_yds_def'>{{ pass_yds_team_28}}</td>
+<td id='pass_yds_g_team_28' class='pass_yds_g_def'>{{ pass_yds_g_team_28}}</td>
+<td id='rush_yds_team_28' class='rush_yds_def'>{{ rush_yds_team_28}}</td>
+<td id='rush_yds_g_team_28' class='rush_yds_g_def'>{{ rush_yds_g_team_28}}</td>
+<td id='points_team_28' class='points_def'>{{ points_team_28}}</td>
+<td id='points_p_team_28' class='points_p_def'>{{ points_p_team_28}}</td>
+</tr>
+<tr>
+<td id='team_29' class='def_team_name'>{{ team_29}}</td>
+<td id='gp_team_29' class='gp_def'>{{ gp_team_29}}</td>
+<td id='yds_team_29' class='yds_def'>{{ yds_team_29}}</td>
+<td id='yds_g_team_29' class='yds_g_def'>{{ yds_g_team_29}}</td>
+<td id='pass_yds_team_29' class='pass_yds_def'>{{ pass_yds_team_29}}</td>
+<td id='pass_yds_g_team_29' class='pass_yds_g_def'>{{ pass_yds_g_team_29}}</td>
+<td id='rush_yds_team_29' class='rush_yds_def'>{{ rush_yds_team_29}}</td>
+<td id='rush_yds_g_team_29' class='rush_yds_g_def'>{{ rush_yds_g_team_29}}</td>
+<td id='points_team_29' class='points_def'>{{ points_team_29}}</td>
+<td id='points_p_team_29' class='points_p_def'>{{ points_p_team_29}}</td>
+</tr>
+<tr>
+<td id='team_30' class='def_team_name'>{{ team_30}}</td>
+<td id='gp_team_30' class='gp_def'>{{ gp_team_30}}</td>
+<td id='yds_team_30' class='yds_def'>{{ yds_team_30}}</td>
+<td id='yds_g_team_30' class='yds_g_def'>{{ yds_g_team_30}}</td>
+<td id='pass_yds_team_30' class='pass_yds_def'>{{ pass_yds_team_30}}</td>
+<td id='pass_yds_g_team_30' class='pass_yds_g_def'>{{ pass_yds_g_team_30}}</td>
+<td id='rush_yds_team_30' class='rush_yds_def'>{{ rush_yds_team_30}}</td>
+<td id='rush_yds_g_team_30' class='rush_yds_g_def'>{{ rush_yds_g_team_30}}</td>
+<td id='points_team_30' class='points_def'>{{ points_team_30}}</td>
+<td id='points_p_team_30' class='points_p_def'>{{ points_p_team_30}}</td>
+</tr>
+<tr>
+<td id='team_31' class='def_team_name'>{{ team_31}}</td>
+<td id='gp_team_31' class='gp_def'>{{ gp_team_31}}</td>
+<td id='yds_team_31' class='yds_def'>{{ yds_team_31}}</td>
+<td id='yds_g_team_31' class='yds_g_def'>{{ yds_g_team_31}}</td>
+<td id='pass_yds_team_31' class='pass_yds_def'>{{ pass_yds_team_31}}</td>
+<td id='pass_yds_g_team_31' class='pass_yds_g_def'>{{ pass_yds_g_team_31}}</td>
+<td id='rush_yds_team_31' class='rush_yds_def'>{{ rush_yds_team_31}}</td>
+<td id='rush_yds_g_team_31' class='rush_yds_g_def'>{{ rush_yds_g_team_31}}</td>
+<td id='points_team_31' class='points_def'>{{ points_team_31}}</td>
+<td id='points_p_team_31' class='points_p_def'>{{ points_p_team_31}}</td>
+</tr>
+<tr>
+<td id='team_32' class='def_team_name'>{{ team_32}}</td>
+<td id='gp_team_32' class='gp_def'>{{ gp_team_32}}</td>
+<td id='yds_team_32' class='yds_def'>{{ yds_team_32}}</td>
+<td id='yds_g_team_32' class='yds_g_def'>{{ yds_g_team_32}}</td>
+<td id='pass_yds_team_32' class='pass_yds_def'>{{ pass_yds_team_32}}</td>
+<td id='pass_yds_g_team_32' class='pass_yds_g_def'>{{ pass_yds_g_team_32}}</td>
+<td id='rush_yds_team_32' class='rush_yds_def'>{{ rush_yds_team_32}}</td>
+<td id='rush_yds_g_team_32' class='rush_yds_g_def'>{{ rush_yds_g_team_32}}</td>
+<td id='points_team_32' class='points_def'>{{ points_team_32}}</td>
+<td id='points_p_team_32' class='points_p_def'>{{ points_p_team_32}}</td>
+</tr>
+</table>
+{% endblock %}

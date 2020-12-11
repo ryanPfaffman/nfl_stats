@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NFL Stats</title>
+    <link rel="icon" href="{% static 'images/nfl_logo.png' %}">
+    <link rel="stylesheet" type='text/css' href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+    <div id='wrap'>
+      <div id='main'>
+    {% block nav %}
+    <nav>
+      <ul id='nav_bar'>
+        <li>{% block nav-home %}<a href="{% url 'home_view' %}">Home</a>{% endblock %}</li>
+        <li>{% block nav-passing %}<a href="{% url 'passing_view' %}">Passing</a>{% endblock %}</li>
+        <li>{% block nav-rushing %}<a href="{% url 'rushing_view' %}">Rushing</a>{% endblock %}</li>
+        <li>{% block nav-defense %}<a href="{% url 'defense_view' %}">Defense</a>{% endblock %}</li>
+        <li>{% block nav-quiz %}<a href="{% url 'quiz_view' %}">Quiz</a>{% endblock %}</li>
+      </ul>
+    </nav>
+    {% endblock %}
+    <div class='extends'>
+      {% block content %}
+      {% endblock %}
+    </div>
+      </div>
+    <div id='footer'>
+    <footer>
+      <ul id='footer_bar'>
+        <li>{% block nav-about %}<a target="_blank" href='https://www.linkedin.com/in/ryan-pfaffman-1b853214a/'>LinkedIn</a>{% endblock %}</li>
+        <li><a href='https://github.com/ryanPfaffman' target='_blank'>Github</a></li>
+        <li><a href='http://studentweb.kennesaw.edu/~rpfaffma/3260/' target='_blank'>Web Development Class</a></li>
+      </ul>
+      <p>All stats and players used are the property of the NFL and are not being used for profit. <br> This is the work of Ryan Pfaffman &copy 2020</p>
+    </footer>
+  </div>
+  </div>
+  </body>

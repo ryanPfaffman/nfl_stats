@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+{% load static %}
+
+<body>
+  {% block content %}
+  <div id='choose_1'>
+    <label for="user_1">Choose one: </label>
+    <select id="user_1" name="user_1" required>
+      <option value="Passing">Passing</option>
+      <option value="Rushing">Rushing</option>
+      <option value="Defense">Defense</option>
+    </select>
+    <br>
+    <button id="hello_quiz_button" type="button" name="button_2">Submit</button>
+</div>
+
+<!-- qb-->
+<div id='choose_qb' hidden>
+  <label for="choose_qb">Choose A Passing Stat: </label>
+  <select id="qb_input" name="qb_input">
+    <option value="Passing Yards">Passing Yards</option>
+    <option value="Passing Yards Per Att">Passing Yards Per Att</option>
+    <option value="Att">Att</option>
+    <option value="Completions">Completions</option>
+    <option value="Completion %">Completion %</option>
+    <option value="TD">TD</option>
+    <option value="INT">INT</option>
+    <option value="QB Rating">QB Rating</option>
+    <option value="First Downs">First Downs</option>
+    <option value="First Down %">First Down %</option>
+    <option value="20+">20+</option>
+    <option value="40+">40+</option>
+    <option value="Long">Long</option>
+    <option value="Sacks">Sacks</option>
+    <option value="Sack Yards">Sack Yards</option>
+  </select>
+  <br>
+  <button id="qb_button" type="button" name="qb_button">Submit</button>
+</div>
+
+<!-- qb_pass_yds-->
+<div id='qb_pass_yds' hidden>
+  <p id='answer_qb_pass_yds' hidden>{{ answer_qb_pass_yds}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most passing yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_user_1' class='user_choices'>{{ qb_pass_yds_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_user_2' class='user_choices'>{{ qb_pass_yds_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_user_3' class='user_choices'>{{ qb_pass_yds_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_user_4' class='user_choices'>{{ qb_pass_yds_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_user_5' class='user_choices'>{{ qb_pass_yds_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_pass_yds_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_pass_yds}}: {{ best_qb_pass_yds_stat}} Passing Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_yds_per_att-->
+<div id='qb_pass_yds_att' hidden>
+  <p id='answer_qb_pass_yds_att' hidden>{{ answer_qb_yds_att}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most highest passing yards per attempt?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_att_user_1' class='user_choices'>{{ pass_yds_att_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_att_user_2' class='user_choices'>{{ pass_yds_att_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_att_user_3' class='user_choices'>{{ pass_yds_att_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_att_user_4' class='user_choices'>{{ pass_yds_att_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='pass_yds_att_user_5' class='user_choices'>{{ pass_yds_att_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_yds_att_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_yds_att}}: {{ best_qb_yds_att_stat}} Passing Yards Per Attempt
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_att-->
+<div id='qb_pass_att' hidden>
+  <p id='answer_qb_pass_att' hidden>{{ answer_qb_att}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most passing attempts?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_att_user_1' class='user_choices'>{{ qb_att_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_att_user_2' class='user_choices'>{{ qb_att_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_att_user_3' class='user_choices'>{{ qb_att_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_att_user_4' class='user_choices'>{{ qb_att_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_att_user_5' class='user_choices'>{{ qb_att_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_att_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_att}}: {{ best_qb_att_stat}} Attempts
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_cmp-->
+<div id='qb_pass_cmp' hidden>
+  <p id='answer_qb_pass_cmp' hidden>{{ answer_qb_cmp}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most passing completions?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_user_1' class='user_choices'>{{ qb_cmp_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_user_2' class='user_choices'>{{ qb_cmp_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_user_3' class='user_choices'>{{ qb_cmp_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_user_4' class='user_choices'>{{ qb_cmp_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_user_5' class='user_choices'>{{ qb_cmp_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_cmp_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_cmp}}: {{ best_qb_cmp_stat}} Completions
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_cmp_perc-->
+<div id='qb_pass_cmp_perc' hidden>
+  <p id='answer_qb_pass_cmp_perc' hidden>{{ answer_qb_cmp_perc}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the highest passing completion percentage?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_perc_user_1' class='user_choices'>{{ qb_cmp_perc_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_perc_user_2' class='user_choices'>{{ qb_cmp_perc_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_perc_user_3' class='user_choices'>{{ qb_cmp_perc_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_perc_user_4' class='user_choices'>{{ qb_cmp_perc_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_cmp_perc_user_5' class='user_choices'>{{ qb_cmp_perc_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_cmp_perc_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_cmp_perc}}: {{ best_qb_cmp_perc_stat}} %
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_td-->
+<div id='qb_pass_td' hidden>
+  <p id='answer_qb_pass_td' hidden>{{ answer_qb_td}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most passing touchdowns?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_td_user_1' class='user_choices'>{{ qb_td_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_td_user_2' class='user_choices'>{{ qb_td_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_td_user_3' class='user_choices'>{{ qb_td_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_td_user_4' class='user_choices'>{{ qb_td_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_td_user_5' class='user_choices'>{{ qb_td_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_td_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_td}}: {{ best_qb_td_stat}} Passing Touchdowns
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_int-->
+<div id='qb_pass_int' hidden>
+  <p id='answer_qb_pass_int' hidden>{{ answer_qb_int}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most interceptions?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_int_user_1' class='user_choices'>{{ qb_int_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_int_user_2' class='user_choices'>{{ qb_int_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_int_user_3' class='user_choices'>{{ qb_int_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_int_user_4' class='user_choices'>{{ qb_int_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_int_user_5' class='user_choices'>{{ qb_int_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_int_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_int}}: {{ best_qb_int_stat}} Interceptions
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- qb_rating-->
+<div id='qb_pass_rating' hidden>
+  <p id='answer_qb_pass_rating' hidden>{{ answer_qb_rating}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the highest QB Rating?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_rating_user_1' class='user_choices'>{{ qb_rating_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_rating_user_2' class='user_choices'>{{ qb_rating_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_rating_user_3' class='user_choices'>{{ qb_rating_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_rating_user_4' class='user_choices'>{{ qb_rating_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_rating_user_5' class='user_choices'>{{ qb_rating_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_rating_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_rating}}: {{ best_qb_rating_stat}} QB Rating
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_1st-->
+<div id='qb_pass_1st' hidden>
+  <p id='answer_qb_pass_1st' hidden>{{ answer_qb_1st}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) has currently passed for the most first downs?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_user_1' class='user_choices'>{{ qb_1st_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_user_2' class='user_choices'>{{ qb_1st_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_user_3' class='user_choices'>{{ qb_1st_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_user_4' class='user_choices'>{{ qb_1st_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_user_5' class='user_choices'>{{ qb_1st_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_1st_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_1st}}: {{ best_qb_1st_stat}} Passing First Downs
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_1st_perc-->
+<div id='qb_pass_1st_perc' hidden>
+  <p id='answer_qb_pass_1st_perc' hidden>{{ answer_qb_1st_perc}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) has the highest first down percentage?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_perc_user_1' class='user_choices'>{{ qb_1st_perc_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_perc_user_2' class='user_choices'>{{ qb_1st_perc_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_perc_user_3' class='user_choices'>{{ qb_1st_perc_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_perc_user_4' class='user_choices'>{{ qb_1st_perc_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_1st_perc_user_5' class='user_choices'>{{ qb_1st_perc_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_1st_perc_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_1st_perc}}: {{ best_qb_1st_perc_stat}} %
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_20+-->
+<div id='qb_pass_20+' hidden>
+  <p id='answer_qb_pass_20+' hidden>{{ answer_qb_20}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently the most passes longer than 20 yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_20+_user_1' class='user_choices'>{{ qb_20_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_20+_user_2' class='user_choices'>{{ qb_20_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_20+_user_3' class='user_choices'>{{ qb_20_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_20+_user_4' class='user_choices'>{{ qb_20_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_20+_user_5' class='user_choices'>{{ qb_20_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_20+_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_20}}: {{ best_qb_20_stat}} Passes for 20+ Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_40+-->
+<div id='qb_pass_40+' hidden>
+  <p id='answer_qb_pass_40+' hidden>{{ answer_qb_40}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently the most passes longer than 40 yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_40+_user_1' class='user_choices'>{{ qb_40_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_40+_user_2' class='user_choices'>{{ qb_40_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_40+_user_3' class='user_choices'>{{ qb_40_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_40+_user_4' class='user_choices'>{{ qb_40_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_40+_user_5' class='user_choices'>{{ qb_40_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_40+_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_40}}: {{ best_qb_40_stat}} Passes for 40+ Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_long-->
+<div id='qb_pass_long' hidden>
+  <p id='answer_qb_pass_long' hidden>{{ answer_qb_long}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently is responsible for the longest passing play?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_long_user_1' class='user_choices'>{{ qb_long_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_long_user_2' class='user_choices'>{{ qb_long_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_long_user_3' class='user_choices'>{{ qb_long_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_long_user_4' class='user_choices'>{{ qb_long_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_long_user_5' class='user_choices'>{{ qb_long_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_long_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_long}}: {{ best_qb_long_stat}} Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_sack-->
+<div id='qb_pass_sack' hidden>
+  <p id='answer_qb_pass_sack' hidden>{{ answer_qb_sack}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most sacks?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_user_1' class='user_choices'>{{ qb_sack_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_user_2' class='user_choices'>{{ qb_sack_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_user_3' class='user_choices'>{{ qb_sack_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_user_4' class='user_choices'>{{ qb_sack_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_user_5' class='user_choices'>{{ qb_sack_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_sack_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_sack}}: {{ best_qb_sack_stat}} Sacks
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- pass_sack_yds-->
+<div id='qb_pass_sack_yds' hidden>
+  <p id='answer_qb_pass_sack_yds' hidden>{{ answer_qb_sack_yds}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most sack yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_yds_user_1' class='user_choices'>{{ qb_sack_yds_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_yds_user_2' class='user_choices'>{{ qb_sack_yds_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_yds_user_3' class='user_choices'>{{ qb_sack_yds_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_yds_user_4' class='user_choices'>{{ qb_sack_yds_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='qb_sack_yds_user_5' class='user_choices'>{{ qb_sack_yds_num_5}}</td>
+    </tr>
+    <tr id='answer_qb_sack_yds_row' hidden>
+      <td>Correct!<br>
+        {{ answer_qb_sack_yds}}: {{ best_qb_sack_yds_stat}} Sack Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb-->
+<div id='choose_rb' hidden>
+  <label for="choose_qb">Choose a Rushing Stat: </label>
+  <select id="rb_input" name="rb_input">
+    <option value="Rushing Yards">Rushing Yards</option>
+    <option value="Att">Att</option>
+    <option value="Rushing Yards Per Att">Rushing Yards Per Att</option>
+    <option value="TD">TD</option>
+    <option value="20+">20+</option>
+    <option value="40+">40+</option>
+    <option value="Long">Long</option>
+    <option value="First Downs">First Downs</option>
+    <option value="First Downs %">First Downs %</option>
+    <option value="Fumbles">Fumbles</option>
+  </select>
+  <br>
+  <button id="rb_button" type="button" name="button_2">Submit</button>
+</div>
+
+<!-- rb_rush_yds-->
+<div id='rb_yds' hidden>
+  <p id='answer_rb_rush_yds' hidden>{{ answer_rb_rush_yds}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most rushing yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='rb_yds_user_1' class='user_choices'>{{ rb_yds_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_yds_user_2' class='user_choices'>{{ rb_yds_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_yds_user_3' class='user_choices'>{{ rb_yds_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_yds_user_4' class='user_choices'>{{ rb_yds_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_yds_user_5' class='user_choices'>{{ rb_yds_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_rush_yds_row'>
+      <td>Correct!<br>
+        {{ answer_rb_rush_yds}}: {{ best_rb_yds_stat}} Rushing Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!--rb_att-->
+<div id="rb_att" hidden>
+  <p id="answer_rb_att" hidden>{{ answer_rb_att}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most rushing attempts?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id="rb_att_user_1" class="user_choices">{{ rb_att_num_1}}</td>
+    </tr>
+    <tr>
+      <td id="rb_att_user_2" class="user_choices">{{ rb_att_num_2}}</td>
+    </tr>
+    <tr>
+      <td id="rb_att_user_3" class="user_choices">{{ rb_att_num_3}}</td>
+    </tr>
+    <tr>
+      <td id="rb_att_user_4" class="user_choices">{{ rb_att_num_4}}</td>
+    </tr>
+    <tr>
+      <td id="rb_att_user_5" class="user_choices">{{ rb_att_num_5}}</td>
+    </tr>
+    <tr id="answer_rb_att_row" hidden>
+      <td>Correct!<br>
+        {{ answer_rb_att}}: {{ best_rb_att_stat}} Rushing Att
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!--rb_yds_att-->
+<div id="rb_yds_att" hidden>
+  <p id="answer_rb_yds_att" hidden>{{ answer_rb_yds_att}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the highest rushing yards per attempt?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id="rb_yds_att_user_1" class="user_choices">{{ rb_yds_att_num_1}}</td>
+    </tr>
+    <tr>
+      <td id="rb_yds_att_user_2" class="user_choices">{{ rb_yds_att_num_2}}</td>
+    </tr>
+    <tr>
+      <td id="rb_yds_att_user_3" class="user_choices">{{ rb_yds_att_num_3}}</td>
+    </tr>
+    <tr>
+      <td id="rb_yds_att_user_4" class="user_choices">{{ rb_yds_att_num_4}}</td>
+    </tr>
+    <tr>
+      <td id="rb_yds_att_user_5" class="user_choices">{{ rb_yds_att_num_5}}</td>
+    </tr>
+    <tr id="answer_rb_yds_att_row" hidden>
+      <td>Correct!<br>
+        {{ answer_rb_yds_att}}: {{ best_rb_yds_att_stat}} Rushing Yards Per Att
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb_rush_td-->
+<div id='rb_td' hidden>
+  <p id='answer_rb_td' hidden>{{ answer_rb_td}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most rushing TDs?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='rb_td_user_1' class='user_choices'>{{ rb_td_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_td_user_2' class='user_choices'>{{ rb_td_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_td_user_3' class='user_choices'>{{ rb_td_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_td_user_4' class='user_choices'>{{ rb_td_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_td_user_5' class='user_choices'>{{ rb_td_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_td_row' hidden>
+      <td>Correct!<br>
+        {{ answer_rb_td}}: {{ best_rb_td_stat}} Rushing TDs
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb_rush_20-->
+<div id='rb_20' hidden>
+  <p id='answer_rb_20' hidden>{{ answer_rb_20}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most rushes longer than 20 yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='rb_20_user_1' class='user_choices'>{{ rb_20_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_20_user_2' class='user_choices'>{{ rb_20_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_20_user_3' class='user_choices'>{{ rb_20_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_20_user_4' class='user_choices'>{{ rb_20_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_20_user_5' class='user_choices'>{{ rb_20_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_20_row' hidden>
+      <td>Correct!<br>
+        {{ answer_rb_20}}: {{ best_rb_20_stat}} Rushes for 20+ Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb_rush_40-->
+<div id='rb_40' hidden>
+  <p id='answer_rb_40' hidden>{{ answer_rb_40}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most rushes longer than 40 yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='rb_40_user_1' class='user_choices'>{{ rb_40_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_40_user_2' class='user_choices'>{{ rb_40_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_40_user_3' class='user_choices'>{{ rb_40_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_40_user_4' class='user_choices'>{{ rb_40_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_40_user_5' class='user_choices'>{{ rb_40_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_40_row' hidden>
+      <td>Correct!<br>
+        {{ answer_rb_40}}: {{ best_rb_40_stat}} Rushes for 40+ Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb_rush_long-->
+<div id='rb_long' hidden>
+  <p id='answer_rb_long' hidden>{{ answer_rb_long}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the longest rush from scrimmage?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='rb_long_user_1' class='user_choices'>{{ rb_long_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_long_user_2' class='user_choices'>{{ rb_long_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_long_user_3' class='user_choices'>{{ rb_long_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_long_user_4' class='user_choices'>{{ rb_long_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_long_user_5' class='user_choices'>{{ rb_long_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_long_row' hidden>
+      <td>Correct!<br>
+        {{ answer_rb_long}}: {{ best_rb_long_stat}} Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb_rush_first-->
+<div id='rb_first' hidden>
+  <p id='answer_rb_first' hidden>{{ answer_rb_first}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently rushed for the most first downs?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='rb_first_user_1' class='user_choices'>{{ rb_first_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_user_2' class='user_choices'>{{ rb_first_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_user_3' class='user_choices'>{{ rb_first_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_user_4' class='user_choices'>{{ rb_first_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_user_5' class='user_choices'>{{ rb_first_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_first_row' hidden>
+      <td>Correct!<br>
+        {{ answer_rb_first}}: {{ best_rb_first_stat}} First Downs
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb_rush_first%-->
+<div id='rb_first_perc' hidden>
+  <p id='answer_rb_first_perc' hidden>{{ answer_rb_first_perc}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the highest first down percentage?</td>
+    </tr>
+    <tr class="question_2">
+    <td>Choose one of the following:</td>
+  </tr>
+    <tr>
+      <td id='rb_first_perc_user_1' class='user_choices'>{{ rb_first_perc_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_perc_user_2' class='user_choices'>{{ rb_first_perc_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_perc_user_3' class='user_choices'>{{ rb_first_perc_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_perc_user_4' class='user_choices'>{{ rb_first_perc_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_first_perc_user_5' class='user_choices'>{{ rb_first_perc_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_first_perc_row' hidden>
+      <td>Correct!<br>
+        {{ answer_rb_first_perc}}: {{ best_rb_first_perc_stat}} %
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- rb_rush_fumbles-->
+<div id='rb_fumbles' hidden>
+  <p id='answer_rb_fumbles' hidden>{{ answer_rb_fumbles}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which player(s) currently has the most rushing fumbles?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='rb_fumbles_user_1' class='user_choices'>{{ rb_fumbles_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='rb_fumbles_user_2' class='user_choices'>{{ rb_fumbles_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='rb_fumbles_user_3' class='user_choices'>{{ rb_fumbles_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='rb_fumbles_user_4' class='user_choices'>{{ rb_fumbles_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='rb_fumbles_user_5' class='user_choices'>{{ rb_fumbles_num_5}}</td>
+    </tr>
+    <tr id='answer_rb_fumbles_row' hidden>
+      <td>Correct!<br>
+        {{ answer_rb_fumbles}}: {{ best_rb_fumbles_stat}} Rushing Fumbles
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def-->
+<div id='choose_def' hidden>
+  <label for="choose_def">Choose a Defense Stat: </label>
+  <select id="def_input" name="def_input">
+    <option value="Yards">Passing Yards</option>
+    <option value="Yards Per Game">Yards Per Game</option>
+    <option value="Passing Yards">Passing Yards</option>
+    <option value="Passing Yards Per Game">Passing Yards Per Game</option>
+    <option value="Rushing Yards"/>Rushing Yards</option>
+    <option value="Rushing Yards Per Game">Rushing Yards Per Game</option>
+    <option value="Points">Points</option>
+    <option value="Points Per Game">Points Per Game</option>
+  </select>
+  <br>
+  <button id="def_button" type="button" name="def_button">Submit</button>
+</div>
+
+<!-- def_yds-->
+<div id='def_yds' hidden>
+  <p id='answer_def_yds' hidden>{{ answer_def_yds}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_yds_user_1' class='user_choices'>{{ def_yds_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_user_2' class='user_choices'>{{ def_yds_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_user_3' class='user_choices'>{{ def_yds_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_user_4' class='user_choices'>{{ def_yds_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_user_5' class='user_choices'>{{ def_yds_num_5}}</td>
+    </tr>
+    <tr id='answer_def_yds_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_yds}}: {{ best_def_yds_stat}} Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def_yds_g-->
+<div id='def_yds_g' hidden>
+  <p id='answer_def_yds_g' hidden>{{ answer_def_yds_g}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of yards per game?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_yds_g_user_1' class='user_choices'>{{ def_yds_g_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_g_user_2' class='user_choices'>{{ def_yds_g_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_g_user_3' class='user_choices'>{{ def_yds_g_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_g_user_4' class='user_choices'>{{ def_yds_g_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_yds_g_user_5' class='user_choices'>{{ def_yds_g_num_5}}</td>
+    </tr>
+    <tr id='answer_def_yds_g_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_yds_g}}: {{ best_def_yds_g_stat}} Yards per Game
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def_pass_yds-->
+<div id='def_pass_yds' hidden>
+  <p id='answer_def_pass_yds' hidden>{{ answer_def_pass_yds}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of passing yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_user_1' class='user_choices'>{{ def_pass_yds_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_user_2' class='user_choices'>{{ def_pass_yds_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_user_3' class='user_choices'>{{ def_pass_yds_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_user_4' class='user_choices'>{{ def_pass_yds_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_user_5' class='user_choices'>{{ def_pass_yds_num_5}}</td>
+    </tr>
+    <tr id='answer_def_pass_yds_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_pass_yds}}: {{ best_def_pass_yds_stat}} Passing Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def_pass_yds_g-->
+<div id='def_pass_yds_g' hidden>
+  <p id='answer_def_pass_yds_g' hidden>{{ answer_def_pass_yds_g}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of passing yards per game?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_g_user_1' class='user_choices'>{{ def_pass_yds_g_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_g_user_2' class='user_choices'>{{ def_pass_yds_g_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_g_user_3' class='user_choices'>{{ def_pass_yds_g_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_g_user_4' class='user_choices'>{{ def_pass_yds_g_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_pass_yds_g_user_5' class='user_choices'>{{ def_pass_yds_g_num_5}}</td>
+    </tr>
+    <tr id='answer_def_pass_yds_g_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_pass_yds_g}}: {{ best_def_pass_yds_g_stat}} Passing Yards per Game
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def_rush_yds-->
+<div id='def_rush_yds' hidden>
+  <p id='answer_def_rush_yds' hidden>{{ answer_def_rush_yds}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of rushing yards?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_user_1' class='user_choices'>{{ def_rush_yds_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_user_2' class='user_choices'>{{ def_rush_yds_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_user_3' class='user_choices'>{{ def_rush_yds_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_user_4' class='user_choices'>{{ def_rush_yds_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_user_5' class='user_choices'>{{ def_rush_yds_num_5}}</td>
+    </tr>
+    <tr id='answer_def_rush_yds_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_rush_yds}}: {{ best_def_rush_yds_stat}} Rushing Yards
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def_rush_yds_g-->
+<div id='def_rush_yds_g' hidden>
+  <p id='answer_def_rush_yds_g' hidden>{{ answer_def_rush_yds_g}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of rushing yards per game?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_g_user_1' class='user_choices'>{{ def_rush_yds_g_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_g_user_2' class='user_choices'>{{ def_rush_yds_g_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_g_user_3' class='user_choices'>{{ def_rush_yds_g_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_g_user_4' class='user_choices'>{{ def_rush_yds_g_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_rush_yds_g_user_5' class='user_choices'>{{ def_rush_yds_g_num_5}}</td>
+    </tr>
+    <tr id='answer_def_rush_yds_g_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_rush_yds_g}}: {{ best_def_rush_yds_g_stat}} Rushing Yards per Game
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def_points_g-->
+<div id='def_points_g' hidden>
+  <p id='answer_def_points_g' hidden>{{ answer_def_points_g}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of points per game?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_points_g_user_1' class='user_choices'>{{ def_points_g_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_g_user_2' class='user_choices'>{{ def_points_g_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_g_user_3' class='user_choices'>{{ def_points_g_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_g_user_4' class='user_choices'>{{ def_points_g_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_g_user_5' class='user_choices'>{{ def_points_g_num_5}}</td>
+    </tr>
+    <tr id='answer_def_points_g_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_points_g}}: {{ best_def_points_g_stat}} Points per Game
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- def_points-->
+<div id='def_points' hidden>
+  <p id='answer_def_points' hidden>{{ answer_def_points}}</p>
+  <table>
+    <tr colspan='2' class="question">
+      <td>Which team(s) currently has given up the least amount of points?</td>
+    </tr>
+    <tr class="question_2">
+      <td>Choose one of the following:</td>
+    </tr>
+    <tr>
+      <td id='def_points_user_1' class='user_choices'>{{ def_points_num_1}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_user_2' class='user_choices'>{{ def_points_num_2}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_user_3' class='user_choices'>{{ def_points_num_3}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_user_4' class='user_choices'>{{ def_points_num_4}}</td>
+    </tr>
+    <tr>
+      <td id='def_points_user_5' class='user_choices'>{{ def_points_num_5}}</td>
+    </tr>
+    <tr id='answer_def_points_row' hidden>
+      <td>Correct!<br>
+        {{ answer_def_points}}: {{ best_def_points_stat}} Points
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id='play_again' hidden>
+  <button id="play_again_button" type="button" name="play_again_button">Play Again?</button>
+</div>
+<script type="text/javascript" src="{% static '/javascript/quiz.js' %}"></script>
+  {% endblock %}
+</body>
