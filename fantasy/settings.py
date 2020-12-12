@@ -26,7 +26,7 @@ SECRET_KEY = 'tx6v0692fxgukj3ip#7)i)q9s(2kap%f-$4acjnw=&ccq_+!4s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1', '167.71.190.163']
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1', '167.71.177.87', 'nflstatsandquiz.com']
 
 
 # Application definition
@@ -87,9 +87,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'nfl_stats',
+            'NAME': 'stats_2',
             'USER': 'ryanpfaffman',
-            'PASSWORD': 'i78#!uz12#GPlz12#u',
+            'PASSWORD': 'Alabama1234',
             'HOST': 'localhost',
             'PORT': '',
     }
