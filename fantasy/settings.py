@@ -26,7 +26,7 @@ SECRET_KEY = 'tx6v0692fxgukj3ip#7)i)q9s(2kap%f-$4acjnw=&ccq_+!4s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['nflstatsandquiz.com'];
+ALLOWED_HOSTS = ['nflstatsandquiz.com', '167.71.177.87'];
 
 
 # Application definition
@@ -134,8 +134,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_in_env'),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, '/static_in_env/')
