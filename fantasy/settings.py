@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'tx6v0692fxgukj3ip#7)i)q9s(2kap%f-$4acjnw=&ccq_+!4s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1', '167.71.177.87', 'nflstatsandquiz.com']
+ALLOWED_HOSTS = ['nflstatsandquiz.com'];
 
 
 # Application definition
@@ -87,8 +87,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'nfl_stats',
-            'USER': 'ryan_ryan',
+            'NAME': 'stats',
+            'USER': 'ryan',
             'PASSWORD': 'InGodweT117',
             'HOST': 'localhost',
             'PORT': '',
