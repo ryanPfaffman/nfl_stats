@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'tx6v0692fxgukj3ip#7)i)q9s(2kap%f-$4acjnw=&ccq_+!4s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1', '167.71.177.87', 'nflstatsandquiz.com']
 
@@ -76,22 +76,10 @@ WSGI_APPLICATION = 'fantasy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'nfl_stats',
-            'USER': 'ryanpfaffman',
-            'PASSWORD': 'i78#!uz12#GPlz12#u',
-            'HOST': 'localhost',
-            'PORT': '',
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -134,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = '/home/ryan/nfl_stats/static'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_in_env'),
