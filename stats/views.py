@@ -2161,4 +2161,3 @@ def defense_view(request, *args, **kwargs):
 'points_p_team_32': points_p_def[31],
     }
     return render(request, 'defense.html', def_stats)
-'''
