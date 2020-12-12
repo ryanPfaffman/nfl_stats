@@ -16,7 +16,6 @@ from .models import Qb, Rb, Defense
 #start of quiz
 
 
-'''
 #Quarterbacks
 qb_stats_list = []
 
@@ -26,8 +25,7 @@ for nary in qb_stats_real:
 
 for x in range(len(qb_stats_list)):
     if type(qb_stats_list[x]) == str:
-        a_count = Qb(name=qb_stats_list[x],pass_yds=qb_stats_list[x+1],yds_att=qb_stats_list[x+2],att=qb_stats_list[x+3],cmp=qb_stats_list[x+4],cmp_perc=round(qb_stats_list[x+5] * 100,2),td=qb_stats_list[x+6],int=qb_stats_list[x+7],qb_rating=qb_stats_list[x+8],first=qb_stats_list[x+9],first_perc=round(qb_stats_list[x+10] * 100,2),more_20=qb_stats_list[x+11],more_40=qb_stats_list[x+12],lng=qb_stats_list[x+13],sack=qb_stats_list[x+14],sack_Y=qb_stats_list[x+15])
-        a_count.save()
+         Qb.objects.create(name=qb_stats_list[x],pass_yds=qb_stats_list[x+1],yds_att=qb_stats_list[x+2],att=qb_stats_list[x+3],cmp=qb_stats_list[x+4],cmp_perc=round(qb_stats_list[x+5] * 100,2),td=qb_stats_list[x+6],int=qb_stats_list[x+7],qb_rating=qb_stats_list[x+8],first=qb_stats_list[x+9],first_perc=round(qb_stats_list[x+10] * 100,2),more_20=qb_stats_list[x+11],more_40=qb_stats_list[x+12],lng=qb_stats_list[x+13],sack=qb_stats_list[x+14],sack_Y=qb_stats_list[x+15])
 
 
 nary = {}
@@ -114,8 +112,7 @@ for nary in rb_stats_real:
 
 for x in range(len(rb_stats_list)):
     if type(rb_stats_list[x]) == str:
-        b_count = Rb(name=rb_stats_list[x], rush_yds=rb_stats_list[x+1], att=rb_stats_list[x+2], rush_yds_att=round(rb_stats_list[x+1]/rb_stats_list[x+2],2),td=rb_stats_list[x+3],twenty=rb_stats_list[x+4], fourty=rb_stats_list[x+5], long=rb_stats_list[x+6], rush_1st=rb_stats_list[x+7], rush_1st_perc=rb_stats_list[x+8], rush_fum=rb_stats_list[x+9])
-        b_count.save()
+        Rb.objects.create(name=rb_stats_list[x], rush_yds=rb_stats_list[x+1], att=rb_stats_list[x+2], rush_yds_att=round(rb_stats_list[x+1]/rb_stats_list[x+2],2),td=rb_stats_list[x+3],twenty=rb_stats_list[x+4], fourty=rb_stats_list[x+5], long=rb_stats_list[x+6], rush_1st=rb_stats_list[x+7], rush_1st_perc=rb_stats_list[x+8], rush_fum=rb_stats_list[x+9])
 
 
 nary = {}
@@ -184,8 +181,7 @@ for nary in def_stats_real:
 
 for x in range(len(def_stats_list)):
     if type(def_stats_list[x]) == str:
-        c_count = Defense(team=def_stats_list[x],g_p=def_stats_list[x+1],yds=def_stats_list[x+2],yds_g=def_stats_list[x+3],pass_yds=def_stats_list[x+4],pass_yds_g=def_stats_list[x+5],rush_yds=def_stats_list[x+6],rush_yds_g=def_stats_list[x+7],points=def_stats_list[x+8],point_g=def_stats_list[x+9])
-        c_count.save()
+        c_count = Defense.objects.create(team=def_stats_list[x],g_p=def_stats_list[x+1],yds=def_stats_list[x+2],yds_g=def_stats_list[x+3],pass_yds=def_stats_list[x+4],pass_yds_g=def_stats_list[x+5],rush_yds=def_stats_list[x+6],rush_yds_g=def_stats_list[x+7],points=def_stats_list[x+8],point_g=def_stats_list[x+9])
 
 nary = {}
 def_stats_real = []
