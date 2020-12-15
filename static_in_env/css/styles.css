@@ -122,8 +122,11 @@ button:active {
 }
 
 @media only screen and (max-width : 480px) {
-  body {
-    background-color: red;
+}
+
+@media only screen and (min-width : 480px) and (max-width: 900px) {
+  #slides {
+    padding-bottom: 30px;
   }
 }
 
