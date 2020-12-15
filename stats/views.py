@@ -15,7 +15,9 @@ from game_stats_2 import get_stat, get_names_qb, get_names_rb, get_answers_qb, g
 from .models import Qb, Rb, Defense
 #start of quiz
 
-
+Qb.objects.all().delete()
+Rb.objects.all().delete()
+Defense.objects.all().delete()
 
 #Quarterbacks
 qb_stats_list = []
@@ -28,7 +30,6 @@ for x in range(len(qb_stats_list)):
     if type(qb_stats_list[x]) == str:
         a_count = Qb(name=qb_stats_list[x],pass_yds=qb_stats_list[x+1],yds_att=qb_stats_list[x+2],att=qb_stats_list[x+3],cmp=qb_stats_list[x+4],cmp_perc=round(qb_stats_list[x+5] * 100,2),td=qb_stats_list[x+6],int=qb_stats_list[x+7],qb_rating=qb_stats_list[x+8],first=qb_stats_list[x+9],first_perc=round(qb_stats_list[x+10] * 100,2),more_20=qb_stats_list[x+11],more_40=qb_stats_list[x+12],lng=qb_stats_list[x+13],sack=qb_stats_list[x+14],sack_Y=qb_stats_list[x+15])
         a_count.save()
-
 
 nary = {}
 qb_stats_real = []
@@ -52,6 +53,8 @@ for x in Qb.objects.all():
     nary['qb_sack_yds'] = x.sack_Y
     qb_stats_real.append(nary)
     nary= {}
+
+qb_stats_real = sorted(qb_stats_real, key=lambda i:i["qb_pass_yds"], reverse=True)
 
 qb_names_left = []
 qb_stats_lst = []
@@ -117,7 +120,6 @@ for x in range(len(rb_stats_list)):
         b_count = Rb(name=rb_stats_list[x], rush_yds=rb_stats_list[x+1], att=rb_stats_list[x+2], rush_yds_att=round(rb_stats_list[x+1]/rb_stats_list[x+2],2),td=rb_stats_list[x+3],twenty=rb_stats_list[x+4], fourty=rb_stats_list[x+5], long=rb_stats_list[x+6], rush_1st=rb_stats_list[x+7], rush_1st_perc=rb_stats_list[x+8], rush_fum=rb_stats_list[x+9])
         b_count.save()
 
-
 nary = {}
 rb_stats_real = []
 for rb in Rb.objects.all():
@@ -134,6 +136,8 @@ for rb in Rb.objects.all():
     nary['rush_fum'] = rb.rush_fum
     rb_stats_real.append(nary)
     nary = {}
+
+rb_stats_real = sorted(rb_stats_real, key=lambda i:i['rush_yds'], reverse=True)
 
 rb_names = []
 rb_rush_yds = []
@@ -203,6 +207,8 @@ for defense in Defense.objects.all():
     nary['points_g'] = defense.point_g
     def_stats_real.append(nary)
     nary = {}
+
+def_stats_real = sorted(def_stats_real, key=lambda i:i['yds'], reverse=True)
 
 team_names_def = []
 gp_def = []
