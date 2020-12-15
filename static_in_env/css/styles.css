@@ -124,18 +124,6 @@ button:active {
 @media only screen and (max-width : 480px) {
 }
 
-@media only screen and (min-width : 480px) and (max-width: 900px) {
-  #slides {
-    margin-bottom: 30px;
-  }
-}
-
-@media only screen and (min-width : 900px) {
-  #slides {
-    margin-bottom: 15000px;
-  }
-}
-
 .sideshow {
   width: 100%;
   height: 1000px;
