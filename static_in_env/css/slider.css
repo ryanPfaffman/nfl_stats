@@ -58,5 +58,7 @@ article img{width:100%}
 }
 @media only screen and (min-width:850px){
   body{padding:0 80px}
-  
+  .slideshow {
+    margin-top:30px;
+  }
 }
