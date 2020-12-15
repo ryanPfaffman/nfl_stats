@@ -45,7 +45,7 @@ html {
 #qb_stats, #rb_stats, #defense_stats {
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 100vh;
 }
 
 
