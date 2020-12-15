@@ -7,8 +7,6 @@ body{overflow-x:hidden}
 span{margin:35px 0 5px;font-size:26px;font-weight:normal;color:#fff}
 #slider{text-align:center}
 strong{font-weight:bold}
-label,a{color:brown;cursor:pointer;text-decoration:none;font-style:italic}
-label:hover,a:hover{color:#ddd!important}
 *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 label,#active,img{-moz-user-select:none;-webkit-user-select:none}
 .catch{display:block;height:0;overflow:hidden}
