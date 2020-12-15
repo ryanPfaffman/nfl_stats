@@ -4,6 +4,46 @@
 <body>
   {% block content %}
   <h1 id='index_title'>Django Project (Application Development)</h1>
-  <p id='index_content'>This is a project created for an Application Development class that scrapes stats from NFL.com and ESPN.com. It uses the beautifulsoup4 module to do the web scraping, and JavaScript for the quiz. This project also uses the Django framework.</p
+  <p id='index_content'>This is a project created for an Application Development class that scrapes stats from NFL.com and ESPN.com. It uses the beautifulsoup4 module to do the web scraping, and JavaScript for the quiz. This project also uses the Django framework.</p>
+
+  <input checked type='radio' name='slider' id='slide1'/>
+  	<input type='radio' name='slider' id='slide2'/>
+  	<input type='radio' name='slider' id='slide3'/>
+  	<input type='radio' name='slider' id='slide4'/>
+  	<input type='radio' name='slider' id='slide5'/>
+  	<div id="slides">
+  	<div id="container">
+  		<div class="inner">
+  			<article>
+  			<img src="{% static/images/theKING.jpg %}" height="400px" width="942px"/>
+  			</article>
+  			<article>
+  			<div class='caption'>
+  				<bar>Dog (Pinto)</bar>
+  			</div>
+  			<img src="{% static/images/dontaHightower.jpg %}" height="400px" width="942px"/>
+  			</article>
+  			<article>
+  			<div class='caption'>
+  				<bar>Dog (Goldie)</bar>
+  			</div>
+  			<img src="{% static/images/patrickMahomes.jpg %}" height="400px" width="942x"/>
+  			</article>
+  			<article>
+  			<div class='caption'>
+  				<bar>Bird (Osirus)</bar>
+  			</div>
+  			<img src="{% static/images/calvinRidley.jpeg %}" height="400px" width="942px"/>
+  			</article>
+  			<article>
+  			<div class='caption'>
+  				<bar>Bird (Stewart)</bar>
+  			</div>
+  			<img src="{% static/images/aaronRodgers.jpeg %}" height="400px" width="942px"/>
+  			</article>
+  		</div>
+  	</div>
+  </div>
+
   {% endblock %}
 </body>
