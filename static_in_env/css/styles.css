@@ -126,3 +126,8 @@ button:active {
     background-color: red;
   }
 }
+
+.sideshow {
+  width: 100%;
+  height: auto;
+}
