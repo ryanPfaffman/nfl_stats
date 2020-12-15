@@ -8,14 +8,14 @@ html {
 }
 
 #main {
-  padding-bottom: 4.5rem;
+  padding-bottom: 7.5rem;
 }
 
 #footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 4.5rem;
+  height: 7.5rem;
 }
 
 #nav_bar {
