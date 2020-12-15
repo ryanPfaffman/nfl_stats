@@ -59,8 +59,14 @@ article img{width:100%}
   }
 }
 
-@media only screen and (min-width:900px) and (max-width:1200px){
+@media only screen and (min-width:1101px) and (max-width:1200px){
   #slides {
     margin-bottom:75px;
+  }
+}
+
+@media only screen and (min-width:900px) and (max-width:1100px){
+  #slides {
+    margin-bottom:65px;
   }
 }
