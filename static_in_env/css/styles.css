@@ -41,11 +41,13 @@ html {
 #nav_bar li a:hover {
   color: white;
 }
+table {
+  width: 100%;
+}
 
 #qb_stats, #rb_stats, #defense_stats {
   margin-left: auto;
   margin-right: auto;
-  width: 100vh;
 }
 
 
