@@ -7,7 +7,7 @@ q,blockquote{quotes:none}
 q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}
 a img{border:none}
 article{display:block}
-body{background:#f0523f;overflow-x:hidden}
+body{overflow-x:hidden}
 h1,h2,h3,h4,h5,h6{font-weight:bold;font-size:16px;margin:12px 0}
 span{margin:35px 0 5px;font-size:26px;font-weight:normal;color:#fff}
 #slider{text-align:center}
