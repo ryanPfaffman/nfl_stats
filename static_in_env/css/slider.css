@@ -45,9 +45,6 @@ article img{width:100%}
   #slider #slides .caption{padding:280px 12px}
   #slider #slides{padding:2px 0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
   #slider #active{margin:15% 0 0}
-  #slides {
-    margin-bottom:30px;
-  }
 }
 @media only screen and (max-width:450px){
   #slider #commands{margin:-28% 0 0 1%;width:100%;height:70px}
@@ -59,6 +56,6 @@ article img{width:100%}
 @media only screen and (min-width:850px){
   body{padding:0 80px}
   #slides {
-    margin-bottom:30px;
+    margin-bottom:100px;
   }
 }
