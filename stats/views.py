@@ -72,37 +72,37 @@ qb_sacks_yds_lst = []
 
 for nary in qb_stats_real:
     for x, y in nary.items():
-        if x == 'qb_name':
+        if x == 'qb_name' and len(qb_names_left) < 25:
             qb_names_left.append(y)
-        elif x == 'qb_pass_yds':
+        elif x == 'qb_pass_yds' and len(qb_stats_lst) < 25:
             qb_stats_lst.append(y)
-        elif x == 'qb_yds_att':
+        elif x == 'qb_yds_att' and len(qb_att_lst) < 25:
             qb_att_lst.append(y)
-        elif x == 'qb_att':
+        elif x == 'qb_att' and len(qb_num_att_lst) < 25:
             qb_num_att_lst.append(y)
-        elif x == 'qb_cmp':
+        elif x == 'qb_cmp' and len(qb_comp_lst) < 25:
             qb_comp_lst.append(y)
-        elif x == 'qb_cmp_perc':
+        elif x == 'qb_cmp_perc' and len(qb_comp_perc_lst) < 25:
             qb_comp_perc_lst.append(y)
-        elif x == 'qb_td':
+        elif x == 'qb_td' and len(qb_td_lst) < 25:
             qb_td_lst.append(y)
-        elif x == 'qb_int':
+        elif x == 'qb_int' and len(qb_int_lst) < 25:
             qb_int_lst.append(y)
-        elif x == 'qb_rating':
+        elif x == 'qb_rating' and len(qb_rating_lst) < 25:
             qb_rating_lst.append(y)
-        elif x == 'qb_1st':
+        elif x == 'qb_1st' and len(qb_first_downs_lst) < 25:
             qb_first_downs_lst.append(y)
-        elif x == 'qb_1st_perc':
+        elif x == 'qb_1st_perc' and len(qb_first_down_perc_lst) < 25:
             qb_first_down_perc_lst.append(y)
-        elif x == 'qb_20+':
+        elif x == 'qb_20+' and len(qb_more_20_lst) < 25:
             qb_more_20_lst.append(y)
-        elif x == 'qb_40+':
+        elif x == 'qb_40+' and len(qb_more_40_lst) < 25:
             qb_more_40_lst.append(y)
-        elif x == 'qb_long':
+        elif x == 'qb_long' and len(qb_long_lst) < 25:
             qb_long_lst.append(y)
-        elif x == 'qb_sack':
+        elif x == 'qb_sack' and len(qb_sacks_lst) < 25:
             qb_sacks_lst.append(y)
-        elif x == 'qb_sack_yds':
+        elif x == 'qb_sack_yds' and len(qb_sacks_yds_lst) < 25:
             qb_sacks_yds_lst.append(y)
 
 #start of Rb
