@@ -54,8 +54,13 @@ article img{width:100%}
   #slider #commands label{-moz-transform:scale(0.7);-webkit-transform:scale(0.7);-o-transform:scale(0.7);-ms-transform:scale(0.7);transform:scale(0.7)}
 }
 @media only screen and (min-width:1200px){
-  body{padding:0 80px}
   #slides {
     margin-bottom:100px;
+  }
+}
+
+@media only screen and (min-width:900px) and (max-width:1200px){
+  #slides {
+    margin-bottom:75px;
   }
 }
