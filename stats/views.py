@@ -248,19 +248,18 @@ for nary in def_stats_real:
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-    img_list = [{"img": "<img class=\"slideshow\" src=\"{% static 'images/dontaHightower.jpg' %}\"/>", "bar": "Dont'a Hightower - LB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/theKING.jpg' %}\"/>", "bar": "Derrick Henry - RB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/patrickMahomes.jpg' %}\"/>", "bar": "Patrick Mahomes - QB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/calvinRidley.jpg' %}\"/>", "bar": "Calvin Ridley - WR"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/aaronRodgers.jpeg' %}\"/>", "bar": "Aaron Rodgers - QB"}]
-
+    img_list = [{"img": "<img class=\"slideshow\" src=\"{% static 'images/dontaHightower.jpg' %}\"/>", "bar": "Dont'a Hightower - LB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/theKING.jpg' %}\"/>", "bar": "Derrick Henry - RB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/patrickMahomes.jpg' %}\"/>", "bar": "Patrick Mahomes - QB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/calvinRidley.jpg' %}\"/>", "bar": "Calvin Ridley - WR"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/aaronRodgers.jpeg' %}\"/>", "bar": "Aaron Rodgers - QB}"]
 
     home_imgs = {
-    "img_1": img_list[0]["img"],
+    "img_1": img_list[0]["img"].strip('"'),
     "bar_1": img_list[0]["bar"],
-    "img_2": img_list[1]["img"],
+    "img_2": img_list[1]["img"].strip('"'),
     "bar_2": img_list[1]["bar"],
-    "img_3": img_list[2]["img"],
+    "img_3": img_list[2]["img"].strip('"'),
     "bar_3": img_list[2]["bar"],
-    "img_4": img_list[3]["img"],
+    "img_4": img_list[3]["img"].strip('"'),
     "bar_4": img_list[3]["bar"],
-    "img_5": img_list[4]["img"],
+    "img_5": img_list[4]["img"].strip('"'),
     "bar_5": img_list[4]["bar"],
     }
     return render(request, 'index.html', home_imgs)
