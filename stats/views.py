@@ -250,6 +250,7 @@ for nary in def_stats_real:
 def home_view(request, *args, **kwargs):
     img_list = [{"img": "<img class=\"slideshow\" src=\"{% static 'images/dontaHightower.jpg' %}\"/>", "bar": "Dont'a Hightower - LB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/theKING.jpg' %}\"/>", "bar": "Derrick Henry - RB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/patrickMahomes.jpg' %}\"/>", "bar": "Patrick Mahomes - QB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/calvinRidley.jpg' %}\"/>", "bar": "Calvin Ridley - WR"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/aaronRodgers.jpeg' %}\"/>", "bar": "Aaron Rodgers - QB}"]
 
+
     home_imgs = {
     "img_1": img_list[0]["img"],
     "bar_1": img_list[0]["bar"],
