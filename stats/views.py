@@ -248,7 +248,22 @@ for nary in def_stats_real:
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-    return render(request, 'index.html')
+    img_list = [{"img": "<img class=\"slideshow\" src=\"{% static 'images/dontaHightower.jpg' %}\"/>", "bar": "Dont'a Hightower - LB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/theKING.jpg' %}\"/>", "bar": "Derrick Henry - RB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/patrickMahomes.jpg' %}\"/>", "bar": "Patrick Mahomes - QB"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/calvinRidley.jpg' %}\"/>", "bar": "Calvin Ridley - WR"}, {"img": "<img class=\"slideshow\" src=\"{% static 'images/aaronRodgers.jpeg' %}\"/>", "bar": "Aaron Rodgers - QB"}]
+
+
+    home_imgs = {
+    "img_1": img_list[0]["img"],
+    "bar_1": img_list[0]["bar"],
+    "img_2": img_list[1]["img"],
+    "bar_2": img_list[1]["bar"],
+    "img_3": img_list[2]["img"],
+    "bar_3": img_list[2]["bar"],
+    "img_4": img_list[3]["img"],
+    "bar_4": img_list[3]["bar"],
+    "img_5": img_list[4]["img"],
+    "bar_5": img_list[4]["bar"],
+    }
+    return render(request, 'index.html', home_imgs)
 
 def quiz_view(request, *args, **kwargs):
     #Quarterbacks
