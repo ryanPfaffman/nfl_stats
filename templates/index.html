@@ -4,7 +4,7 @@
 <body>
   {% block content %}
   <h1 id='index_title'>Django Project (Application Development)</h1>
-  <p id='index_content'>This is a project created for an Application Development class that scrapes stats from NFL.com and ESPN.com. It uses the beautifulsoup4 module to do the web scraping, and JavaScript for the quiz. This project also uses the Django framework.</p>
+  <p id='index_content'>This is a project created for an Application Development class that scrapes stats from NFL.com and ESPN.com. It uses Django, beautifulsoup4 for the web scraping, and JavaScript for the quiz.</p>
 
   <input checked type='radio' name='slider' id='slide1'/>
   	<input type='radio' name='slider' id='slide2'/>
@@ -16,33 +16,33 @@
   		<div class="inner">
   			<article>
           <div class='caption'>
-    				<bar>Derrick Henry - RB</bar>
+    				<bar>{{bar_1}}</bar>
     			</div>
-  			  <img class="slideshow" src="{% static 'images/theKING.jpg' %}"/>
+  			  {{img_1}}
   			</article>
   			<article>
           <div class='caption'>
-    				<bar>Dont'a Hightower - LB</bar>
+    				<bar>{{bar_2}}</bar>
     			</div>
-  			  <img class="slideshow" src="{% static 'images/dontaHightower.jpg' %}"/>
+  			  {{img_2}}
   			</article>
   			<article>
           <div class='caption'>
-           <bar>Patrick Mahomes - QB</bar>
+           <bar>{{bar_3}}</bar>
          </div>
-  			 <img class="slideshow" src="{% static 'images/patrickMahomes.jpg' %}"/>
+  			 {{img_3}}
   			</article>
   			<article>
           <div class='caption'>
-    				<bar>Calvin Ridley - WR</bar>
+    				<bar>{{bar_4}}</bar>
     			</div>
-  			  <img class="slideshow" src="{% static 'images/calvinRidley.jpg' %}"/>
+  			  {{img_4}}
   			</article>
   			<article>
           <div class='caption'>
-              <bar>Aaron Rodgers - QB</bar>
+              <bar>{{bar_5}}</bar>
           </div>
-    			<img class="slideshow" src="{% static 'images/aaronRodgers.jpeg' %}"/>
+    			{{img_5}}
   			</article>
   		</div>
   	</div>
