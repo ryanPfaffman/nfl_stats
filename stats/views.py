@@ -248,7 +248,23 @@ for nary in def_stats_real:
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-    return render(request, 'index.html')
+    img_src_list = [{"src": "{% static 'images/theKING.jpg' %}", "bar": "Derick Henry - RB"}, {"src": "{% static 'images/dontaHightower.jpg' %}", "bar": "Dont'a Hightower - LB"}, {"src": "{% static 'images/patrickMahomes.jpg' %}", "bar": "Patrick Mahomes - QB"}, {"src": "{% static 'images/calvinRidley.jpg' %}", "bar": "Calvin Ridley - WR"}, {"src": "{% static 'images/aaronRodgers.jpeg' %}", "bar": "Aaron Rodgers - QB"}]
+
+    r.shuffle(img_src_list)
+
+    index_imgs = {
+    "src_1": img_src_list[0]["src"],
+    "bar_1": img_src_list[0]["bar"],
+    "src_2": img_src_list[1]["src"],
+    "bar_1": img_src_list[1]["bar"],
+    "src_3": img_src_list[2]["src"],
+    "bar_3": img_src_list[2]["bar"],
+    "src_4": img_src_list[3]["src"],
+    "bar_4": img_src_list[3]["bar"],
+    "src_5": img_src_list[4]["src"],
+    "bar_5": img_src_list[4]["bar"]
+    }
+    return render(request, 'index.html', index_imgs)
 
 def quiz_view(request, *args, **kwargs):
     #Quarterbacks
