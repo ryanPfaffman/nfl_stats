@@ -1,7 +1,7 @@
-const ticker = document.querySelector("iFrame");
+const ticker = document.getElementById("ticker");
 
 $(ticker).ready(function(){
-  $('a').click(function(e) {
-   e.preventDefault();
+  $('a').click(function(event) {
+   event.preventDefault();
  })
 })
