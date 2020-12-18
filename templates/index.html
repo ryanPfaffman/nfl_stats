@@ -66,9 +66,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
     const ticker = document.getElementById("ticker");
-    $("ticker").contents().find("MLB").click(function () {
-      $("ticker").contents().find("MLB").click();
-      alert("Hello");
+    const mlb = $("ticker").contents().find("MLB");
+    mlb.css("background-color", "red");
     });
   </script>
 
