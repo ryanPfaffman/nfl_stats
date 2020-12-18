@@ -246,19 +246,6 @@ for nary in def_stats_real:
         else:
             pass
 
-import os
-
-os.system("ssh root@167.177.71.87")
-os.system("InGodweT117#u")
-os.system("su ryan")
-os.system("cd")
-os.system("cd nfl_stats")
-os.system("virtualenv env")
-os.system("source env/bin/activate")
-os.system("sudo systemctl restart gunicorn")
-
-
-
 # Create your views here.
 def home_view(request, *args, **kwargs):
     return render(request, 'index.html')
