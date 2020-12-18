@@ -245,9 +245,6 @@ for nary in def_stats_real:
             points_p_def.append(y)
         else:
             pass
-import os
-
-os.system("sudo systemctl restart gunicorn")
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
