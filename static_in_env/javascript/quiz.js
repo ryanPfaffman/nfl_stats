@@ -6,7 +6,7 @@ const which_list = document.getElementById('user_1');
 
 const hello_quiz_button = document.getElementById('hello_quiz_button');
 
-hello_quiz = () => {
+const hello_quiz = () => {
   console.log(which_list.value);
   if (which_list.value == "Passing") {
     choose_qb.style.display = "block";
