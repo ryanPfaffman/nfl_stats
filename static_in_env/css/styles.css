@@ -129,6 +129,10 @@ label {
   color: silver;
 }
 
+select {
+  background-color: silver;
+}
+
 .question {
   font-size: 1.05em;
   font-weight: bold;
