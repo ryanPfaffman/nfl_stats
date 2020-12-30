@@ -122,7 +122,11 @@ button {
 }
 
 p {
-  color: white;
+  color: silver;
+}
+
+label {
+  color: silver;
 }
 
 .question {
