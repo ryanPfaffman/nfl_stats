@@ -39,7 +39,7 @@ html {
 }
 
 #nav_bar li a:hover {
-  color: white;
+  color: silver;
 }
 
 #qb_stats, #rb_stats, #defense_stats {
@@ -49,7 +49,7 @@ html {
 }
 
 td {
-  color: white;
+  color: silver;
 }
 
 .player, .table_header, #table_title, .rb_name, .def_team_name {
@@ -89,7 +89,7 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-  color: white;
+  color: silver;
 }
 
 #index_title {
