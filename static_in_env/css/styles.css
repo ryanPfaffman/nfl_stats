@@ -137,7 +137,7 @@ select:hover {
   cursor:pointer;
 }
 
-#commands label:hover {
+#commands label:hover, #active label:hover {
   cursor: pointer;
 }
 .question {
