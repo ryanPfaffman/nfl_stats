@@ -45,12 +45,23 @@ html {
 #qb_stats, #rb_stats, #defense_stats {
   margin-left: auto;
   margin-right: auto;
+
 }
 
+td {
+  color: white;
+}
 
 .player, .table_header, #table_title, .rb_name, .def_team_name {
-  background-color: darkgrey;
+  background-color: black;
   font-size: 1.1em;
+
+}
+
+.table_header {
+  background-color: black;
+  font-size: 1.2em;
+  color: red;
 }
 
 footer {
@@ -101,10 +112,17 @@ button {
   max-height: 100%;
 }
 
+.title_row {
+  background-color: #202020;
+}
 
 #choose_stat_1:hover, button:hover, .user_choices:hover {
   cursor: pointer;
   background-color: red;
+}
+
+p {
+  color: white;
 }
 
 .question {
