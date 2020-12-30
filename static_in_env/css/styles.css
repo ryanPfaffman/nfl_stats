@@ -133,6 +133,13 @@ select {
   background-color: silver;
 }
 
+select:hover {
+  cursor:pointer;
+}
+
+#commands label:hover {
+  cursor: pointer;
+}
 .question {
   font-size: 1.05em;
   font-weight: bold;
