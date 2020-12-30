@@ -52,9 +52,9 @@ td {
   color: silver;
 }
 
-.player, .table_header, #table_title, .rb_name, .def_team_name {
+.player, #table_title, .rb_name, .def_team_name {
   background-color: black;
-  font-size: 1.1em;
+  font-size: 1.02em;
 
 }
 
