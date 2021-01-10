@@ -208,7 +208,7 @@ for defense in Defense.objects.all():
     def_stats_real.append(nary)
     nary = {}
 
-def_stats_real = sorted(def_stats_real, key=lambda i:i['g_p'], reverse=True)
+def_stats_real = sorted(def_stats_real, key=lambda i:(i['g_p'], -i['yds']),reverse=True)
 
 team_names_def = []
 gp_def = []
