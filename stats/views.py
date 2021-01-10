@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 from stats_qb import qb_stats_real
 
-from stats_defense import def_stats_real
+from addDefense import def_stats_real
 
 from stats_rb import rb_stats_real
 
@@ -208,7 +208,7 @@ for defense in Defense.objects.all():
     def_stats_real.append(nary)
     nary = {}
 
-def_stats_real = sorted(def_stats_real, key=lambda i:i['yds'])
+def_stats_real = sorted(def_stats_real, key=lambda i:i['g_p'])
 
 team_names_def = []
 gp_def = []

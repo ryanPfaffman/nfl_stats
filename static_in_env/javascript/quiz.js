@@ -22,7 +22,7 @@ const hello_quiz = () => {
   hello_quiz_button.addEventListener('click', broke);
 } else {
   alert("Invalid Input. Try again");
-}
+  }
 }
 
 hello_quiz_button.addEventListener('click', hello_quiz);
