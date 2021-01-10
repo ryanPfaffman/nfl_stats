@@ -3,7 +3,7 @@ import pandas as pd
 import select
 from bs4 import BeautifulSoup as soup
 
-defense_url = 'https://www.espn.com/nfl/stats/team/_/view/defense'
+defense_url = 'https://www.espn.com/nfl/stats/team/_/view/defense/season/2020/seasontype/2/table/passing/sort/netTotalYards/dir/asc'
 defense_page = requests.get(defense_url)
 soup = soup(defense_page.text, 'html.parser')
 
