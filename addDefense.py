@@ -32,11 +32,17 @@ for x in range(len(stats_list)):
 
 def_stats_add = []
 temp_nary = {}
-index_s = 0
+
+for x in range(len(stats_list)):
+    if type(stats_list[x]) == int or type(stats_list[x]) == float:
+        index_s = x
+        break
+
+print(index_s)
 
 for x in teams_list:
     temp_nary['team'] = x
-    temp_nary['gp'] = stats_list[int(index_s)]
+    temp_nary['gp'] = stats_list[index_s]
     temp_nary['yds'] = stats_list[index_s + 1]
     temp_nary['yds/g'] = stats_list[index_s + 2]
     temp_nary['pass_yds'] = stats_list[index_s + 3]
@@ -56,20 +62,6 @@ def findIndex(lst, teamName):
             return i
         i += 1
 
-def roundN(value):
-    valueS = str(value)
-    tempS = ""
-
-    if "." in valueS:
-        for x in range(len(valueS)):
-            if valueS[x] == ".":
-                tempS += "." + str(round(float(valueS[x + 1] + "." + valueS[x + 2])));
-                return float(tempS)
-            else:
-                tempS += valueS[x]
-
-    return float(valueS)
-
 def addStats(lstA, lstToChange, teamName):
     i = findIndex(lstA, teamName)
     z = findIndex(lstToChange, teamName)
@@ -79,13 +71,13 @@ def addStats(lstA, lstToChange, teamName):
     lstToChange[z]['gp'] += nary1['gp']
     gp = lstToChange[z]['gp']
     lstToChange[z]['yds'] += nary1['yds']
-    lstToChange[z]['yds/g'] = roundN(lstToChange[z]['yds'] / gp)
+    lstToChange[z]['yds/g'] = round(lstToChange[z]['yds'] / gp, 1)
     lstToChange[z]['pass_yds'] += nary1['pass_yds']
-    lstToChange[z]['pass_yds/g'] = roundN(lstToChange[z]['pass_yds'] / gp)
+    lstToChange[z]['pass_yds/g'] = round(lstToChange[z]['pass_yds'] / gp, 1)
     lstToChange[z]['rush_yds'] += nary1['rush_yds']
-    lstToChange[z]['rush_yds/g'] = roundN(lstToChange[z]['rush_yds'] / gp)
+    lstToChange[z]['rush_yds/g'] = round(lstToChange[z]['rush_yds'] / gp, 1)
     lstToChange[z]['points'] += nary1['points']
-    lstToChange[z]['pts/g'] = roundN(lstToChange[z]['points'] / gp)
+    lstToChange[z]['pts/g'] = round(lstToChange[z]['points'] / gp, 1)
 
     return lstToChange
 
