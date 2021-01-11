@@ -38,8 +38,6 @@ for x in range(len(stats_list)):
         index_s = x
         break
 
-print(index_s)
-
 for x in teams_list:
     temp_nary['team'] = x
     temp_nary['gp'] = stats_list[index_s]
