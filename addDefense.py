@@ -13,8 +13,13 @@ td_s_p = '\n'.join((el.get_text()) for el in td_s)
 
 list = td_s_p.split('\n')
 
-teams_list = list[0:6]
-stats_list = list[6:]
+for x in range(len(list)):
+    if list[x].isnumeric():
+        indexL = x
+        break
+
+teams_list = list[:x]
+stats_list = list[x:]
 
 def is_decimal(string):
     if string.replace('.','').isdigit():
@@ -32,6 +37,8 @@ for x in range(len(stats_list)):
 
 def_stats_add = []
 temp_nary = {}
+
+print(stats_list)
 
 for x in range(len(stats_list)):
     if type(stats_list[x]) == int or type(stats_list[x]) == float:
