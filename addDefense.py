@@ -18,8 +18,8 @@ for x in range(len(list)):
         indexL = x
         break
 
-teams_list = list[:x]
-stats_list = list[x:]
+teams_list = list[:indexL]
+stats_list = list[indexL:]
 
 def is_decimal(string):
     if string.replace('.','').isdigit():
@@ -37,8 +37,6 @@ for x in range(len(stats_list)):
 
 def_stats_add = []
 temp_nary = {}
-
-print(stats_list)
 
 for x in range(len(stats_list)):
     if type(stats_list[x]) == int or type(stats_list[x]) == float:
