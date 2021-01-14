@@ -38,10 +38,7 @@ for x in range(len(stats_list)):
 def_stats_add = []
 temp_nary = {}
 
-for x in range(len(stats_list)):
-    if type(stats_list[x]) == int or type(stats_list[x]) == float:
-        index_s = x
-        break
+index_s = 0
 
 for x in teams_list:
     temp_nary['team'] = x

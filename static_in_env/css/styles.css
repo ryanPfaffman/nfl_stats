@@ -165,3 +165,7 @@ button:active {
 iframe {
   overflow: hidden;
 }
+
+.reg {
+  color: red;
+}
