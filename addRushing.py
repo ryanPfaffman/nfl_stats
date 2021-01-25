@@ -128,7 +128,6 @@ runnersToAdd = []
 for nary in rb_stats_real:
     runnersToAdd.append(nary['name'])
 
-for nary in statsToAdd:
-    if nary['name'] in runnersToAdd:
-        rb_stats_real = addStats(statsToAdd, rb_stats_real, nary['name'])
-print(rb_stats_real)
+for rb in runnersList:
+    if rb in runnersToAdd:
+        rb_stats_real = addStats(statsToAdd, rb_stats_real, rb)
