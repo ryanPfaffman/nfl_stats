@@ -61,7 +61,7 @@ for x in new_lst:
         rb_lst.append(float(x))
     else:
         rb_lst.append(x)
-
+print(rb_lst)
 def get_nary(lst):
     nary = {}
     rtn_lst = []

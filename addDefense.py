@@ -53,7 +53,6 @@ for x in teams_list:
     temp_nary['pts/g'] = stats_list[index_s + 8]
     def_stats_add.append(temp_nary)
     temp_nary = {}
-    index_s += 9
 
 def findIndex(lst, teamName):
     i = 0

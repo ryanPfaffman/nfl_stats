@@ -8,7 +8,7 @@ from addPassing import qb_stats_real
 
 from addDefense import def_stats_real
 
-from stats_rb import rb_stats_real
+from addRushing import rb_stats_real
 
 from game_stats_2 import get_stat, get_names_qb, get_names_rb, get_answers_qb, get_answers_rb, get_answers_def, get_stat_def, get_teams_def
 
