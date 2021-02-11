@@ -3,7 +3,7 @@ import select
 from bs4 import BeautifulSoup as soup
 from stats_rb import rb_stats_real
 
-passing_url = "https://www.espn.com/nfl/stats/player/_/stat/rushing/table/rushing/sort/rushingYards/dir/desc"
+passing_url = "https://www.espn.com/nfl/stats/player/_/stat/rushing/season/2020/seasontype/3/table/rushing/sort/rushingYards/dir/desc"
 passing_page = requests.get(passing_url)
 soup = soup(passing_page.text, 'html.parser')
 
@@ -57,14 +57,35 @@ for el in list:
     else:
         cleanedList.append(el)
 
-
 runnersList = cleanedList[:indexForCut]
 statsList1 = cleanedList[indexForCut:]
+statsList2 = []
+runnersToAdd = ''
+h = 0
+for nary in rb_stats_real:
+    runnersToAdd += nary['name']
+
+#print(statsList1[h:h+11])
+
+for x in runnersList:
+    if x in runnersToAdd:
+        statsList2.extend(statsList1[h:h+11])
+    h += 11
+
+#print(statsList2)
+
+#print(runnersList)
+statsList3 = []
+for x in statsList1:
+    if ',' in str(x):
+        statsList3.append(int(x.replace(',','')))
+    else:
+        statsList3.append(x)
 
 statsList = []
 c = 1
 
-for x in range(len(statsList1)):
+for x in range(len(statsList2)):
     if c == 1:
         pass
     elif c == 4:
@@ -74,7 +95,7 @@ for x in range(len(statsList1)):
     elif c == 10:
         pass
     else:
-        statsList.append(statsList1[x])
+        statsList.append(statsList2[x])
 
     if c == 11:
         c = 0
@@ -84,18 +105,27 @@ statsToAdd = []
 tempNary = {}
 i = 0
 
+runnerString = ''
+
+for nary in rb_stats_real:
+    runnerString += nary['name']
+
+
 for x in runnersList:
-    tempNary['name'] = x
-    tempNary['att'] = statsList[i]
-    tempNary['rush_yds'] = statsList[i + 1]
-    tempNary['long'] = statsList[i + 2]
-    tempNary['20+'] = statsList[i + 3]
-    tempNary['td'] = statsList[i + 4]
-    tempNary['rush fum'] = statsList[i + 5]
-    tempNary['rush 1st'] = statsList[i + 6]
-    statsToAdd.append(tempNary)
-    tempNary = {}
-    i += 7
+    if x in runnerString:
+        tempNary['name'] = x
+        tempNary['att'] = statsList[i]
+        tempNary['rush_yds'] = statsList[i + 1]
+        tempNary['long'] = statsList[i + 2]
+        tempNary['20+'] = statsList[i + 3]
+        tempNary['td'] = statsList[i + 4]
+        tempNary['rush fum'] = statsList[i + 5]
+        tempNary['rush 1st'] = statsList[i + 6]
+        statsToAdd.append(tempNary)
+        tempNary = {}
+        i += 7
+
+#print(statsToAdd)
 
 def getIndex(lst, name):
     c = 0
@@ -113,9 +143,9 @@ def addStats(listA, listZ, name):
     z = getIndex(listZ, name)
     curNary = listA[i]
     listZ[z]['att'] += curNary['att']
-    listZ[z]['rush_yds'] += curNary['rush_yds']
+    listZ[z]['rush_yds'] += int(curNary['rush_yds'])
     if curNary['long'] > listZ[z]['long']:
-        listZ[z]['long'] += curNary['long']
+        listZ[z]['long'] = curNary['long']
     listZ[z]['20+'] += curNary['20+']
     listZ[z]['td'] += curNary['td']
     listZ[z]['rush fum'] += curNary['rush fum']

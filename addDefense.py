@@ -4,7 +4,7 @@ import select
 from bs4 import BeautifulSoup as soup
 from stats_defense import def_stats_real
 
-defense_url = "https://www.espn.com/nfl/stats/team/_/view/defense/table/passing/sort/netYardsPerGame/dir/asc"
+defense_url = "https://www.espn.com/nfl/stats/team/_/view/defense/season/2020/seasontype/3/table/passing/sort/netYardsPerGame/dir/asc"
 defense_page = requests.get(defense_url)
 soup = soup(defense_page.text, 'html.parser')
 
@@ -83,3 +83,4 @@ def addStats(lstA, lstToChange, teamName):
 
 for x in def_stats_add:
     def_stats_real = addStats(def_stats_add, def_stats_real, x['team'])
+print(def_stats_real)

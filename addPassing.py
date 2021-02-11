@@ -3,7 +3,7 @@ import select
 from bs4 import BeautifulSoup as soup
 from stats_qb import qb_stats_real
 
-passing_url = "https://www.espn.com/nfl/stats/player/_/table/passing/sort/passingYards/dir/desc"
+passing_url = "https://www.espn.com/nfl/stats/player/_/season/2020/seasontype/3/table/passing/sort/passingYards/dir/desc"
 passing_page = requests.get(passing_url)
 soup = soup(passing_page.text, 'html.parser')
 
@@ -88,25 +88,40 @@ for x in range(len(stats_list)):
     else:
         pass
 
+qb_cleaned_list = []
+
+for x in qb_list:
+    if x.isdigit() == False:
+        qb_cleaned_list.append(x)
+
+#print(qb_cleaned_list)
 qb_stats_add = []
 temp_nary = {}
 
 iS = 0
+#print(qb_list, stats_list)
+#print(stats_list[0])
+qb_string = ''
+for nary in qb_stats_real:
+    qb_string += nary['qb_name']
 
-for x in qb_list:
-    temp_nary['qb_name'] = x
-    temp_nary['qb_cmp'] = stats_list[iS]
-    temp_nary['qb_att'] = stats_list[iS + 1]
-    temp_nary['qb_pass_yds'] = stats_list[iS + 2]
-    temp_nary['qb_long'] = stats_list[iS + 3]
-    temp_nary['qb_td'] = stats_list[iS + 4]
-    temp_nary['qb_int'] = stats_list[iS + 5]
-    temp_nary['qb_sack'] = stats_list[iS + 6]
-    temp_nary['qb_sack_yds'] = stats_list[iS + 7]
-    temp_nary['qb_rating'] = stats_list[iS + 8]
-    qb_stats_add.append(temp_nary)
-    temp_nary = {}
-    iS += 9
+for x in qb_cleaned_list:
+    if x in qb_string:
+        temp_nary['qb_name'] = x
+        temp_nary['qb_cmp'] = stats_list[iS]
+        temp_nary['qb_att'] = stats_list[iS + 1]
+        temp_nary['qb_pass_yds'] = stats_list[iS + 2]
+        temp_nary['qb_long'] = stats_list[iS + 3]
+        temp_nary['qb_td'] = stats_list[iS + 4]
+        temp_nary['qb_int'] = stats_list[iS + 5]
+        temp_nary['qb_sack'] = stats_list[iS + 6]
+        temp_nary['qb_sack_yds'] = stats_list[iS + 7]
+        temp_nary['qb_rating'] = stats_list[iS + 8]
+        qb_stats_add.append(temp_nary)
+        temp_nary = {}
+        iS += 9
+
+#print(qb_stats_add)
 
 def findIndex(lst, qbName):
     i = 0
