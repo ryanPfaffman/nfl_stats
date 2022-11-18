@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as soup
 import string
 letters = list(string.ascii_lowercase)
 
-pass_url = 'https://www.nfl.com/stats/player-stats/'
+pass_url = 'https://www.nfl.com/stats/player-stats'
 pass_page = requests.get(pass_url)
 soup = soup(pass_page.text, 'html.parser')
 
@@ -45,11 +45,13 @@ for x in range(len(passing_list_2)):
         temp_nary['qb_yds_att'] = passing_list_2[x+2]
         temp_nary['qb_att'] = passing_list_2[x+3]
         temp_nary['qb_cmp'] = passing_list_2[x+4]
+        #print(f'qb_cmp_perc: {passing_list_2[x+5]}')
         temp_nary['qb_cmp_perc'] = passing_list_2[x+5]
         temp_nary['qb_td'] = passing_list_2[x+6]
         temp_nary['qb_int'] = passing_list_2[x+7]
         temp_nary['qb_rating'] = passing_list_2[x+8]
         temp_nary['qb_1st'] = passing_list_2[x+9]
+        #print(f'qb_1st_perc: {passing_list_2[x+10]}')
         temp_nary['qb_1st_perc'] = passing_list_2[x+10]
         temp_nary['qb_20+'] = passing_list_2[x+11]
         temp_nary['qb_40+'] = passing_list_2[x+12]

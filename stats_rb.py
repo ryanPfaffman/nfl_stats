@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as soup
 import string
 letters = list(string.ascii_lowercase)
 
-rush_url = 'https://www.nfl.com/stats/player-stats/category/rushing/2020/REG/all/rushingyards/desc'
+rush_url = 'https://www.nfl.com/stats/player-stats/category/rushing/2022/reg/all/rushingyards/desc'
 rush_page = requests.get(rush_url)
 soup = soup(rush_page.text,'html.parser')
 

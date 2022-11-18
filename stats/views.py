@@ -14,7 +14,7 @@ from game_stats_2 import get_stat, get_names_qb, get_names_rb, get_answers_qb, g
 
 from .models import Qb, Rb, Defense
 #start of quiz
-
+print(f'qb_stats_real: {qb_stats_real}')
 Qb.objects.all().delete()
 Rb.objects.all().delete()
 Defense.objects.all().delete()
@@ -28,7 +28,8 @@ for nary in qb_stats_real:
 
 for x in range(len(qb_stats_list)):
     if type(qb_stats_list[x]) == str:
-        a_count = Qb(name=qb_stats_list[x],pass_yds=qb_stats_list[x+1],yds_att=qb_stats_list[x+2],att=qb_stats_list[x+3],cmp=qb_stats_list[x+4],cmp_perc=round(qb_stats_list[x+5] * 100,1),td=qb_stats_list[x+6],int=qb_stats_list[x+7],qb_rating=qb_stats_list[x+8],first=qb_stats_list[x+9],first_perc=round(qb_stats_list[x+10] * 100, 1),more_20=qb_stats_list[x+11],more_40=qb_stats_list[x+12],lng=qb_stats_list[x+13],sack=qb_stats_list[x+14],sack_Y=qb_stats_list[x+15])
+        #WILL HAVE TO CHANGE WHEN ADDING PLAYOFF STATS TO GET ACCURATE COMPLETION PERCENTAGE
+        a_count = Qb(name=qb_stats_list[x],pass_yds=qb_stats_list[x+1],yds_att=qb_stats_list[x+2],att=qb_stats_list[x+3],cmp=qb_stats_list[x+4],cmp_perc=qb_stats_list[x+5],td=qb_stats_list[x+6],int=qb_stats_list[x+7],qb_rating=qb_stats_list[x+8],first=qb_stats_list[x+9],first_perc=qb_stats_list[x+10],more_20=qb_stats_list[x+11],more_40=qb_stats_list[x+12],lng=qb_stats_list[x+13],sack=qb_stats_list[x+14],sack_Y=qb_stats_list[x+15])
         a_count.save()
 
 nary = {}
@@ -45,6 +46,7 @@ for x in Qb.objects.all():
     nary['qb_int'] = x.int
     nary['qb_rating'] = x.qb_rating
     nary['qb_1st'] = x.first
+    print(f'x:{x} x.first_perc: {x.first_perc}')
     nary['qb_1st_perc'] = x.first_perc
     nary['qb_20+'] = x.more_20
     nary['qb_40+'] = x.more_40
