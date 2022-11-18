@@ -3,12 +3,22 @@ import pandas as pd
 import select
 from bs4 import BeautifulSoup as soup
 from stats_defense import def_stats_real
+from datetime import datetime as d
+
+date = d.now()
+datetime = date.strftime("%Y-%m-%d %H:%M:%S")
+year = datetime[:4]
+
+if year == 2023:
+    if datetime > '2023-01-16 23:00:00':
+        year = 2022
+        playoffs = True
 
 playoffs = False
 
-if playoffs == True:
+if playoffs:
 
-    defense_url = "https://www.espn.com/nfl/stats/team/_/view/defense/season/2020/seasontype/3/table/passing/sort/netYardsPerGame/dir/asc"
+    defense_url = "https://www.espn.com/nfl/stats/team/_/view/defense/season/"+year+"/seasontype/3/table/passing/sort/netYardsPerGame/dir/asc"
     defense_page = requests.get(defense_url)
     soup = soup(defense_page.text, 'html.parser')
 
@@ -16,6 +26,8 @@ if playoffs == True:
     td_s_p = '\n'.join((el.get_text()) for el in td_s)
 
     list = td_s_p.split('\n')
+
+    #print(list)
 
     for x in range(len(list)):
         if list[x].isnumeric():
@@ -45,6 +57,8 @@ if playoffs == True:
     index_s = 0
 
     for x in teams_list:
+        if x == 'Washington':
+            x = 'Washington Commanders'
         temp_nary['team'] = x
         temp_nary['gp'] = stats_list[index_s]
         temp_nary['yds'] = stats_list[index_s + 1]
@@ -87,4 +101,4 @@ if playoffs == True:
 
     for x in def_stats_add:
         def_stats_real = addStats(def_stats_add, def_stats_real, x['team'])
-    print(def_stats_real)
+    #print(def_stats_real)

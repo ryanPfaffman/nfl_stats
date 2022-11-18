@@ -2,8 +2,17 @@ import requests
 import pandas as pd
 import select
 from bs4 import BeautifulSoup as soup
+from datetime import datetime as d
 
-defense_url = 'https://www.espn.com/nfl/stats/team/_/view/defense/season/2022/seasontype/2/table/passing/sort/netTotalYards/dir/asc'
+date = d.now()
+datetime = date.strftime("%Y-%m-%d %H:%M:%S")
+year = datetime[:4]
+
+if year == 2023:
+    if datetime < '2023-09-09 23:00:00':
+        year = 2022
+
+defense_url = 'https://www.espn.com/nfl/stats/team/_/view/defense/season/'+year+'/seasontype/2/table/passing/sort/netTotalYards/dir/asc'
 defense_page = requests.get(defense_url)
 soup = soup(defense_page.text, 'html.parser')
 

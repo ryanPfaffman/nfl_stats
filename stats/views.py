@@ -14,7 +14,7 @@ from game_stats_2 import get_stat, get_names_qb, get_names_rb, get_answers_qb, g
 
 from .models import Qb, Rb, Defense
 #start of quiz
-print(f'qb_stats_real: {qb_stats_real}')
+#print(f'qb_stats_real: {qb_stats_real}')
 Qb.objects.all().delete()
 Rb.objects.all().delete()
 Defense.objects.all().delete()
@@ -46,7 +46,7 @@ for x in Qb.objects.all():
     nary['qb_int'] = x.int
     nary['qb_rating'] = x.qb_rating
     nary['qb_1st'] = x.first
-    print(f'x:{x} x.first_perc: {x.first_perc}')
+    #print(f'x:{x} x.first_perc: {x.first_perc}')
     nary['qb_1st_perc'] = x.first_perc
     nary['qb_20+'] = x.more_20
     nary['qb_40+'] = x.more_40

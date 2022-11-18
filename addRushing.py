@@ -2,12 +2,22 @@ import requests
 import select
 from bs4 import BeautifulSoup as soup
 from stats_rb import rb_stats_real
+from datetime import datetime as d
+
+date = d.now()
+datetime = date.strftime("%Y-%m-%d %H:%M:%S")
+year = datetime[:4]
+
+if year == 2023:
+    if datetime > '2023-01-16 23:00:00':
+        year = 2022
+        playoffs = True
 
 playoffs = False
 
 if playoffs:
 
-    passing_url = "https://www.espn.com/nfl/stats/player/_/stat/rushing/season/2020/seasontype/3/table/rushing/sort/rushingYards/dir/desc"
+    passing_url = "https://www.espn.com/nfl/stats/player/_/stat/rushing/season/"+year+"/seasontype/3/table/rushing/sort/rushingYards/dir/desc"
     passing_page = requests.get(passing_url)
     soup = soup(passing_page.text, 'html.parser')
 

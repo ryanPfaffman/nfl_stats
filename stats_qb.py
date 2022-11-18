@@ -2,11 +2,20 @@ import requests
 import pandas as pd
 import select
 from bs4 import BeautifulSoup as soup
-
 import string
+from datetime import datetime as d
+
+date = d.now()
+datetime = date.strftime("%Y-%m-%d %H:%M:%S")
+year = datetime[:4]
+
+if year == 2023:
+    if datetime < '2023-09-09 23:00:00':
+        year = 2022
+
 letters = list(string.ascii_lowercase)
 
-pass_url = 'https://www.nfl.com/stats/player-stats'
+pass_url = 'https://www.nfl.com/stats/player-stats/category/passing/'+year+'/reg/all/passingyards/desc'
 pass_page = requests.get(pass_url)
 soup = soup(pass_page.text, 'html.parser')
 
