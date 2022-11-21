@@ -56,6 +56,7 @@ for x in Qb.objects.all():
     qb_stats_real.append(nary)
     nary= {}
 
+#if statements added here to sort data based on which of the clickable stat types user selects
 qb_stats_real = sorted(qb_stats_real, key=lambda i:i["qb_pass_yds"], reverse=True)
 
 qb_names_left = []
@@ -139,6 +140,7 @@ for rb in Rb.objects.all():
     rb_stats_real.append(nary)
     nary = {}
 
+#if statements added here to sort data based on which of the clickable stat types user selects
 rb_stats_real = sorted(rb_stats_real, key=lambda i:i['rush_yds'], reverse=True)
 
 rb_names = []
@@ -210,6 +212,9 @@ for defense in Defense.objects.all():
     def_stats_real.append(nary)
     nary = {}
 
+#if statements added here to sort data based on which of the clickable stat types user selects
+#will that be a problem with the pythonanywhere bs hosting, where you have to fucking manually click reload to reload the source
+#code of the application?
 def_stats_real = sorted(def_stats_real, key=lambda i:(i['g_p'], -i['yds']),reverse=True)
 
 team_names_def = []
